@@ -1,0 +1,83 @@
+<!--This script builds a zip for Embedded Installation -->
+<assembly>
+
+    <id>embedded-dist</id>
+
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <fileSets>
+        <fileSet>
+            <directory>kits/embedded</directory>
+            <outputDirectory>/</outputDirectory>
+            <filtered>true</filtered>
+            <includes>
+                <include>**/*</include>
+            </includes>
+            <fileMode>755</fileMode>
+        </fileSet>
+    </fileSets>
+    
+    <files>
+        <file>
+            <source>${project.build.directory}/${project.artifactId}-${project.version}.jar</source>
+            <outputDirectory>lib</outputDirectory>
+        </file>
+    </files>
+    
+    <dependencySets>
+      <dependencySet>
+          <includes>
+          	  <include>org.jboss.narayana.jta:narayana-jta:jar</include>
+              <include>org.jboss.ironjacamar:ironjacamar-jdbc:jar</include>
+              <include>org.jboss.ironjacamar:ironjacamar-core-api:jar</include>
+              <include>org.jboss.ironjacamar:ironjacamar-core-impl:jar</include>
+              <include>org.jboss.ironjacamar:ironjacamar-common-api:jar</include>
+              <include>org.jboss.ironjacamar:ironjacamar-common-impl:jar</include>
+              <include>org.jboss.ironjacamar:ironjacamar-common-spi:jar</include>
+              <include>org.jboss.ironjacamar:ironjacamar-spec-api:jar</include>
+              <include>org.jboss:jboss-transaction-spi:jar</include>
+          </includes>
+          <outputDirectory>optional/tm</outputDirectory>
+          <unpack>false</unpack>
+       </dependencySet>
+       <dependencySet>
+          <includes>
+          	  <include>org.jboss.teiid:teiid-admin:jar</include>
+              <include>org.jboss.teiid:teiid-api:jar</include>
+              <include>org.jboss.teiid:teiid-client:jar</include>
+              <include>org.jboss.teiid:teiid-common-core:jar</include>
+              <include>org.jboss.teiid:teiid-engine:jar</include>
+              <include>org.jboss.teiid:teiid-metadata:jar</include>
+              <include>org.jboss.teiid:teiid-runtime:jar</include>
+              <include>javax.resource:connector-api:jar</include>
+              <include>org.infinispan:infinispan-core:jar</include>
+              <include>com.fasterxml.jackson.core:jackson-annotations:jar</include>
+              <include>com.fasterxml.jackson.core:jackson-core:jar</include>
+              <include>com.fasterxml.jackson.core:jackson-databind:jar</include>
+              <include>jaxen:jaxen:jar</include>
+              <include>org.jboss.logging:jboss-logging:jar</include>
+              <include>org.jboss.marshalling:jboss-marshalling:jar</include>
+              <include>org.jboss.marshalling:jboss-marshalling-river:jar</include>
+              <include>org.jgroups:jgroups:jar</include>
+              <include>javax.transaction:jta:jar</include>
+              <include>com.vividsolutions:jts:jar</include>
+              <include>org.wololo:jts2geojson:jar</include>
+              <include>nux:nux:jar</include>
+              <include>org.osgeo:proj4j:jar</include>
+              <include>net.sf.saxon:Saxon-HE:jar</include>
+              <include>org.jboss:staxmapper:jar</include>
+              <include>xom:xom:jar</include>
+          </includes>
+          <outputDirectory>lib</outputDirectory>
+          <unpack>false</unpack>
+       </dependencySet>
+    </dependencySets>
+
+    
+ 
+
+</assembly>
