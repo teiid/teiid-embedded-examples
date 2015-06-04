@@ -5,9 +5,9 @@
      	<version>8.11.0.Beta4-SNAPSHOT</version>
   	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>excel-as-a-datasource</artifactId>
-	<name>Teiid Examples excel-as-a-datasource</name>
-	<description>Teiid Examples excel-as-a-datasource</description>
+	<artifactId>mongodb-as-a-datasource</artifactId>
+	<name>Teiid Examples mongodb-as-a-datasource</name>
+	<description>Teiid Examples mongodb-as-a-datasource</description>
 	<packaging>jar</packaging>
 
 	<dependencies>
@@ -20,12 +20,17 @@
 		
 		<dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
-			<artifactId>translator-excel</artifactId>
+			<artifactId>translator-mongodb</artifactId>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
-			<artifactId>connector-file</artifactId>
+			<artifactId>translator-jdbc</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jboss.teiid.connectors</groupId>
+			<artifactId>connector-mongodb</artifactId>
 			<classifier>lib</classifier>
 		</dependency>
 		      

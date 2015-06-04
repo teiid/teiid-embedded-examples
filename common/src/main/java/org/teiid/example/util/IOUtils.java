@@ -1,6 +1,10 @@
 package org.teiid.example.util;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
 
 /**
  * This class supply static method to operate file which exist under current folder
@@ -34,6 +38,26 @@ public class IOUtils {
 
             File baseDir = new File(System.getProperty("user.dir")); //$NON-NLS-1$
             return find(baseDir, name);
+    }
+    
+    public static Properties findProperties(String name) throws IOException{
+        
+        File file = findFile(name);
+        Properties prop = new Properties();
+        InputStream input = null;
+        if(file != null) {
+            try {
+                input = new FileInputStream(file);
+                prop.load(input);
+            } finally {
+                if (input != null) {
+                    input.close();
+                }
+            }
+            return prop;
+        }
+        
+        return prop;
     }
     
     private static File find(File baseDir, String dir) {

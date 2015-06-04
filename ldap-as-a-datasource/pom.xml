@@ -5,9 +5,9 @@
      	<version>8.11.0.Beta4-SNAPSHOT</version>
   	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>excel-as-a-datasource</artifactId>
-	<name>Teiid Examples excel-as-a-datasource</name>
-	<description>Teiid Examples excel-as-a-datasource</description>
+	<artifactId>ldap-as-a-datasource</artifactId>
+	<name>Teiid Examples ldap-as-a-datasource</name>
+	<description>Teiid Examples ldap-as-a-datasource</description>
 	<packaging>jar</packaging>
 
 	<dependencies>
@@ -20,12 +20,12 @@
 		
 		<dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
-			<artifactId>translator-excel</artifactId>
+			<artifactId>translator-ldap</artifactId>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
-			<artifactId>connector-file</artifactId>
+			<artifactId>connector-ldap</artifactId>
 			<classifier>lib</classifier>
 		</dependency>
 		      

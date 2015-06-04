@@ -5,9 +5,9 @@
      	<version>8.11.0.Beta4-SNAPSHOT</version>
   	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>excel-as-a-datasource</artifactId>
-	<name>Teiid Examples excel-as-a-datasource</name>
-	<description>Teiid Examples excel-as-a-datasource</description>
+	<artifactId>cassandra-as-a-datasourse</artifactId>
+	<name>Teiid Examples cassandra-as-a-datasourse</name>
+	<description>Teiid Examples cassandra-as-a-datasourse</description>
 	<packaging>jar</packaging>
 
 	<dependencies>
@@ -15,18 +15,29 @@
 		<dependency>
             <groupId>org.jboss.teiid.examples</groupId>
             <artifactId>teiid-examples-common</artifactId>
-            <scope>provided</scope>
         </dependency>	
 		
 		<dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
-			<artifactId>translator-excel</artifactId>
+			<artifactId>translator-cassandra</artifactId>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
-			<artifactId>connector-file</artifactId>
+			<artifactId>connector-cassandra</artifactId>
 			<classifier>lib</classifier>
+		</dependency>
+		
+		<dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty</artifactId>
+            <scope>provided</scope>
+        </dependency>
+		
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<scope>provided</scope>
 		</dependency>
 		      
 	</dependencies>

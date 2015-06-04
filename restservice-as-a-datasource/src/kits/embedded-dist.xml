@@ -1,0 +1,68 @@
+<!--This script builds a zip for Embedded Installation -->
+<assembly>
+
+    <id>embedded-dist</id>
+
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+    <fileSets>
+        <fileSet>
+            <directory>src/kits/embedded</directory>
+            <outputDirectory>/examples</outputDirectory>
+            <filtered>true</filtered>
+            <includes>
+                <include>**/*</include>
+            </includes>
+            <fileMode>755</fileMode>
+        </fileSet>
+        <fileSet>
+            <directory>src/main/java</directory>
+            <outputDirectory>/examples/restservice-as-a-datasource/src</outputDirectory>
+        </fileSet>
+    </fileSets>
+    
+    <files>
+        <file>
+            <source>${project.build.directory}/${project.artifactId}-${project.version}.jar</source>
+            <outputDirectory>lib</outputDirectory>
+        </file>
+    </files>
+    
+    <dependencySets>
+      <dependencySet>
+          <includes>
+          	  <include>org.jboss.teiid.connectors:translator-ws:jar</include>
+          	  <include>org.jboss.teiid.connectors:connector-ws:jar:lib</include>
+          	  <include>org.apache.cxf:cxf-api:jar</include>
+          	  <include>org.apache.cxf:cxf-bundle:jar</include>
+          	  <include>org.apache.cxf:cxf-rt-bindings-xml:jar</include>
+          	  <include>org.apache.cxf:cxf-rt-core:jar</include>
+          	  <include>org.apache.cxf:cxf-rt-frontend-jaxrs:jar</include>
+          	  <include>org.apache.cxf:cxf-rt-rs-security-oauth2:jar</include>
+          	  <include>org.apache.cxf:cxf-rt-rs-security-oauth:jar</include>
+          	  <include>org.apache.cxf:cxf-rt-rs-security-oauth2-saml:jar</include>
+          	  <include>org.apache.cxf:cxf-rt-rs-security-xml:jar</include>
+          	  <include>javax.ws.rs:javax.ws.rs-api:jar</include>
+          	  <include>org.apache.neethi:neethi:jar</include>
+          	  <include>org.springframework:spring-beans:jar</include>
+          	  <include>org.springframework:spring-context:jar</include>
+          	  <include>org.springframework:spring-core:jar</include>
+          	  <include>org.codehaus.woodstox:stax2-api:jar</include>
+          	  <include>org.codehaus.woodstox:woodstox-core-asl:jar</include>
+          	  <include>wsdl4j:wsdl4j:jar</include>
+          	  <include>org.apache.ws.xmlschema:xmlschema-core:jar</include>
+          </includes>
+          <outputDirectory>optional/webservice</outputDirectory>
+          <unpack>false</unpack>
+       </dependencySet>
+
+    </dependencySets>
+
+    
+ 
+
+</assembly>

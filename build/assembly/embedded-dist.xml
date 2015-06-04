@@ -29,19 +29,6 @@
     </fileSet>
   </fileSets>
 
-<!--
-  <dependencySets>
-      <dependencySet>
-        <includes>
-          <include>com.h2database:h2:jar</include>
-        </includes>
-        <outputDirectory>optional/jdbc/h2</outputDirectory>
-        <unpack>false</unpack>
-        <useTransitiveDependencies>false</useTransitiveDependencies>
-        <scope>provided</scope>
-      </dependencySet>
-   </dependencySets>
-  -->
   <moduleSets>
     
     <moduleSet>
@@ -49,8 +36,16 @@
 
         <includes>
             <include>org.jboss.teiid.examples:teiid-examples-common</include>
-	    <include>org.jboss.teiid.examples:embedded-portfolio</include>
-	    <include>org.jboss.teiid.examples:excel-as-a-datasource</include>
+	        <include>org.jboss.teiid.examples:embedded-portfolio</include>
+	        <include>org.jboss.teiid.examples:excel-as-a-datasource</include>
+	        <include>org.jboss.teiid.examples:cassandra-as-a-datasourse</include>
+	        <include>org.jboss.teiid.examples:mongodb-as-a-datasource</include>
+	        <include>org.jboss.teiid.examples:ldap-as-a-datasource</include>
+	        <include>org.jboss.teiid.examples:hbase-as-a-datasource</include>
+	        <include>org.jboss.teiid.examples:restservice-as-a-datasource</include>
+	        <include>org.jboss.teiid.examples:soapservice-as-a-datasource</include>
+	        <include>org.jboss.teiid.examples:CustomerRESTWebSvc</include>
+	        <include>org.jboss.teiid.examples:StateService</include>
         </includes>
 
         <binaries>
