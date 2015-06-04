@@ -35,7 +35,7 @@ Import `teiid-examples` source code to a IDE(Eclipse), run each examples with co
 
 ### Run from mvn 
 
-Navigating to a examples execute mvn exec commands.
+Navigating to a example execute mvn exec commands.
 
 ~~~
 $ cd teiid-examples/embedded-portfolio

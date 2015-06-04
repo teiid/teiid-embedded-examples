@@ -24,7 +24,6 @@ package org.teiid.example;
 import static org.teiid.example.util.JDBCUtils.execute;
 import static org.teiid.example.util.IOUtils.findFile;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import javax.sql.DataSource;
