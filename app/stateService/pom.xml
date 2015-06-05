@@ -4,13 +4,13 @@
 	<parent>
             <artifactId>teiid-examples-service</artifactId>
             <groupId>org.jboss.teiid.examples</groupId>
-            <version>8.11.0.Beta4-SNAPSHOT</version>
+            <version>1.0.0-SNAPSHOT</version>
     	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>StateService</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
-	<name>StateService</name>
+	<name>Teiid Examples App StateService</name>
 	<description>Teiid Examples StateService JAX-WS WebService</description>
 
 

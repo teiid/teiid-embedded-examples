@@ -28,7 +28,6 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 public class JDBCUtils {
 	
 	public static Connection getDriverConnection(String driver, String url, String user, String pass) throws Exception {
@@ -149,5 +148,73 @@ public class JDBCUtils {
 			close(stmt);
 		}
 		return true ;
+	}
+	
+	public static Entity executeQueryCount(Connection conn, String sql) throws SQLException {
+                
+        Entity entity = new Entity();
+        entity.setSql(sql);
+        
+        long start = System.currentTimeMillis();
+        
+        Statement stmt = null;
+        ResultSet rs = null;
+        
+        try {
+            stmt = conn.createStatement();
+            rs = stmt.executeQuery(sql);
+            entity.setQueryTime(System.currentTimeMillis() - start);
+            int columns = rs.getMetaData().getColumnCount();
+            while(rs.next()) {
+                for (int i = 0 ; i < columns ; ++i) {
+                    rs.getObject(i+1);
+                }
+            }
+        } finally {
+            JDBCUtils.close(rs, stmt);
+        }
+        
+        entity.setDeserializeTime(System.currentTimeMillis() - start - entity.getQueryTime());
+        
+        return entity;
+    }
+	
+	public static class Entity {
+	    
+	    private String sql;
+	    
+	    private long queryTime;
+	    
+	    private long deserializeTime;
+
+	    public String getSql() {
+	        return sql;
+	    }
+
+	    public void setSql(String sql) {
+	        this.sql = sql;
+	    }
+
+	    public long getQueryTime() {
+	        return queryTime;
+	    }
+
+	    public void setQueryTime(long queryTime) {
+	        this.queryTime = queryTime;
+	    }
+
+	    public long getDeserializeTime() {
+	        return deserializeTime;
+	    }
+
+	    public void setDeserializeTime(long deserializeTime) {
+	        this.deserializeTime = deserializeTime;
+	    }
+
+	    @Override
+	    public String toString() {
+	        return "PerfEntity [sql=" + sql + ", queryTime=" + queryTime + ", deserializeTime=" + deserializeTime + "]";
+	    }
+
 	}
 }
