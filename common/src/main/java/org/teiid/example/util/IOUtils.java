@@ -45,19 +45,22 @@ public class IOUtils {
         File file = findFile(name);
         Properties prop = new Properties();
         InputStream input = null;
-        if(file != null) {
-            try {
+        try {
+            if(file != null) {
                 input = new FileInputStream(file);
                 prop.load(input);
-            } finally {
-                if (input != null) {
-                    input.close();
-                }
+                return prop;
+            } else {
+                input = IOUtils.class.getClassLoader().getResourceAsStream(name);
+                prop.load(input);
+                return prop;
             }
-            return prop;
+        } finally {
+            if (input != null) {
+                input.close();
+            }
         }
         
-        return prop;
     }
     
     private static File find(File baseDir, String dir) {

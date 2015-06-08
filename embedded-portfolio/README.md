@@ -8,9 +8,9 @@ Description: Demonstrates how to expose multiple data sources for data federatio
 
 ## What's this
 
-This example demonstrates how to expose multiple data sources(a relational data source, a text file-based data source) for data federation. Dynamic VDB [portfolio-vdb.xml](src/kits/embedded/embedded-portfolio/portfolio-vdb.xml) be used to define view within DDL metadata.
+This example demonstrates how to expose multiple data sources(a relational data source, a text file-based data source) for data federation. Dynamic VDB [portfolio-vdb.xml](src/main/resources/portfolio-vdb.xml) be used to define view within DDL metadata.
 
-The examples use `java:/accounts-ds` and `java:/marketdata-file` referenced with h2 database([customer-schema.sql](src/kits/embedded/embedded-portfolio/data/customer-schema.sql)) and file data source([marketdata-price.txt](src/kits/embedded/embedded-portfolio/data/marketdata-price.txt)) correspondingly, which both data source will be setup automatically while the examples start running.
+The examples use `java:/accounts-ds` and `java:/marketdata-file` referenced with h2 database([customer-schema.sql](src/main/resources/data/customer-schema.sql)) and file data source([marketdata-price.txt](src/main/resources/data/marketdata-price.txt)) correspondingly, which both data source will be setup automatically while the examples start running.
 
 ## Prerequisites
 

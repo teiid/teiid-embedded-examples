@@ -8,7 +8,7 @@ Description: Demonstrates using the WS Translator to call a REST web services an
 
 ## What's this
 
-This example demonstrates using the WS Translator to call a REST web services and transform the web service results into relational results. Dynamic VDB [restwebservice-vdb.xml](src/kits/embedded/restservice-as-a-datasource/restwebservice-vdb.xml) be used to define view within DDL metadata.
+This example demonstrates using the WS Translator to call a REST web services and transform the web service results into relational results. Dynamic VDB [restwebservice-vdb.xml](src/main/resources/restwebservice-vdb.xml) be used to define view within DDL metadata.
 
 The examples use `java:/CustomerRESTWebSvcSource` referenced with Rest WebServiceas a data source, which data source will be setup automatically while the examples start running.
 
@@ -16,7 +16,7 @@ The examples use `java:/CustomerRESTWebSvcSource` referenced with Rest WebServic
 
 Deploy customer service `CustomerRESTWebSvc.war` to a running JBoss server(Assume JBoss EAP 6 run on localhost).
 
-[../service/customer/README.md](../service/customer/README.md) have steps to build and deploy customer service.
+[../app/customer/README.md](../app/customer/README.md) have steps to build and deploy customer service.
 
 ## Run
 

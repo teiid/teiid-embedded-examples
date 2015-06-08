@@ -13,21 +13,10 @@ Enter the following:
 ~~~
 $ git clone https://github.com/<yourname>/teiid-examples.git
 $ cd teiid-examples
-$ mvn clean install -P release -s settings.xml
+$ mvn clean install -s settings.xml
 ~~~
 
-you can find the `teiid-${version}-embedded-dist.zip` under `build/target`.
-
 ## Run
-
-### Run from dist
-
-Unzip dist zip file, navigate into the `examples` folder, start example with start up scripts(run.sh/run.bat).
-
-~~~~
-$ unzip teiid-${version}-embedded-dist.zip -d teiid-examples
-$ cd teiid-examples/examples
-~~~~
 
 ### Run from Source code
 
@@ -35,7 +24,7 @@ Import `teiid-examples` source code to a IDE(Eclipse), run each examples with co
 
 ### Run from mvn 
 
-Navigating to a example execute mvn exec commands.
+With above **Build** section steps, make sure examples build success, navigating to a example execute mvn exec commands, for example:
 
 ~~~
 $ cd teiid-examples/embedded-portfolio

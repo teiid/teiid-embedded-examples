@@ -8,7 +8,7 @@ Description: Demonstrates using the Cassandra Translator to access table in Cass
 
 ## What's this
 
-This example demonstrates using the Cassandra Translator to access table in Cassandra.  Dynamic VDB [cassandra-vdb.xml](src/kits/embedded/cassandra-as-a-datasourse/cassandra-vdb.xml) be used to define view within DDL metadata.
+This example demonstrates using the Cassandra Translator to access table in Cassandra. Dynamic VDB [cassandra-vdb.xml](src/main/resources/cassandra-vdb.xml) be used to define view within DDL metadata.
 
 The examples use `java:/demoCassandra` referenced to Cassandra data source, which will be setup automatically while the examples start running.
 
@@ -30,7 +30,7 @@ Create 'demo' keyspace and 'users' table as Cassandra [wiki page](http://wiki.ap
 
 **3.** Edit cassandra.properties
 
-Edit [cassandra.properties](src/kits/embedded/cassandra-as-a-datasourse/cassandra.properties) make sure cassandra.address and cassandra.keybase point to cassandra server which setuped above.
+Edit [cassandra.properties](src/main/resources/cassandra.properties) make sure cassandra.address and cassandra.keybase point to cassandra server which setuped above.
 
 
 ## Run

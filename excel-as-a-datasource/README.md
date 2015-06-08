@@ -8,9 +8,9 @@ Description: Demonstrates using Excel Translator query Excel file with JDBC
 
 ## What's this
 
-This example demonstrates using Excel Translator query Excel file with JDBC. Dynamic VDB [excel-vdb.xml](src/kits/embedded/excel-as-a-datasource/excel-vdb.xml) be used to define view and Foreign Table within DDL metadata.
+This example demonstrates using Excel Translator query Excel file with JDBC. Dynamic VDB [excel-vdb.xml](src/main/resources/excel-vdb.xml) be used to define view and Foreign Table within DDL metadata.
 
-The examples use `java:/excel-file` referenced with a [excel data source](src/kits/embedded/excel-as-a-datasource/data/otherholdings.xls), which data source will be setup automatically while the examples start running.
+The examples use `java:/excel-file` referenced with a [excel data source](src/main/resources/data/otherholdings.xls), which data source will be setup automatically while the examples start running.
 
 ## Prerequisites
 

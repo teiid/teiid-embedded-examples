@@ -8,7 +8,7 @@ Description: Demonstrates using the MongoDB Translator to access data in mongodb
 
 ## What's this
 
-This example demonstrates using the MongoDB Translator to access data in mongodb. Dynamic VDB [mongodb-vdb.xml](src/kits/embedded/mongodb-as-a-datasource/mongodb-vdb.xml) be used to define forien table within DDL metadata.
+This example demonstrates using the MongoDB Translator to access data in mongodb. Dynamic VDB [mongodb-vdb.xml](src/main/resources/mongodb-vdb.xml) be used to define forien table within DDL metadata.
 
 The examples use `java:/mongoDS` referenced to MongoDB data source, which will be setup automatically while the examples start running.
 
@@ -33,7 +33,7 @@ db.Employee.insert({employee_id: '3', FirstName: 'Test3', LastName: 'Test3'});
 
 **3.** Edit mongodb.properties
 
-Edit [mongodb.properties](src/kits/embedded/mongodb-as-a-datasource/mongodb.properties) make sure server.list and db.name point to mongo server which setuped above.
+Edit [mongodb.properties](src/main/resources/mongodb.properties) make sure server.list and db.name point to mongo server which setuped above.
 
 
 ## Run

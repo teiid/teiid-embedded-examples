@@ -8,7 +8,7 @@ Description: Demonstrates using the ldap Translator to access data in OpenLDAP S
 
 ## What's this
 
-This example demonstrates using the ldap Translator to access data in OpenLDAP Server. Dynamic VDB [ldap-vdb.xml](src/kits/embedded/ldap-as-a-datasource/ldap-vdb.xml) be used to define forien table within DDL metadata.
+This example demonstrates using the ldap Translator to access data in OpenLDAP Server. Dynamic VDB [ldap-vdb.xml](src/main/resources/ldap-vdb.xml) be used to define forien table within DDL metadata.
 
 The examples use `java:/ldapDS` referenced to Ldap data source, which will be setup automatically while the examples start running.
 
@@ -26,7 +26,7 @@ Refer to [OpenLDAP Admin Guide](http://www.openldap.org/doc/admin24/guide.html) 
 
 **3.** Edit ldap.properties
 
-Edit [ldap.properties](src/kits/embedded/ldap-as-a-datasource/ldap.properties) make sure ldap.url, ldap.adminUserDN and ldap.adminUserPassword point to LDAP Server which setuped above.
+Edit [ldap.properties](src/main/resources/ldap.properties) make sure ldap.url, ldap.adminUserDN and ldap.adminUserPassword point to LDAP Server which setuped above.
 
 
 ## Run

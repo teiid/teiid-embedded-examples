@@ -8,7 +8,7 @@ Description: Demonstrates using the HBase Translator with Phoenix Data Source to
 
 ## What's this
 
-This example demonstrates using the HBase Translator with Phoenix Data Source to access data in HBase. Dynamic VDB [hbase-vdb.xml](src/kits/embedded/hbase-as-a-datasource/hbase-vdb.xml) be used to define Forrign Table within DDL metadata.
+This example demonstrates using the HBase Translator with Phoenix Data Source to access data in HBase. Dynamic VDB [hbase-vdb.xml](src/main/resources/hbase-vdb.xml) be used to define Forrign Table within DDL metadata.
 
 The examples use `java:/hbaseDS` referenced with Phoenix data source, which will be setup automatically while the examples start running.
 
