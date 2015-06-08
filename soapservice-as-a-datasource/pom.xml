@@ -37,7 +37,7 @@
 		    <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
                     <configuration>
-		        <mainClass>org.teiid.example.GenericSoap</mainClass>
+		        <mainClass>org.teiid.example.TeiidEmbeddedGenericSoap</mainClass>
 		    </configuration>
 		</plugin>
 	    </plugins>

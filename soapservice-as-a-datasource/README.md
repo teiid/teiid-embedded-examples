@@ -1,7 +1,7 @@
 ---
 Name: soapservice-as-a-datasource 
 Level: Beginner
-Technologies: Teiid, Dynamic VDB, WS Translator 
+Technologies: Teiid, Dynamic VDB, VIRTUAL PROCEDURE, XMLTABLE, SOAP Service, WS Translator 
 Prerequisites: 'StateService' service
 Description: Demonstrates using the WS Translator to call a generic soap service
 ---
