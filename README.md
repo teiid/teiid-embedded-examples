@@ -11,8 +11,8 @@ Teiid Examples show how to integrate multiple, heterogenous data stores and ente
 Enter the following:
 
 ~~~
-$ git clone https://github.com/<yourname>/teiid-examples.git
-$ cd teiid-examples
+$ git clone https://github.com/<yourname>/teiid-embedded-examples.git
+$ cd teiid-embedded-examples
 $ mvn clean install -s settings.xml
 ~~~
 
@@ -20,14 +20,14 @@ $ mvn clean install -s settings.xml
 
 ### Run from Source code
 
-Import `teiid-examples` source code to a IDE(Eclipse), run each examples with corresponding Main methods.
+Import `teiid-embedded-examples` source code to a IDE(Eclipse), run each examples with corresponding Main methods.
 
 ### Run from mvn 
 
 With above **Build** section steps, make sure examples build success, navigating to a example execute mvn exec commands, for example:
 
 ~~~
-$ cd teiid-examples/embedded-portfolio
+$ cd teiid-embedded-examples/embedded-portfolio
 $ mvn exec:java
 ~~~
 

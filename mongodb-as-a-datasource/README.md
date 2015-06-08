@@ -38,4 +38,4 @@ Edit [mongodb.properties](src/main/resources/mongodb.properties) make sure serve
 
 ## Run
 
-Refer to [../README.md] run section to run the example.
+Refer to [../README.md](../README.md) run section to run the example.

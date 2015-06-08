@@ -35,4 +35,4 @@ Edit [cassandra.properties](src/main/resources/cassandra.properties) make sure c
 
 ## Run
 
-Refer to [../README.md] run section to run the example.
+Refer to [../README.md](../README.md) run section to run the example.

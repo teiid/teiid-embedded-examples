@@ -53,4 +53,4 @@ $ cp phoenix-4.2.1-bin/phoenix-4.2.1-client.jar .../optional/hbase
 
 ## Run
 
-Refer to [../README.md] run section to run the example.
+Refer to [../README.md](../README.md) run section to run the example.

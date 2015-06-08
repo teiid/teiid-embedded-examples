@@ -20,4 +20,4 @@ Deploy StateService service `StateService.jar` to a running JBoss server(Assume 
 
 ## Run
 
-Refer to [../README.md] run section to run the example.
+Refer to [../README.md](../README.md) run section to run the example.
