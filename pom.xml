@@ -39,7 +39,7 @@
 	    <mysql.connector.version>5.1.5</mysql.connector.version>
 	    <version.narayana>5.0.4.Final</version.narayana>
 	    <version.ironjacamar>1.0.30.Final-redhat-1</version.ironjacamar>
-	    
+	    <version.wildfly-swarm>1.0.0.Alpha3-SNAPSHOT</version.wildfly-swarm>	    
 	    <version.org.jboss.bom.jboss-javaee-6.0-with-tools>1.0.7.Final</version.org.jboss.bom.jboss-javaee-6.0-with-tools>
 	</properties>
 
@@ -216,6 +216,12 @@
                     <artifactId>teiid-examples-common</artifactId>
                     <version>${project.version}</version>
                 </dependency>
+                
+        <dependency>
+		    <groupId>org.wildfly.swarm</groupId>
+		    <artifactId>wildfly-swarm-jaxrs</artifactId>
+		    <version>${version.wildfly-swarm}</version>
+		</dependency>
 
 		<dependency>
                     <groupId>org.jboss.bom</groupId>
@@ -223,7 +229,9 @@
                     <version>${version.org.jboss.bom.jboss-javaee-6.0-with-tools}</version>
                     <type>pom</type>
                     <scope>import</scope>
-                </dependency>	
+                </dependency>
+
+			
 	    </dependencies>
 	</dependencyManagement>
 
@@ -251,6 +259,11 @@
 			    </execution>
                         </executions>
                     </plugin>
+		    <plugin>
+          		<groupId>org.wildfly.swarm</groupId>
+          		<artifactId>wildfly-swarm-plugin</artifactId>
+          		<version>${version.wildfly-swarm}</version>
+        	    </plugin>
 		</plugins>
 	    </pluginManagement>
 	    <plugins>

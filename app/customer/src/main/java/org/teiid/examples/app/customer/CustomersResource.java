@@ -19,7 +19,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA.
  */
-package org.jboss.resteasy.examples.customer;
+package org.teiid.examples.app.customer;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -45,14 +45,10 @@ public class CustomersResource {
     @Path("customerList")
     @Produces({ MediaType.APPLICATION_XML })
 	public String getCustomerList() {
-    	
-        System.out.println("*** Accessing /MyRESTApplication/customerList");
-        
+    	        
         StringBuffer fileContents = new StringBuffer();
 
-		try {
-			System.out.println("*** Read file: " + XMLFILE);
-            
+		try {            
             InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(XMLFILE);
             
             BufferedReader input = new BufferedReader(new InputStreamReader(inputStream));
@@ -65,15 +61,11 @@ public class CustomersResource {
 				}
 			} finally {
                 input.close();
-                
-                System.out.println("*** Completed reading file: " + XMLFILE);
             }
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
         
-        System.out.println("*** Return file contents as application/xml");
-
         return fileContents.toString();
     }
 }
