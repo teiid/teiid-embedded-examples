@@ -167,6 +167,11 @@
                     <artifactId>translator-ldap</artifactId>
                     <version>${version.teiid}</version>
                 </dependency>
+		<dependency>
+                    <groupId>org.jboss.teiid.connectors</groupId>
+                    <artifactId>translator-odata</artifactId>
+                    <version>${version.teiid}</version>
+                </dependency>
 
 		<dependency>
                     <groupId>org.jboss.narayana.jta</groupId>
@@ -292,6 +297,7 @@
 	    <module>soapservice-as-a-datasource</module>
 	    <module>restservice-as-a-datasource</module>
 	    <module>hbase-as-a-datasource</module>
+	    <module>odataservice-as-a-datasource</module>
 	    <module>app</module>
 	</modules>	
 </project>
