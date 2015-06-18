@@ -91,9 +91,9 @@ public class JDBCUtils {
                     System.out.print(row + ": ");
                     for (int i = 0; i < columns; i++) {
                         if (i > 0) {
-                            System.out.print(",");
+                            System.out.print(", ");
                         }
-                        System.out.print(rs.getString(i+1));
+                        System.out.print(rs.getObject(i+1));
                     }
                     System.out.println();
                 }

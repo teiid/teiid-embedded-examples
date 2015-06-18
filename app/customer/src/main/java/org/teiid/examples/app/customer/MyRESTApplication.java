@@ -19,12 +19,15 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA.
  */
-package org.jboss.resteasy.examples.customer;
+package org.teiid.examples.app.customer;
 
 import java.util.Set;
 import java.util.HashSet;
+
+import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 
+@ApplicationPath("/CustomerRESTWebSvc")
 public class MyRESTApplication extends Application {
 
     private Set<Object> singletons = new HashSet<Object>();

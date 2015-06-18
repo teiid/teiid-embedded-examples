@@ -14,9 +14,7 @@ The examples use `java:/CustomerRESTWebSvcSource` referenced with Rest WebServic
 
 ## Prerequisites
 
-Deploy customer service `CustomerRESTWebSvc.war` to a running JBoss server(Assume JBoss EAP 6 run on localhost).
-
-[../app/customer/README.md](../app/customer/README.md) have steps to build and deploy customer service.
+Refer to [../app/customer/README.md](../app/customer/README.md) build and start customer service.
 
 ## Run
 
