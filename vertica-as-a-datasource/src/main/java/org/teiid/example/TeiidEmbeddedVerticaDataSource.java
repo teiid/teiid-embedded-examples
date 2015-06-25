@@ -21,9 +21,12 @@
  */
 package org.teiid.example;
 
+import static org.teiid.example.util.IOUtils.findProperties;
 import static org.teiid.example.util.JDBCUtils.execute;
 
+import java.io.IOException;
 import java.sql.Connection;
+import java.util.Properties;
 
 import javax.sql.DataSource;
 
@@ -34,13 +37,15 @@ import org.teiid.translator.jdbc.vertica.VerticaExecutionFactory;
 @SuppressWarnings("nls")
 public class TeiidEmbeddedVerticaDataSource {
     
-    static final String JDBC_DRIVER = "com.vertica.jdbc.Driver";
-    static final String JDBC_URL = "jdbc:vertica://192.168.1.105:5433/VMart";
-    static final String JDBC_USER = "dbadmin";
-    static final String JDBC_PASS = "redhat";
+    static String JDBC_DRIVER = "com.vertica.jdbc.Driver";
+    static String JDBC_URL = "jdbc:vertica://127.0.0.1:5433/VMart";
+    static String JDBC_USER = "dbadmin";
+    static String JDBC_PASS = "redhat";
 	
 
 	public static void main(String[] args) throws Exception {
+	    
+	    initDBProperties();
 		
 		DataSource ds = EmbeddedHelper.newDataSource(JDBC_DRIVER, JDBC_URL, JDBC_USER, JDBC_PASS);
 				
@@ -64,6 +69,15 @@ public class TeiidEmbeddedVerticaDataSource {
 		
 		server.stop();
 	}
+
+
+    private static void initDBProperties() throws IOException {
+        Properties prop = findProperties("vertica.properties");
+        JDBC_DRIVER = prop.getProperty("vertica.driver", JDBC_DRIVER);
+        JDBC_URL = prop.getProperty("vertica.url", JDBC_URL);
+        JDBC_USER = prop.getProperty("vertica.user", JDBC_USER);
+        JDBC_PASS = prop.getProperty("vertica.pass", JDBC_PASS);
+    }
 	
 
 	
