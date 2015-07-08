@@ -22,21 +22,25 @@
 package org.teiid.example;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
+import java.io.File;
 import java.sql.Connection;
-import java.util.logging.Handler;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.sql.DataSource;
 import javax.transaction.RollbackException;
 import javax.transaction.Status;
 import javax.transaction.TransactionManager;
 
+import org.junit.Ignore;
 import org.junit.Test;
-import org.teiid.example.EmbeddedHelper.TeiidLoggerFormatter;
 import org.teiid.example.util.JDBCUtils;
+import org.teiid.logging.LogConstants;
+import org.teiid.logging.LogManager;
+import org.teiid.logging.MessageLevel;
 
 public class TestEmbeddedHelper {
     
@@ -91,12 +95,24 @@ public class TestEmbeddedHelper {
     
     @Test
     public void testLogger() {
-        EmbeddedHelper.enableLogger();
-        Logger logger = Logger.getLogger("org.teiid");
-        for(Handler handler : logger.getHandlers()){
-            assertEquals(TeiidLoggerFormatter.class, handler.getFormatter().getClass());
-            assertEquals(Level.FINEST, handler.getLevel());
-        }
+        EmbeddedHelper.enableLogger(Level.INFO);
+        assertFalse(LogManager.isMessageToBeRecorded(LogConstants.CTX_COMMANDLOGGING, MessageLevel.DETAIL));
+    	assertFalse(LogManager.isMessageToBeRecorded(LogConstants.CTX_COMMANDLOGGING, MessageLevel.TRACE));
+    	assertFalse(LogManager.isMessageToBeRecorded(LogConstants.CTX_COMMANDLOGGING, MessageLevel.INFO));
+    	assertTrue(LogManager.isMessageToBeRecorded(LogConstants.CTX_COMMANDLOGGING, MessageLevel.WARNING));
+    	assertTrue(LogManager.isMessageToBeRecorded(LogConstants.CTX_COMMANDLOGGING, MessageLevel.ERROR));
+    }
+    
+    @Test
+    public void testLoggerManager(){
+    	EmbeddedHelper.configureLogManager("INFO", "teiid.log");
+    	assertFalse(LogManager.isMessageToBeRecorded(LogConstants.CTX_COMMANDLOGGING, MessageLevel.DETAIL));
+    	assertFalse(LogManager.isMessageToBeRecorded(LogConstants.CTX_COMMANDLOGGING, MessageLevel.TRACE));
+    	assertFalse(LogManager.isMessageToBeRecorded(LogConstants.CTX_COMMANDLOGGING, MessageLevel.INFO));
+    	assertTrue(LogManager.isMessageToBeRecorded(LogConstants.CTX_COMMANDLOGGING, MessageLevel.WARNING));
+    	assertTrue(LogManager.isMessageToBeRecorded(LogConstants.CTX_COMMANDLOGGING, MessageLevel.ERROR));
+    	
+    	new File("teiid.log").deleteOnExit();
     }
 
 }
