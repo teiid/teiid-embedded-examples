@@ -22,14 +22,20 @@
 package org.teiid.example;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
+import java.util.Properties;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Formatter;
 import java.util.logging.Handler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.LogRecord;
 import java.util.logging.Logger;
 
@@ -41,6 +47,11 @@ import org.jboss.jca.adapters.jdbc.local.LocalManagedConnectionFactory;
 import org.jboss.jca.core.api.connectionmanager.pool.PoolConfiguration;
 import org.jboss.jca.core.connectionmanager.notx.NoTxConnectionManagerImpl;
 import org.jboss.jca.core.connectionmanager.pool.strategy.OnePool;
+import org.jboss.logmanager.ConfigurationLocator;
+import org.jboss.logmanager.Configurator;
+import org.jboss.logmanager.LogContext;
+import org.jboss.logmanager.PropertyConfigurator;
+import org.teiid.logging.MessageLevel;
 
 import com.arjuna.ats.arjuna.common.ObjectStoreEnvironmentBean;
 import com.arjuna.ats.arjuna.common.arjPropertyManager;
@@ -117,6 +128,20 @@ public class EmbeddedHelper {
 			}});
 	}
 	
+	private static void setSystemProperty(final String key, final String value) {
+        if (System.getSecurityManager() == null) {
+            System.setProperty(key, value);
+        } else {
+            AccessController.doPrivileged(new PrivilegedAction<Object>() {
+                @Override
+                public Object run() {
+                    System.setProperty(key, value);
+                    return null;
+                }
+            });
+        }
+    }
+	
 	public static DataSource newDataSource(String driverClass, String connURL, String user, String password) throws ResourceException{
 
 		LocalManagedConnectionFactory mcf = new LocalManagedConnectionFactory();
@@ -134,19 +159,100 @@ public class EmbeddedHelper {
 		return (DataSource) mcf.createConnectionFactory(cm);
 	}
 	
-	public static void enableLogger() {
-        enableLogger(Level.FINEST, "org.teiid"); //$NON-NLS-1$
-    }
+	/**
+	 * Configure JBoss LogManager via a configuration properties.
+	 * 
+	 * @param config - properties file path
+	 */
+	public static void configureLogManager(String config) {
+		
+		if (getSystemProperty("java.util.logging.manager") == null) { //$NON-NLS-1$ 
+			try {
+				setSystemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager"); //$NON-NLS-1$ //$NON-NLS-2$
+				setSystemProperty("logging.configuration", config); //$NON-NLS-1$ 
+				setSystemProperty("org.jboss.logmanager.configurationLocator", TeiidLoggerConfigurationLocator.class.getName()); //$NON-NLS-1$ 
+				LogManager.getLogManager();
+			} catch (SecurityException e) {
+                System.err.println("ERROR: Could not configure LogManager"); //$NON-NLS-1$ 
+            } catch (Throwable ignored) {
+            }
+		}
+	}
+	
+	/**
+	 * Configure JBoss LogManager programmtically
+	 * 
+	 * @param logLevel 
+	 * @param logFile
+	 */
+	public static void configureLogManager(String logLevel, String logFile) {
+		if (getSystemProperty("java.util.logging.manager") == null) { //$NON-NLS-1$ 
+			try {
+				setSystemProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager"); //$NON-NLS-1$ //$NON-NLS-2$
+				setSystemProperty("org.jboss.logmanager.configurationLocator", TeiidLoggerConfigurationLocator.class.getName()); //$NON-NLS-1$ 
+				
+				final LogManager logManager = LogManager.getLogManager();
+                if (logManager instanceof org.jboss.logmanager.LogManager) {
+                	if (LogContext.getSystemLogContext().getAttachment("", Configurator.ATTACHMENT_KEY) == null){ //$NON-NLS-1$ 
+                		final PropertyConfigurator configurator = new PropertyConfigurator();
+                		final Configurator appearing = LogContext.getSystemLogContext().getLogger("").attachIfAbsent(Configurator.ATTACHMENT_KEY, configurator);
+                		if (appearing == null) {
+                            configurator.configure(createLogManagerConfig(logLevel, logFile));
+                        }
+                	}
+                }
+			} catch (SecurityException e) {
+                System.err.println("ERROR: Could not configure LogManager"); //$NON-NLS-1$
+            } catch (Throwable ignored) {
+            	ignored.printStackTrace();
+            }
+		}
+	}
+	
+	private static Properties createLogManagerConfig(String logLevel, String logFile) {
+		
+		final Properties properties = new Properties();
+        // Root log level
+        properties.setProperty("logger.level", logLevel.toUpperCase(Locale.ENGLISH)); //$NON-NLS-1$ 
+        properties.setProperty("logger.handlers", "FILE,CONSOLE"); //$NON-NLS-1$ //$NON-NLS-2$
+        
+        properties.setProperty("handler.CONSOLE", "org.jboss.logmanager.handlers.ConsoleHandler"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("handler.CONSOLE.level", logLevel.toUpperCase(Locale.ENGLISH)); //$NON-NLS-1$ 
+        properties.setProperty("handler.CONSOLE.formatter", "COLOR-PATTERN"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("handler.CONSOLE.properties", "autoFlush,target,enabled"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("handler.CONSOLE.autoFlush", "true"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("handler.CONSOLE.target", "SYSTEM_OUT"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("handler.CONSOLE.enabled", "true"); //$NON-NLS-1$ //$NON-NLS-2$
+
+        // Configure the handler
+        properties.setProperty("handler.FILE", "org.jboss.logmanager.handlers.PeriodicRotatingFileHandler"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("handler.FILE.level", logLevel.toUpperCase(Locale.ENGLISH)); //$NON-NLS-1$
+        properties.setProperty("handler.FILE.formatter", "PATTERN"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("handler.FILE.properties", "autoFlush,append,fileName,enabled"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("handler.FILE.constructorProperties", "fileName,append"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("handler.FILE.append", "true"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("handler.FILE.autoFlush", "true"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("handler.FILE.enabled", "true"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("handler.FILE.suffix", ".yyyy-MM-dd"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("handler.FILE.fileName", logFile); //$NON-NLS-1$ 
+        
+        // Configure the formatter
+        properties.setProperty("formatter.PATTERN", "org.jboss.logmanager.formatters.PatternFormatter"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("formatter.PATTERN.pattern", "%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%c] (%t) %s%e%n"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("formatter.PATTERN.properties", "pattern"); //$NON-NLS-1$ //$NON-NLS-2$
+        
+        properties.setProperty("formatter.COLOR-PATTERN", "org.jboss.logmanager.formatters.PatternFormatter"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("formatter.COLOR-PATTERN.properties", "pattern"); //$NON-NLS-1$ //$NON-NLS-2$
+        properties.setProperty("formatter.COLOR-PATTERN.pattern", "%K{level}%d{HH\\:mm\\:ss,SSS} %-5p [%c] (%t) %s%e%n"); //$NON-NLS-1$ //$NON-NLS-2$
+        
+        return properties;
+	}
 	
 	public static void enableLogger(Level level) {
         enableLogger(level, "org.teiid"); //$NON-NLS-1$
     }
     
-    public static void enableLogger(Level level, String... names){
-        enableLogger(new TeiidLoggerFormatter(), Level.SEVERE, level, names);
-    }
-    
-    /**
+	/**
      * This method supply function for adjusting Teiid logging while running the Embedded mode.
      * 
      * For example, with parameters names is 'org.teiid.COMMAND_LOG' and level is 'FINEST' Teiid
@@ -154,13 +260,15 @@ public class EmbeddedHelper {
      * 
      * @param formatter
      *          The Formatter used in ConsoleHandler 
-     * @param rootLevel
-     *          The default logger level is 'INFO', this parameter used to adjust default logger level
      * @param level
      *          The logger level used in Logger
      * @param names
      *          The logger's name
      */
+    public static void enableLogger(Level level, String... names){
+        enableLogger(new TeiidLoggerFormatter(), Level.SEVERE, level, names);
+    }
+    
     public static void enableLogger(Formatter formatter, Level rootLevel, Level level, String... names){
         
         Logger rootLogger = Logger.getLogger("");
@@ -178,19 +286,21 @@ public class EmbeddedHelper {
             logger.addHandler(handler);
             logger.setUseParentHandlers(false);
         }
+        
+        org.teiid.logging.LogManager.isMessageToBeRecorded("org.teiid", MessageLevel.INFO);
     }
     
     public static class TeiidLoggerFormatter extends Formatter {
 
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm SSS");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm SSS"); //$NON-NLS-1$ 
 
         public String format(LogRecord record) {
             StringBuffer sb = new StringBuffer();
-            sb.append(format.format(new Date(record.getMillis())) + " ");
-            sb.append(getLevelString(record.getLevel()) + " ");
-            sb.append("[" + record.getLoggerName() + "] (");
-            sb.append(Thread.currentThread().getName() + ") ");
-            sb.append(record.getMessage() + "\n");
+            sb.append(format.format(new Date(record.getMillis())) + " "); //$NON-NLS-1$ 
+            sb.append(getLevelString(record.getLevel()) + " "); //$NON-NLS-1$ 
+            sb.append("[" + record.getLoggerName() + "] ("); //$NON-NLS-1$ //$NON-NLS-2$  
+            sb.append(Thread.currentThread().getName() + ") "); //$NON-NLS-1$ 
+            sb.append(record.getMessage() + "\n"); //$NON-NLS-1$ 
             return sb.toString();
         }
 
@@ -203,6 +313,21 @@ public class EmbeddedHelper {
             return name;
         }
     }
+    
+    public static final class TeiidLoggerConfigurationLocator implements ConfigurationLocator {
+
+		@Override
+		public InputStream findConfiguration() throws IOException {
+			final String propLoc = System.getProperty("logging.configuration"); //$NON-NLS-1$ 
+	        if (propLoc != null) try {
+	            return new FileInputStream(propLoc);
+	        } catch (IOException e) {
+	            System.err.printf("Unable to read the logging configuration from '%s' (%s)%n", propLoc, e); //$NON-NLS-1$ 
+	        }
+	        
+	        return null; 
+		}
+	}
 
 
 }
