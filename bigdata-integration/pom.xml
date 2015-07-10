@@ -12,5 +12,6 @@
 	
 	<modules>
 	    <module>hadoop-integration-hive</module>
+	    <module>hbase-as-a-datasource</module>
 	</modules>
 </project>

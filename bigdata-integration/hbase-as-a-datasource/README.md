@@ -14,7 +14,7 @@ The examples use `java:/hbaseDS` referenced with Phoenix data source, which will
 
 ## Prerequisites
 
-There are 4 prerequisites which is necessary before run example.
+There are 3 prerequisites which is necessary before run example.
 
 **1.** Install Setup HBase
 
@@ -43,14 +43,8 @@ $ cd hbase-0.98.8-hadoop2/
 $ ./bin/start-hbase.sh
 ~~~
 
-**4.** Install Phoenix Client
-
-Either Copy phoenix-[version]-client.jar to .../optional/hbase, or add phoenix-[version]-client.jar to classpath, for example
-
-~~~
-$ cp phoenix-4.2.1-bin/phoenix-4.2.1-client.jar .../optional/hbase
-~~~
-
 ## Run
 
-Refer to [../README.md](../README.md) run section to run the example.
+Refer to [../../README.md](../../README.md) run section to run the example.
+
+> NOTE: This exampe don't support run via mvn exec commands, you need add Phoenix Client phoenix-[version]-client.jar to classpath.
