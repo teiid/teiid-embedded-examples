@@ -40,7 +40,8 @@
 	    <version.narayana>5.0.4.Final</version.narayana>
 	    <version.ironjacamar>1.0.30.Final-redhat-1</version.ironjacamar>
 	    <version.wildfly-swarm>1.0.0.Alpha3</version.wildfly-swarm>
-	    <version.jboss-logmanager>2.0.0.Final</version.jboss-logmanager> 
+	    <version.jboss-logmanager>2.0.0.Final</version.jboss-logmanager>
+	    <version.drools>6.2.0.Final</version.drools> 
 	    <version.org.jboss.bom.jboss-javaee-6.0-with-tools>1.0.7.Final</version.org.jboss.bom.jboss-javaee-6.0-with-tools>
 	</properties>
 
@@ -242,6 +243,17 @@
 		    <version>${version.jboss-logmanager}</version>
 		</dependency>
 
+		<!--Drools Integration dependencies-->
+		<dependency>
+		    <groupId>org.kie</groupId>
+		    <artifactId>kie-api</artifactId>
+		    <version>${version.drools}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.drools</groupId>
+		    <artifactId>drools-compiler</artifactId>
+		    <version>${version.drools}</version>
+		</dependency>
 			
 	    </dependencies>
 	</dependencyManagement>
@@ -305,6 +317,7 @@
 	    <module>hbase-as-a-datasource</module>
 	    <module>odataservice-as-a-datasource</module>
 	    <module>vertica-as-a-datasource</module>
+	    <module>drools-integration</module>
 	    <module>app</module>
 	</modules>	
 </project>

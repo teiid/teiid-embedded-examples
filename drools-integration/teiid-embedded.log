@@ -1,0 +1,5 @@
+2015-07-10 10:48:30,866 INFO  [org.infinispan.factories.GlobalComponentRegistry] (main) ISPN000128: Infinispan version: Infinispan 'Delirium' 5.2.11.Final
+2015-07-10 10:48:30,957 INFO  [org.infinispan.transaction.lookup.JBossStandaloneJTAManagerLookup] (main) ISPN000107: Retrieving transaction manager Transaction: unknown
+2015-07-10 10:48:31,194 INFO  [org.infinispan.jmx.CacheJmxRegistration] (main) ISPN000031: MBeans were successfully registered to the platform MBean server.
+2015-07-10 10:48:31,201 INFO  [org.infinispan.jmx.CacheJmxRegistration] (main) ISPN000031: MBeans were successfully registered to the platform MBean server.
+2015-07-10 10:48:31,208 INFO  [org.infinispan.jmx.CacheJmxRegistration] (main) ISPN000031: MBeans were successfully registered to the platform MBean server.
