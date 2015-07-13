@@ -41,7 +41,10 @@
 	    <version.ironjacamar>1.0.30.Final-redhat-1</version.ironjacamar>
 	    <version.wildfly-swarm>1.0.0.Alpha3</version.wildfly-swarm>
 	    <version.jboss-logmanager>2.0.0.Final</version.jboss-logmanager>
-	    <version.drools>6.2.0.Final</version.drools> 
+	    <version.drools>6.2.0.Final</version.drools>
+	    <version.apache.hive>1.2.1</version.apache.hive>
+	    <version.apache.hadoop>1.2.1</version.apache.hadoop>
+	    <version.spark-project.hive>0.13.1a</version.spark-project.hive> 
 	    <version.org.jboss.bom.jboss-javaee-6.0-with-tools>1.0.7.Final</version.org.jboss.bom.jboss-javaee-6.0-with-tools>
 	</properties>
 
@@ -159,6 +162,11 @@
                     <artifactId>translator-hbase</artifactId>
                     <version>${version.teiid}</version>
                 </dependency>
+		<dependency>
+                    <groupId>org.jboss.teiid.connectors</groupId>
+                    <artifactId>translator-hive</artifactId>
+                    <version>${version.teiid}</version>
+                </dependency>
                 <dependency>
                     <groupId>org.jboss.teiid.connectors</groupId>
                     <artifactId>translator-cassandra</artifactId>
@@ -254,6 +262,23 @@
 		    <artifactId>drools-compiler</artifactId>
 		    <version>${version.drools}</version>
 		</dependency>
+
+		<!--BigData Integration-->
+		<dependency>
+		    <groupId>org.apache.hive</groupId>
+		    <artifactId>hive-jdbc</artifactId>
+		    <version>${version.apache.hive}</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.hadoop</groupId>
+		    <artifactId>hadoop-core</artifactId>
+		    <version>${version.apache.hadoop}</version>
+		</dependency>
+		<dependency>
+                    <groupId>org.spark-project.hive</groupId>
+                    <artifactId>hive-jdbc</artifactId>
+                    <version>${version.spark-project.hive}</version>
+                </dependency>
 			
 	    </dependencies>
 	</dependencyManagement>
@@ -314,10 +339,10 @@
 	    <module>mongodb-as-a-datasource </module>
 	    <module>soapservice-as-a-datasource</module>
 	    <module>restservice-as-a-datasource</module>
-	    <module>hbase-as-a-datasource</module>
 	    <module>odataservice-as-a-datasource</module>
 	    <module>vertica-as-a-datasource</module>
 	    <module>drools-integration</module>
+	    <module>bigdata-integration</module>
 	    <module>app</module>
 	</modules>	
 </project>

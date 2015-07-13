@@ -1,13 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
-        <artifactId>teiid-examples-parent</artifactId>
+        <artifactId>bigdata-integration</artifactId>
     	<groupId>org.jboss.teiid.examples</groupId>
      	<version>1.0.0-SNAPSHOT</version>
   	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>hbase-as-a-datasource</artifactId>
-	<name>Teiid Examples hbase-as-a-datasource</name>
-	<description>Teiid Examples hbase-as-a-datasource</description>
+	<artifactId>spark-integration-hive</artifactId>
+	<name>Teiid Examples spark-integration-hive</name>
+	<description>Teiid Examples spark-integration-hive</description>
 	<packaging>jar</packaging>
 
 	<dependencies>
@@ -17,18 +17,28 @@
             <artifactId>teiid-examples-common</artifactId>
             <scope>provided</scope>
         </dependency>
-		
-		<dependency>
+        
+        <dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
-			<artifactId>translator-hbase</artifactId>
+			<artifactId>translator-hive</artifactId>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
 			<artifactId>translator-jdbc</artifactId>
 		</dependency>
-				
-		<!-- Current no phoenix client artifactId available-->
+		
+		<dependency>
+			<groupId>org.spark-project.hive</groupId>
+			<artifactId>hive-jdbc</artifactId>
+		</dependency>
+		
+		<!-- --> 
+		<dependency>
+			<groupId>org.apache.hadoop</groupId>
+			<artifactId>hadoop-core</artifactId>
+		</dependency>
+		
             
 	</dependencies>
 	
@@ -38,7 +48,7 @@
 		    <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
                     <configuration>
-		        <mainClass>org.teiid.example.TeiidEmbeddedHBaseDataSource</mainClass>
+		        <mainClass>org.teiid.example.TeiidEmbeddedSparkDataSource</mainClass>
 		    </configuration>
 		</plugin>
 	    </plugins>
