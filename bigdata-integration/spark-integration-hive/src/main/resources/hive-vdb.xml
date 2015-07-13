@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<vdb name="hivevdb" version="1">
+
+	<property name="UseConnectorMetadata" value="true" />
+    
+    <model name="TestModel">
+        <source name="local" translator-name="translator-hive" connection-jndi-name="java:/hiveDS"/>
+        <metadata type="DDL"><![CDATA[
+
+		CREATE VIEW FOO as SELECT 'FOO';
+         ]]> </metadata>
+    </model>
+</vdb>

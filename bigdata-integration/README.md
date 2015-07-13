@@ -193,3 +193,19 @@ Edit the 'hive-site.xml', add the following content:
 $ ./bin/hiveserver2
 ~~~
 
+### Spark Installation
+
+The following steps show how to install Apache Spark and start the Thrift JDBC/ODBC server.
+
+#### Step.1 Install
+
+~~~
+$ tar -xvf $ tar -xvf spark-1.4.0-bin-hadoop2.4.tgz
+$ cd spark-1.4.0-bin-hadoop2.4
+~~~
+
+#### Step.2 Start
+
+~~~
+$ ./sbin/start-thriftserver.sh
+~~~

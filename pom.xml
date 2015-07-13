@@ -43,7 +43,8 @@
 	    <version.jboss-logmanager>2.0.0.Final</version.jboss-logmanager>
 	    <version.drools>6.2.0.Final</version.drools>
 	    <version.apache.hive>1.2.1</version.apache.hive>
-	    <version.apache.hadoop>1.2.1</version.apache.hadoop> 
+	    <version.apache.hadoop>1.2.1</version.apache.hadoop>
+	    <version.spark-project.hive>0.13.1a</version.spark-project.hive> 
 	    <version.org.jboss.bom.jboss-javaee-6.0-with-tools>1.0.7.Final</version.org.jboss.bom.jboss-javaee-6.0-with-tools>
 	</properties>
 
@@ -273,6 +274,11 @@
 		    <artifactId>hadoop-core</artifactId>
 		    <version>${version.apache.hadoop}</version>
 		</dependency>
+		<dependency>
+                    <groupId>org.spark-project.hive</groupId>
+                    <artifactId>hive-jdbc</artifactId>
+                    <version>${version.spark-project.hive}</version>
+                </dependency>
 			
 	    </dependencies>
 	</dependencyManagement>

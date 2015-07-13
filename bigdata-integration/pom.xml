@@ -13,5 +13,6 @@
 	<modules>
 	    <module>hadoop-integration-hive</module>
 	    <module>hbase-as-a-datasource</module>
+	    <module>spark-integration-hive</module>
 	</modules>
 </project>
