@@ -31,7 +31,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Properties;
-import java.util.UUID;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Formatter;
 import java.util.logging.Handler;
@@ -44,10 +43,8 @@ import javax.resource.ResourceException;
 import javax.sql.DataSource;
 import javax.transaction.TransactionManager;
 
-import org.jboss.jca.adapters.jdbc.JDBCResourceAdapter;
 import org.jboss.jca.adapters.jdbc.local.LocalManagedConnectionFactory;
 import org.jboss.jca.core.api.connectionmanager.pool.PoolConfiguration;
-import org.jboss.jca.core.bootstrapcontext.BaseCloneableBootstrapContext;
 import org.jboss.jca.core.connectionmanager.notx.NoTxConnectionManagerImpl;
 import org.jboss.jca.core.connectionmanager.pool.strategy.OnePool;
 import org.jboss.logmanager.ConfigurationLocator;
@@ -58,7 +55,6 @@ import org.teiid.logging.MessageLevel;
 
 import com.arjuna.ats.arjuna.common.ObjectStoreEnvironmentBean;
 import com.arjuna.ats.arjuna.common.arjPropertyManager;
-import com.arjuna.ats.internal.jta.transaction.arjunacore.TransactionSynchronizationRegistryImple;
 import com.arjuna.common.internal.util.propertyservice.BeanPopulator;
 
 /**
@@ -90,8 +86,7 @@ public class EmbeddedHelper {
 	
 	public static TransactionManager getTransactionManager() throws Exception {
 		
-	    String nodeIdentifier = UUID.randomUUID().toString();
-		arjPropertyManager.getCoreEnvironmentBean().setNodeIdentifier(nodeIdentifier); 
+		arjPropertyManager.getCoreEnvironmentBean().setNodeIdentifier("1"); //$NON-NLS-1$
 		arjPropertyManager.getCoreEnvironmentBean().setSocketProcessIdPort(0);
 		arjPropertyManager.getCoreEnvironmentBean().setSocketProcessIdMaxPorts(10);
 		
@@ -149,24 +144,17 @@ public class EmbeddedHelper {
 	
 	public static DataSource newDataSource(String driverClass, String connURL, String user, String password) throws ResourceException{
 
-	    LocalManagedConnectionFactory mcf = new LocalManagedConnectionFactory();
-        
-        JDBCResourceAdapter ra = new JDBCResourceAdapter();
-        BaseCloneableBootstrapContext ctx = new BaseCloneableBootstrapContext();
-        ctx.setTransactionSynchronizationRegistry(new TransactionSynchronizationRegistryImple());
-        ra.start(ctx);
-        mcf.setResourceAdapter(ra);
-        
-        NoTxConnectionManagerImpl cm = new NoTxConnectionManagerImpl();
-        
-        OnePool pool = new OnePool(mcf, new PoolConfiguration(), false, false);
-        pool.setConnectionManager(cm);
-        cm.setPool(pool);
-
-        mcf.setDriverClass(driverClass);
-        mcf.setConnectionURL(connURL);
-        mcf.setUserName(user);
-        mcf.setPassword(password);
+		LocalManagedConnectionFactory mcf = new LocalManagedConnectionFactory();
+		
+		mcf.setDriverClass(driverClass);
+		mcf.setConnectionURL(connURL);
+		mcf.setUserName(user);
+		mcf.setPassword(password);
+		
+		NoTxConnectionManagerImpl cm = new NoTxConnectionManagerImpl();
+		OnePool pool = new OnePool(mcf, new PoolConfiguration(), false);
+		pool.setConnectionListenerFactory(cm);
+		cm.setPool(pool);
 		
 		return (DataSource) mcf.createConnectionFactory(cm);
 	}
@@ -297,9 +285,9 @@ public class EmbeddedHelper {
             handler.setFormatter(formatter);
             logger.addHandler(handler);
             logger.setUseParentHandlers(false);
-            //force enable java logger
-            org.teiid.logging.LogManager.isMessageToBeRecorded(name, MessageLevel.INFO);
         }
+        
+        org.teiid.logging.LogManager.isMessageToBeRecorded("org.teiid", MessageLevel.INFO);
     }
     
     public static class TeiidLoggerFormatter extends Formatter {
