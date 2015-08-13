@@ -31,6 +31,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Properties;
+import java.util.UUID;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Formatter;
 import java.util.logging.Handler;
@@ -86,7 +87,7 @@ public class EmbeddedHelper {
 	
 	public static TransactionManager getTransactionManager() throws Exception {
 		
-		arjPropertyManager.getCoreEnvironmentBean().setNodeIdentifier("1"); //$NON-NLS-1$
+		arjPropertyManager.getCoreEnvironmentBean().setNodeIdentifier(UUID.randomUUID().toString());
 		arjPropertyManager.getCoreEnvironmentBean().setSocketProcessIdPort(0);
 		arjPropertyManager.getCoreEnvironmentBean().setSocketProcessIdMaxPorts(10);
 		
@@ -150,6 +151,24 @@ public class EmbeddedHelper {
 		mcf.setConnectionURL(connURL);
 		mcf.setUserName(user);
 		mcf.setPassword(password);
+		
+		NoTxConnectionManagerImpl cm = new NoTxConnectionManagerImpl();
+		OnePool pool = new OnePool(mcf, new PoolConfiguration(), false);
+		pool.setConnectionListenerFactory(cm);
+		cm.setPool(pool);
+		
+		return (DataSource) mcf.createConnectionFactory(cm);
+	}
+	
+	public static DataSource newDataSource(String driverClass, String connURL, String user, String password, String connectionProperties) throws ResourceException{
+
+		LocalManagedConnectionFactory mcf = new LocalManagedConnectionFactory();
+		
+		mcf.setDriverClass(driverClass);
+		mcf.setConnectionURL(connURL);
+		mcf.setUserName(user);
+		mcf.setPassword(password);
+		mcf.setConnectionProperties(connectionProperties);
 		
 		NoTxConnectionManagerImpl cm = new NoTxConnectionManagerImpl();
 		OnePool pool = new OnePool(mcf, new PoolConfiguration(), false);

@@ -26,6 +26,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import static org.teiid.example.util.JDBCUtils.close;
+
 import java.io.File;
 import java.sql.Connection;
 import java.util.logging.Level;
@@ -35,9 +37,7 @@ import javax.transaction.RollbackException;
 import javax.transaction.Status;
 import javax.transaction.TransactionManager;
 
-import org.junit.Ignore;
 import org.junit.Test;
-import org.teiid.example.util.JDBCUtils;
 import org.teiid.logging.LogConstants;
 import org.teiid.logging.LogManager;
 import org.teiid.logging.MessageLevel;
@@ -90,7 +90,15 @@ public class TestEmbeddedHelper {
         DataSource ds = EmbeddedHelper.newDataSource("org.h2.Driver", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", "sa", "sa");
         Connection conn = ds.getConnection();
         assertNotNull(conn);
-        JDBCUtils.close(conn);
+        close(conn);
+    }
+    
+    @Test
+    public void testDataSourceWithProperties() throws Exception {
+        DataSource ds = EmbeddedHelper.newDataSource("org.h2.Driver", "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", "sa", "sa", "foo=1;bar=2;boo=3");
+        Connection conn = ds.getConnection();
+        assertNotNull(conn);
+        close(conn);
     }
     
     @Test
