@@ -38,7 +38,7 @@ public class TeiidEmbeddedHBaseDataSource {
 
 	public static void main(String[] args) throws Exception {
 		
-		DataSource ds = EmbeddedHelper.newDataSource(JDBC_DRIVER, JDBC_URL, JDBC_USER, JDBC_PASS);
+		DataSource ds = EmbeddedHelper.newDataSource(JDBC_DRIVER, JDBC_URL, JDBC_USER, JDBC_PASS, "phoenix.connection.autoCommit=true");
 		
 		initSamplesData(ds);
 		

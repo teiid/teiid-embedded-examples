@@ -39,7 +39,7 @@
 	    <mysql.connector.version>5.1.5</mysql.connector.version>
 	    <version.narayana>5.0.4.Final</version.narayana>
 	    <version.ironjacamar>1.0.30.Final-redhat-1</version.ironjacamar>
-	    <version.wildfly-swarm>1.0.0.Alpha3</version.wildfly-swarm>
+	    <version.wildfly-swarm>1.0.0.Alpha4</version.wildfly-swarm>
 	    <version.jboss-logmanager>2.0.0.Final</version.jboss-logmanager>
 	    <version.drools>6.2.0.Final</version.drools>
 	    <version.apache.hive>1.2.1</version.apache.hive>
