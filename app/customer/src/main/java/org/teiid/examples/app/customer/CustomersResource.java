@@ -21,51 +21,58 @@
  */
 package org.teiid.examples.app.customer;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.List;
 
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
-@Path("/MyRESTApplication")
+@Path("/customer")
 public class CustomersResource {
 	
-    private static final String XMLFILE = "customerList.xml";
-
-    /**
-     * 
-     * @return
-     */
+    CustomerData data = new CustomerData();
+    
     @GET
-    @Path("customerList")
+    @Path("/customerList")
     @Produces({ MediaType.APPLICATION_XML })
-	public String getCustomerList() {
-    	        
-        StringBuffer fileContents = new StringBuffer();
-
-		try {            
-            InputStream inputStream = this.getClass().getClassLoader().getResourceAsStream(XMLFILE);
-            
-            BufferedReader input = new BufferedReader(new InputStreamReader(inputStream));
-			try {
-				String line = null;
-
-				while ((line = input.readLine()) != null) {
-					fileContents.append(line);
-					fileContents.append(System.getProperty("line.separator"));
-				}
-			} finally {
-                input.close();
-            }
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-        
-        return fileContents.toString();
+	public String  getCustomers() {
+        return data.getCustomers();
+    }
+    
+    @GET
+    @Path("/getAll")
+    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    public List<Customer>  getCustomerList() {
+        return data.getCustomerList();
+    }
+    
+    @GET
+    @Path("/getByNumber")
+    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    public Customer getCustomerByNumber(@QueryParam("customernumber") String customernumber) {
+        return data.getCustomerByNumber(customernumber);
+    }
+    
+    @GET
+    @Path("/getByName")
+    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    public Customer  getCustomerByName(@QueryParam("customername") String customername) {
+        return data.getCustomerByName(customername);
+    }
+    
+    @GET
+    @Path("/getByCity")
+    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    public Customer  getCustomerByCity(@QueryParam("city") String city) {
+        return data.getCustomerByCity(city);
+    }
+    
+    @GET
+    @Path("/getByCountry")
+    @Produces({ MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    public Customer  getCustomerByCountry(@QueryParam("country") String country) {
+        return data.getCustomerByCountry(country);
     }
 }
