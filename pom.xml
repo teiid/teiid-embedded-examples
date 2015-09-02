@@ -332,6 +332,7 @@
 	<modules>
 	    <module>common</module>
 	    <module>embedded-portfolio</module>
+	    <module>embedded-portfolio-security</module>
 	    <module>embedded-caching</module>
 	    <module>excel-as-a-datasource</module>
 	    <module>ldap-as-a-datasource</module>

@@ -53,6 +53,7 @@ import org.jboss.logmanager.Configurator;
 import org.jboss.logmanager.LogContext;
 import org.jboss.logmanager.PropertyConfigurator;
 import org.teiid.logging.MessageLevel;
+import org.teiid.security.SecurityHelper;
 
 import com.arjuna.ats.arjuna.common.ObjectStoreEnvironmentBean;
 import com.arjuna.ats.arjuna.common.arjPropertyManager;
@@ -84,6 +85,10 @@ import com.arjuna.common.internal.util.propertyservice.BeanPopulator;
  *
  */
 public class EmbeddedHelper {
+    
+    public static SecurityHelper getSecurityHelper(){
+        return new EmbeddedSecurityHelper();
+    }
 	
 	public static TransactionManager getTransactionManager() throws Exception {
 		
