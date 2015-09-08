@@ -37,7 +37,6 @@ import java.util.logging.Level;
 import javax.sql.DataSource;
 
 import org.h2.tools.RunScript;
-import org.h2.tools.Server;
 import org.teiid.resource.adapter.file.FileManagedConnectionFactory;
 import org.teiid.runtime.EmbeddedConfiguration;
 import org.teiid.runtime.EmbeddedServer;
@@ -50,16 +49,10 @@ import org.teiid.translator.jdbc.h2.H2ExecutionFactory;
  */
 @SuppressWarnings("nls")
 public class TeiidEmbeddedPortfolioSecurity {
-	
-	private static Server h2Server = null;
-	
+		
 	public static void main(String[] args) throws Exception {
 	    
-	    EmbeddedHelper.enableLogger(Level.ALL);
-				
-		// setup accounts database (if you already have external database this is not needed)
-		// for schema take look at "data/customer-schema.sql" file.
-		startH2Server();
+	    EmbeddedHelper.enableLogger(Level.INFO);
 		
 		DataSource ds = EmbeddedHelper.newDataSource("org.h2.Driver", "jdbc:h2:mem://localhost/~/account", "sa", "sa");
 		initSamplesData(ds);
@@ -85,36 +78,22 @@ public class TeiidEmbeddedPortfolioSecurity {
 		config.setTransactionManager(EmbeddedHelper.getTransactionManager());
 		config.setSecurityHelper(EmbeddedHelper.getSecurityHelper());
 		server.start(config);
+				
     	
 		server.deployVDB(new FileInputStream(findFile("portfolio-vdb.xml")));
 		
 		Properties info = new Properties();
 		info.put("user", "testUser");
-		info.put("password", "password1!");
+		info.put("password", "password");
 		Connection c = server.getDriver().connect("jdbc:teiid:Portfolio;version=1", info);
-		
-		System.out.println(c);
-		
-		execute(c, "select * from Product", false);
-//		execute(c, "select * from StockPrices", false);
-//		execute(c, "select * from Stock", false);
-//		execute(c, "SELECT stock.* from (call MarketData.getTextFiles('*.txt')) f, TEXTTABLE(f.file COLUMNS symbol string, price bigdecimal HEADER) stock", false);
-//		execute(c, "select product.symbol, stock.price, company_name from product, (call MarketData.getTextFiles('*.txt')) f, TEXTTABLE(f.file COLUMNS symbol string, price bigdecimal HEADER) stock where product.symbol=stock.symbol", true); 
 				
-		stopH2Server();
-	}
-
-	private static void stopH2Server() {
-		h2Server.stop();
+		execute(c, "select * from Stock", true);
+				
 	}
 
 	private static void initSamplesData(DataSource ds) throws FileNotFoundException, SQLException {
 		RunScript.execute(ds.getConnection(), new FileReader(findFile("customer-schema.sql")));
 	}
 
-
-	private static void startH2Server() throws SQLException {
-		h2Server = Server.createTcpServer().start();	
-	}	
 
 }
