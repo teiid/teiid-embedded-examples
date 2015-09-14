@@ -18,6 +18,12 @@
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>wildfly-swarm-jaxrs</artifactId>
         </dependency>
+  
+        <dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxb-provider</artifactId>
+		</dependency>
+        
     </dependencies>
 
     <build>
