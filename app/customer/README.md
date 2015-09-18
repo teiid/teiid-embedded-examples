@@ -21,8 +21,6 @@ java -jar CustomerRESTWebSvc-swarm.jar
 Deploy `CustomerRESTWebSvc.war` to a running JBoss server(Assume JBoss EAP 6 run on localhost).
 
 
-> Note: Customer Service can be accessed via [http://localhost:8080/CustomerRESTWebSvc/MyRESTApplication/customerList](http://localhost:8080/CustomerRESTWebSvc/MyRESTApplication/customerList)
-
 ## Available API Test
 
 | **Name** | **API** |

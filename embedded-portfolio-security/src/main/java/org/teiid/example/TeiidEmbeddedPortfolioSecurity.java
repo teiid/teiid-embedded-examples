@@ -76,6 +76,7 @@ public class TeiidEmbeddedPortfolioSecurity {
 	
 		EmbeddedConfiguration config = new EmbeddedConfiguration();
 		config.setTransactionManager(EmbeddedHelper.getTransactionManager());
+		config.setSecurityDomain("teiid-security-file");
 		config.setSecurityHelper(EmbeddedHelper.getSecurityHelper());
 		server.start(config);
 				
