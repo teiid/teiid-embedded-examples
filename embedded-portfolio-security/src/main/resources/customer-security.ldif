@@ -1,0 +1,60 @@
+# JAAS Users
+dn: ou=Customers,dc=example,dc=com
+ou: Customers
+description: JAAS Users
+objectClass: organizationalUnit
+
+# JAAS Roles
+dn: ou=Roles,dc=example,dc=com
+ou: Roles
+description: JAAS Roles
+objectClass: organizationalUnit
+
+# User
+dn: uid=kylin,ou=Customers,dc=example,dc=com
+ou: Customers
+uid: kylin
+sn: Kylin
+cn: Kylin Soong
+givenName: Kylin
+displayName: Kylin Soong
+mail: ksoong@example.com
+userPassword: password
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+
+dn: uid=user1,ou=Customers,dc=example,dc=com
+ou: Customers
+uid: user1
+sn: Test
+cn: User Test
+givenName: User
+displayName: User Test
+mail: user1@example.com
+userPassword: password
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+
+dn: uid=user2,ou=Customers,dc=example,dc=com
+ou: Customers
+uid: user2
+sn: Test
+cn: User Test
+givenName: User
+displayName: User Test
+mail: user2@example.com
+userPassword: password
+objectClass: person
+objectClass: organizationalPerson
+objectClass: inetOrgPerson
+
+# Group:
+dn: cn=Tester,ou=Roles,dc=example,dc=com
+cn: Tester
+description: Roles Tester
+objectClass: groupOfUniqueNames
+uniqueMember: uid=kylin,ou=Customers,dc=example,dc=com
+uniqueMember: uid=user1,ou=Customers,dc=example,dc=com
+uniqueMember: uid=user2,ou=Customers,dc=example,dc=com
