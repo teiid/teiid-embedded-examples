@@ -196,6 +196,21 @@ public class CustomerData {
             throw new RuntimeException("Can not find Customer via Country( " + country);
         }
     }
+    
+    protected void removeById(String id) {
+        int index = -1;
+        for(int i = 0 ; i < list.size() ; i++) {
+            Customer c = list.get(i);
+            if(c.getCustomernumber().equals(id)) {
+                index = i;
+                break;
+            }
+        }
+        
+        if(index != -1) {
+            list.remove(index);
+        }
+    }
 
     public static void main(String[] args){
         

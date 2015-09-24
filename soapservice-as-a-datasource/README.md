@@ -8,7 +8,10 @@ Description: Demonstrates using the WS Translator to call a generic soap service
 
 ## What's this
 
-This example demonstrates using the WS Translator to call a generic soap service. Dynamic VDB [webservice-vdb.xml](src/main/resources/webservice-vdb.xml) be used to define Procedure within DDL metadata.
+This example demonstrates:
+
+* How to use the WS Translator to call a generic soap service. Dynamic VDB [webservice-vdb.xml](src/main/resources/webservice-vdb.xml) be used to define Procedure within DDL metadata.
+* How to invoke WSDL based Procedures.
 
 The examples use `java:/StateServiceWebSvcSource` referenced with generic soap service as a data source, which data source will be setup automatically while the examples start running.
 
@@ -20,4 +23,8 @@ Deploy StateService service `StateService.jar` to a running JBoss server(Assume 
 
 ## Run
 
-Refer to [../README.md](../README.md) run section to run the example.
+~~~
+$ mvn clean install exec:java
+~~~
+
+Refer to [../README.md](../README.md) run section for more details.
