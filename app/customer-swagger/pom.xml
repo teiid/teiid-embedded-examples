@@ -7,14 +7,14 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>customer</artifactId>
+    <artifactId>customer-swagger</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-    <name>Teiid Examples App Customer</name>
-    <description>Teiid Examples Customer JAX-RS WebService</description>
+    <name>Teiid Examples App Customer Swagger</name>
+    <description>Teiid Examples Customer JAX-RS WebService With Swagger</description>
 
     <dependencies>
-	<dependency>
+	    <dependency>
             <groupId>org.wildfly.swarm</groupId>
             <artifactId>wildfly-swarm-jaxrs</artifactId>
         </dependency>
@@ -23,6 +23,11 @@
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxb-provider</artifactId>
 		</dependency>
+		
+		<dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-jaxrs</artifactId>
+        </dependency>
         
     </dependencies>
 

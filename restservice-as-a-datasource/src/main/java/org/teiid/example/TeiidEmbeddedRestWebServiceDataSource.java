@@ -53,11 +53,11 @@ public class TeiidEmbeddedRestWebServiceDataSource {
 		Connection c = server.getDriver().connect("jdbc:teiid:restwebservice", null);
 		
 		execute(c, "EXEC getCustomer('http://localhost:8080/customer/customerList')", false);
-		execute(c, "EXEC getCustomer('http://localhost:8080/customer/getAll')", false);
-		execute(c, "EXEC getCustomer('http://localhost:8080/customer/getByNumber/161')", false);
-		execute(c, "EXEC getCustomer('http://localhost:8080/customer/getByName/Technics%20Stores%20Inc.')", false);
-		execute(c, "EXEC getCustomer('http://localhost:8080/customer/getByCity/Burlingame')", false);
-		execute(c, "EXEC getCustomer('http://localhost:8080/customer/getByCountry/USA')", false);
+		execute(c, "EXEC getAll('http://localhost:8080/customer/getAll')", false);
+		execute(c, "EXEC getOne('http://localhost:8080/customer/getByNumber/161')", false);
+		execute(c, "EXEC getOne('http://localhost:8080/customer/getByName/Technics%20Stores%20Inc.')", false);
+		execute(c, "EXEC getOne('http://localhost:8080/customer/getByCity/Burlingame')", false);
+		execute(c, "EXEC getOne('http://localhost:8080/customer/getByCountry/USA')", false);
 		
 		execute(c, "SELECT * FROM CustomersView", true);
 		

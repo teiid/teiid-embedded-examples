@@ -46,7 +46,8 @@
 	    <version.apache.hadoop>1.2.1</version.apache.hadoop>
 	    <version.spark-project.hive>0.13.1a</version.spark-project.hive>
 	    <version.picketbox>4.9.3.Final</version.picketbox>
-	    <version.resteasy-jaxb-provider>3.0.12.Final</version.resteasy-jaxb-provider> 
+	    <version.resteasy-jaxb-provider>3.0.12.Final</version.resteasy-jaxb-provider>
+	    <version.swagger-jaxrs>1.5.2</version.swagger-jaxrs> 
 	    <version.org.jboss.bom.jboss-javaee-6.0-with-tools>1.0.7.Final</version.org.jboss.bom.jboss-javaee-6.0-with-tools>
 	</properties>
 
@@ -90,6 +91,11 @@
 		<dependency>
                     <groupId>org.jboss.teiid</groupId>
                     <artifactId>teiid-admin</artifactId>
+                    <version>${version.teiid}</version>
+                </dependency>
+		<dependency>
+                    <groupId>org.jboss.teiid</groupId>
+                    <artifactId>teiid-api</artifactId>
                     <version>${version.teiid}</version>
                 </dependency>
 		<dependency>
@@ -291,6 +297,17 @@
 			<artifactId>resteasy-jaxb-provider</artifactId>
 			<version>${version.resteasy-jaxb-provider}</version>
 		</dependency>
+		<dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-jaxrs</artifactId>
+                <version>${version.swagger-jaxrs}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.ws.rs</groupId>
+                        <artifactId>jsr311-api</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
 			
 	    </dependencies>
 	</dependencyManagement>
@@ -346,6 +363,7 @@
 	    <module>embedded-portfolio</module>
 	    <module>embedded-portfolio-security</module>
 	    <module>embedded-caching</module>
+	    <module>embedded-logging</module>
 	    <module>excel-as-a-datasource</module>
 	    <module>ldap-as-a-datasource</module>
 	    <module>cassandra-as-a-datasourse</module>
