@@ -12,6 +12,7 @@
 	
 	<modules>
 	    <module>customer</module>
+	    <module>customer-swagger</module>
 	    <module>stateService</module>
 	</modules>
 </project>
