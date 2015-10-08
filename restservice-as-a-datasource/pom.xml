@@ -28,6 +28,11 @@
 			<artifactId>connector-ws</artifactId>
 			<classifier>lib</classifier>
 		</dependency>
+		
+		<dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-parser</artifactId>
+        </dependency>  
             
 	</dependencies>
 	
