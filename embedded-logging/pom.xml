@@ -11,17 +11,40 @@
 	<packaging>jar</packaging>
 
 	<dependencies>
-       	
-		<dependency>
-			<groupId>org.jboss.teiid</groupId>
-			<artifactId>teiid-runtime</artifactId>
+	
+	    <dependency>
+            <groupId>org.jboss.teiid.examples</groupId>
+            <artifactId>teiid-examples-common</artifactId>
+            <scope>provided</scope>
+        </dependency>
+		
+        <dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
 		</dependency>
 		
 		<dependency>
-        	<groupId>org.jboss.logmanager</groupId>
-        	<artifactId>jboss-logmanager</artifactId>
+			<groupId>org.jboss.teiid.connectors</groupId>
+			<artifactId>translator-file</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jboss.teiid.connectors</groupId>
+			<artifactId>connector-file</artifactId>
+			<classifier>lib</classifier>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jboss.teiid.connectors</groupId>
+			<artifactId>translator-jdbc</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jboss.logmanager</groupId>
+			<artifactId>jboss-logmanager</artifactId>
 		</dependency>
 		     
 	</dependencies>
+	
 	
 </project>
