@@ -24,17 +24,24 @@ package org.teiid.example;
 
 import org.teiid.logging.LogManager;
 import org.teiid.logging.MessageLevel;
+import org.teiid.runtime.JBossLogger;
 
 public class TeiidEmbeddedLogging {
+    
+    
+    static {
+        LogManager.setLogListener(new JBossLogger());
+        
+        System.setProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager");
+        
+        //Optional
+//      String propUrl = TeiidEmbeddedLogging.class.getClassLoader().getResource("logging.properties").toString();
+//      System.setProperty("logging.configuration", propUrl);
+    }
     
     static final String CTX_EXAMPLE = "org.teiid.EXAMPLE";
 	
 	public static void main(String[] args) throws Exception {
-	    
-	    System.setProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager");
-	    
-	    String propUrl = TeiidEmbeddedLogging.class.getClassLoader().getResource("logging.properties").toString();
-	    System.setProperty("logging.configuration", propUrl);
 	    
 	    LogManager.log(MessageLevel.CRITICAL, CTX_EXAMPLE, "This is critical message");
 	    LogManager.log(MessageLevel.ERROR, CTX_EXAMPLE, "This is error message");
