@@ -22,9 +22,7 @@
 package org.teiid.example;
 
 import static org.teiid.example.util.JDBCUtils.execute;
-import static org.teiid.example.util.IOUtils.findFile;
 
-import java.io.FileInputStream;
 import java.sql.Connection;
 
 import org.teiid.resource.adapter.ws.WSManagedConnectionFactory;
@@ -48,7 +46,7 @@ public class TeiidEmbeddedRestWebServiceDataSource {
 
 		server.start(new EmbeddedConfiguration());
     	
-		server.deployVDB(new FileInputStream(findFile("restwebservice-vdb.xml")));
+		server.deployVDB(TeiidEmbeddedRestWebServiceDataSource.class.getClassLoader().getResourceAsStream("restwebservice-vdb.xml"));
 		
 		Connection c = server.getDriver().connect("jdbc:teiid:restwebservice", null);
 		

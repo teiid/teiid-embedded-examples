@@ -40,6 +40,12 @@ import org.teiid.translator.TranslatorException;
 import org.teiid.translator.ws.WSExecutionFactory;
 import org.teiid.translator.ws.BinaryWSProcedureExecution.StreamingBlob;
 
+/**
+ *  This dependent on swagger translator and ws resource adapter.
+ *  
+ * @author kylin
+ *
+ */
 public class TeiidEmbeddedRestSwaggerProcedure {
     
     private static String[] calls = new String[] {"EXEC customer_customerList()",

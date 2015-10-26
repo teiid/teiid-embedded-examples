@@ -32,7 +32,8 @@
             <maven.compiler.source>1.7</maven.compiler.source>
 
 	    <version.junit>4.11</version.junit>
-	    <version.teiid>8.12.0.CR2-SNAPSHOT</version.teiid>
+	    <version.teiid>8.13.0.Alpha1-SNAPSHOT</version.teiid>
+	    <version.teiid-embedded>1.0.0-SNAPSHOT</version.teiid-embedded>
 	    <version.slf4j-api>1.7.2.redhat-3</version.slf4j-api>
 	    <version.io.netty>3.6.10.Final</version.io.netty>
 	    <version.com.h2database>1.3.152</version.com.h2database>
@@ -106,7 +107,7 @@
                 </dependency>
 		<dependency>
                     <groupId>org.jboss.teiid</groupId>
-                    <artifactId>teiid-api</artifactId>
+                    <artifactId>teiid-jboss-security</artifactId>
                     <version>${version.teiid}</version>
                 </dependency>
 		<dependency>
@@ -195,6 +196,21 @@
                     <groupId>org.jboss.teiid.connectors</groupId>
                     <artifactId>translator-odata</artifactId>
                     <version>${version.teiid}</version>
+                </dependency>
+		<dependency>
+                    <groupId>org.jboss.teiid.connectors</groupId>
+                    <artifactId>translator-odata4</artifactId>
+                    <version>${version.teiid}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.teiid.connectors</groupId>
+                    <artifactId>translator-swagger</artifactId>
+                    <version>${version.teiid}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.jboss.teiid</groupId>
+                    <artifactId>teiid-embedded</artifactId>
+                    <version>${version.teiid-embedded}</version>
                 </dependency>
 
 		<dependency>
@@ -385,6 +401,7 @@
 	    <module>vertica-as-a-datasource</module>
 	    <module>drools-integration</module>
 	    <module>bigdata-integration</module>
+	    <module>socialmedia-integration</module>
 	    <module>app</module>
 	</modules>	
 </project>
