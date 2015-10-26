@@ -36,10 +36,10 @@ import org.teiid.translator.ws.WSExecutionFactory.Binding;
 
 public class TeiidEmbeddedTwitterDataSource {
     
-    static {
+/*    static {
         System.setProperty("http.proxyHost", "squid.apac.redhat.com");
         System.setProperty("http.proxyPort", "3128");
-    }
+    }*/
     
     public static void main(String[] args) throws Exception {
         
