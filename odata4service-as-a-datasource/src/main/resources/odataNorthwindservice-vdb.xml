@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<vdb name="NorthwindVDB" version="1">
+
+    <description>OData4 source example</description>
+    
+    <model name="ODataNorthwindSource">
+    	<property name="importer.importKeys" value="true"/>
+        <property name="importer.importProcedures" value="true"/>
+        <source name="ODataNorthwindMdl" translator-name="translator-odata" connection-jndi-name="java:/ODataNorthwindDS"/>    
+    </model>
+
+	<model name="ODataNorthwindModel" type="VIRTUAL">
+       <metadata type="DDL"><![CDATA[
+        
+SET NAMESPACE 'http://www.jboss.org/teiiddesigner/ext/odata/2012' AS teiid_odata;
+
+CREATE FOREIGN TABLE Customers (
+    CustomerID string(5) NOT NULL OPTIONS (FIXED_LENGTH TRUE),
+    CompanyName string(40) NOT NULL,
+    ContactName string(30),
+    ContactTitle string(30),
+    Address string(60),
+    City string(15),
+    Region string(15),
+    PostalCode string(10),
+    Country string(15),
+    Phone string(24),
+    Fax string(24),
+    PRIMARY KEY(CustomerID)
+) OPTIONS (UPDATABLE TRUE, EntityAlias 'Customer', EntityType 'NorthwindModel.Customer');
+     
+        ]]>
+        </metadata>
+    </model>
+       
+</vdb>

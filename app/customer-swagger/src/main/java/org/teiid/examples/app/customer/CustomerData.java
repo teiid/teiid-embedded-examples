@@ -211,6 +211,24 @@ public class CustomerData {
             list.remove(index);
         }
     }
+    
+    protected void addCustomer(Customer customer){
+        if(!isExist(customer.getCustomernumber())){
+            list.add(customer);
+        }
+    }
+    
+    private boolean isExist(String customernumber) {
+        boolean exist = false;
+        for(Customer c : list) {
+            if(c.getCustomernumber().equals(customernumber)){
+                exist = true;
+                break;
+            }
+        }
+        return exist;
+    }
+    
 
     public static void main(String[] args){
         
