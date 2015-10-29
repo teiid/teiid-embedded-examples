@@ -134,10 +134,16 @@ public class CustomerData {
     }
     
     protected List<Customer> getCustomerList(){
+        
+        System.out.println("get customer list");
+        
         return list;
     }
     
     protected Customer getCustomerByNumber(String customernumber) {
+        
+        System.out.println("get customer by customernumber: " + customernumber);
+        
         Customer customer = null;
         for(Customer c : list) {
             if(c.getCustomernumber().equals(customernumber)){
@@ -153,6 +159,9 @@ public class CustomerData {
     }
     
     protected Customer getCustomerByName(String customername) {
+        
+        System.out.println("get customer by customername: " + customername);
+        
         Customer customer = null;
         for(Customer c : list) {
             if(c.getCustomername().equals(customername)){
@@ -168,6 +177,9 @@ public class CustomerData {
     }
     
     protected Customer getCustomerByCity(String city) {
+        
+        System.out.println("get customer by city: " + city);
+        
         Customer customer = null;
         for(Customer c : list) {
             if(c.getCity().equals(city)){
@@ -183,6 +195,9 @@ public class CustomerData {
     }
     
     protected Customer getCustomerByCountry(String country) {
+        
+        System.out.println("get customer by country: " + country);
+        
         Customer customer = null;
         for(Customer c : list) {
             if(c.getCountry().equals(country)){
@@ -193,11 +208,32 @@ public class CustomerData {
         if(null != customer) {
             return customer;
         } else {
-            throw new RuntimeException("Can not find Customer via Country( " + country);
+            throw new RuntimeException("Can not find Customer via Country " + country);
+        }
+    }
+    
+    protected Customer getCustomerByNumCityCountry(String customernumber, String city, String country) {
+        
+        System.out.println("get customer by customernumber: " + customernumber + ", city: " + city + ", country: " + country);
+        
+        Customer customer = null;
+        for(Customer c : list) {
+            if(c.getCustomernumber().equals(customernumber) && c.getCountry().equals(country) && c.getCity().equals(city)){
+                customer = c;
+                break;
+            }
+        }
+        if(null != customer) {
+            return customer;
+        } else {
+            throw new RuntimeException("Can not find Customer via City " + city);
         }
     }
     
     protected void removeById(String id) {
+        
+        System.out.println("remove by id: " + id);
+        
         int index = -1;
         for(int i = 0 ; i < list.size() ; i++) {
             Customer c = list.get(i);
@@ -212,7 +248,100 @@ public class CustomerData {
         }
     }
     
+    protected void removeByCustomernumber(String customernumber) {
+        
+        System.out.println("remove by customernumber: " + customernumber);
+        
+        int index = -1;
+        for(int i = 0 ; i < list.size() ; i++) {
+            Customer c = list.get(i);
+            if(c.getCustomernumber().equals(customernumber)) {
+                index = i;
+                break;
+            }
+        }
+        
+        if(index != -1) {
+            list.remove(index);
+        }
+    }
+    
+    protected void removeByCustomername(String customername) {
+        
+        System.out.println("remove by customername: " + customername);
+        
+        int index = -1;
+        for(int i = 0 ; i < list.size() ; i++) {
+            Customer c = list.get(i);
+            if(c.getCustomername().equals(customername)) {
+                index = i;
+                break;
+            }
+        }
+        
+        if(index != -1) {
+            list.remove(index);
+        }
+    }
+    
+    protected void removeByCity(String city) {
+        
+        System.out.println("remove by city: " + city);
+        
+        int index = -1;
+        for(int i = 0 ; i < list.size() ; i++) {
+            Customer c = list.get(i);
+            if(c.getCity().equals(city)) {
+                index = i;
+                break;
+            }
+        }
+        
+        if(index != -1) {
+            list.remove(index);
+        }
+    }
+    
+    protected void removeByCountry(String country) {
+        
+        System.out.println("remove by country: " + country);
+        
+        int index = -1;
+        for(int i = 0 ; i < list.size() ; i++) {
+            Customer c = list.get(i);
+            if(c.getCountry().equals(country)) {
+                index = i;
+                break;
+            }
+        }
+        
+        if(index != -1) {
+            list.remove(index);
+        }
+    }
+    
+    protected void removeByNumCityCountry(String customernumber, String city, String country) {
+        
+        System.out.println("remove by customernumber: " + customernumber + ", city: " + city + ", country: " + country);
+
+        int index = -1;
+        for(int i = 0 ; i < list.size() ; i++) {
+            Customer c = list.get(i);
+            if(c.getCustomernumber().equals(customernumber) && c.getCity().equals(city) && c.getCountry().equals(country)) {
+                index = i;
+                break;
+            }
+        }
+        
+        if(index != -1) {
+            list.remove(index);
+        }
+    }
+    
     protected void addCustomer(Customer customer){
+        
+        System.out.println("add customer: " + customer);
+        
         if(!isExist(customer.getCustomernumber())){
             list.add(customer);
         }
@@ -227,29 +356,6 @@ public class CustomerData {
             }
         }
         return exist;
-    }
-    
-
-    public static void main(String[] args){
-        
-        CustomerData data = new CustomerData();
-        
-        System.out.println(data.getCustomerByNumber("112"));
-        
-        System.out.println(data.getCustomerByName("Signal Gift Stores"));
-        
-        System.out.println(data.getCustomerByCity("Las Vegas"));
-        
-        System.out.println(data.getCustomerByCountry("USA"));
-
-        List<Customer> list = data.getCustomerList();
-        
-        System.out.println(list.size());
-        
-        
-
-    }
-
-    
+    }  
 
 }

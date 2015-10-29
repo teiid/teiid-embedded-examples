@@ -25,7 +25,7 @@ public class CustomerClient {
         delete();
     }
 
-    private static void add() throws IOException {
+    protected static void add() throws IOException {
 
         printCustomersSize();
         
@@ -34,12 +34,13 @@ public class CustomerClient {
         WebClient wc = WebClient.create(urlStem);
         Response resp = wc.post(customer);
         IOUtils.copy((InputStream) resp.getEntity(), System.out);
+        System.out.println("\n");
         
         printCustomersSize();
         
     }
     
-    private static void update() {
+    private static void update() throws IOException {
 
         getCustomer("100");
         
@@ -47,10 +48,14 @@ public class CustomerClient {
         wc.path("100");
         wc.path("customernumber").type("text/plain");
         Response resp = wc.put("1000");
+        IOUtils.copy((InputStream) resp.getEntity(), System.out);
+        System.out.println("\n");
         
         getCustomer("1000");
         
         resp = wc.reset().path("1000").put(formCustomer());
+        IOUtils.copy((InputStream) resp.getEntity(), System.out);
+        System.out.println("\n");
         
         getCustomer("100");
         
@@ -160,7 +165,7 @@ public class CustomerClient {
         return customer;
     }
     
-    private static void printCustomersSize() throws IOException {
+    protected static void printCustomersSize() throws IOException {
 
         String url = "http://localhost:8080/customer/status";
         WebClient wc = WebClient.create(url);

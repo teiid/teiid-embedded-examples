@@ -27,7 +27,6 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
-import java.net.URI;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -106,6 +105,14 @@ public class CustomersResource {
     }
     
     @GET
+    @Path("/getByNumCityCountry")
+    @ApiOperation(value = "get customer by Number, City, Country", notes = "get customer by Number, City, Country as return xml/json")
+    @ApiResponses({@ApiResponse(code = 404, message = "Customer not found")})
+    public Customer getByNumCityCountry(@ApiParam(value = "customernumber", required = true) @QueryParam("customernumber") String customernumber, @ApiParam(value = "city", required = true) @QueryParam("city") String city, @ApiParam(value = "country", required = true) @QueryParam("country") String country) {
+        return data.getCustomerByNumCityCountry(customernumber, city, country);
+    }
+    
+    @GET
     @Path("/status")
     @ApiOperation(value = "get customer status", notes = "get customer status as xml/json")
     @ApiResponses({@ApiResponse(code = 404, message = "Customer not found")})
@@ -128,8 +135,48 @@ public class CustomersResource {
         data.removeById(id);
     }
     
+    @DELETE
+    @Path("/deleteByNumber/{customernumber}")
+    @ApiOperation(value = "Delete customer by Number", notes = "Delete customer by Number")
+    @ApiResponses({@ApiResponse(code = 404, message = "Customer not found")})
+    public void removeCustomerByNumber(@ApiParam(value = "customernumber", required = true) @PathParam("customernumber") String customernumber){
+        data.removeByCustomernumber(customernumber);
+    }
+    
+    @DELETE
+    @Path("/deleteByName/{customername}")
+    @ApiOperation(value = "Delete customer by Name", notes = "Delete customer by Name")
+    @ApiResponses({@ApiResponse(code = 404, message = "Customer not found")})
+    public void removeCustomerByName(@ApiParam(value = "customername", required = true) @PathParam("customername") String customername){
+        data.removeByCustomername(customername);
+    }
+    
+    @DELETE
+    @Path("/deleteByCity")
+    @ApiOperation(value = "Delete customer by City", notes = "Delete customer by City")
+    @ApiResponses({@ApiResponse(code = 404, message = "Customer not found")})
+    public void removeCustomerByCity(@ApiParam(value = "city", required = true) @QueryParam("city") String city){
+        data.removeByCity(city);
+    }
+    
+    @DELETE
+    @Path("/deleteByCountry")
+    @ApiOperation(value = "Delete customer by Country", notes = "Delete customer by Country")
+    @ApiResponses({@ApiResponse(code = 404, message = "Customer not found")})
+    public void removeCustomerByCountry(@ApiParam(value = "country", required = true) @QueryParam("country") String country){
+        data.removeByCountry(country);
+    }
+    
+    @DELETE
+    @Path("/deleteByNumCityCountry")
+    @ApiOperation(value = "Delete customer by Number, Name, Country", notes = "Delete customer by Number, Name, Country")
+    @ApiResponses({@ApiResponse(code = 404, message = "Customer not found")})
+    public void removeCustomerByNumCityCountry(@ApiParam(value = "customernumber", required = true) @QueryParam("customernumber") String customernumber, @ApiParam(value = "city", required = true) @QueryParam("city") String city, @ApiParam(value = "country", required = true) @QueryParam("country") String country){
+        data.removeByNumCityCountry(customernumber, city, country);
+    }
+    
     @POST
-    @Consumes("application/xml")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
     @ApiOperation(value = "Add a Customer",response = Customer.class)
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Customer") })
     public Response addCustomer(@ApiParam(value = "Customer Object need be passed", required = true)Customer customer) {

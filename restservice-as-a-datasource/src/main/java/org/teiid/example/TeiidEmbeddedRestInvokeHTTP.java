@@ -1,6 +1,6 @@
 package org.teiid.example;
 
-import static org.teiid.example.util.JDBCUtils.close;
+import static org.teiid.example.JDBCUtils.close;
 
 import java.io.BufferedReader;
 import java.io.IOException;
