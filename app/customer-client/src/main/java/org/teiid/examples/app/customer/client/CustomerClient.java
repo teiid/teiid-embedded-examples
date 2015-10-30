@@ -156,7 +156,7 @@ public class CustomerClient {
         printCustomersSize();
     }
     
-    private static Customer getCustomer(String customernumber){
+    protected static Customer getCustomer(String customernumber){
         WebClient wc = WebClient.create(urlStem);
         wc.path(customernumber);
         Customer customer = wc.get(Customer.class);

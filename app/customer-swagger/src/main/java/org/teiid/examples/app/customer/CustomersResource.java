@@ -177,11 +177,33 @@ public class CustomersResource {
     
     @POST
     @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
-    @ApiOperation(value = "Add a Customer",response = Customer.class)
+    @ApiOperation(value = "Add a Customer")
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Customer") })
     public Response addCustomer(@ApiParam(value = "Customer Object need be passed", required = true)Customer customer) {
         data.addCustomer(customer);
         return Response.ok().entity("Add Customer Success").build();
+    }
+    
+    @POST
+    @Path("/add")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    @ApiOperation(value = "Add a Customer")
+    @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Customer") })
+    public Response addOneCustomer(@ApiParam(value = "Customer Object need be passed", required = true)Customer customer) {
+        data.addCustomer(customer);
+        return Response.ok().entity("Add Customer Success").build();
+    }
+    
+    @POST
+    @Path("/addList")
+    @Consumes({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON })
+    @ApiOperation(value = "Add Customer List")
+    @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Customer") })
+    public Response addCustomerList(@ApiParam(value = "Customer Object need be passed", required = true)List<Customer> list) {
+        for(Customer customer : list) {
+            data.addCustomer(customer);
+        }
+        return Response.ok().entity("Add Customer List Success").build();
     }
     
     @PUT
@@ -189,8 +211,58 @@ public class CustomersResource {
     @ApiOperation(value = "Update an existing customer")
     @ApiResponses(value = { @ApiResponse(code = 400, message = "Invalid Customer supplied") })
     public Response updateCustomer(@ApiParam(value = "Customer object that needs to be passed", required = true) Customer c){
-        Customer customer = data.getCustomerByNumber(c.getCustomernumber());
-        customer.update(customer);
+        data.removeByCustomernumber(c.getCustomernumber());
+        data.addCustomer(c);
+        return Response.ok().entity("Update Customer Success").build();
+    }
+    
+    @PUT
+    @Path("/updateByNumber/{customernumber}")
+    @ApiOperation(value = "Update an existing customer")
+    @ApiResponses(value = { @ApiResponse(code = 400, message = "Invalid Customer supplied") })
+    public Response updateCustomerByNumber(@ApiParam(value = "customernumber", required = true) @PathParam("customernumber") String customernumber, @ApiParam(value = "Customer object that needs to be passed", required = true) Customer c){
+        data.removeByCustomernumber(customernumber);
+        data.addCustomer(c);
+        return Response.ok().entity("Update Customer Success").build();
+    }
+    
+    @PUT
+    @Path("/updateByName/{customername}")
+    @ApiOperation(value = "Update an existing customer")
+    @ApiResponses(value = { @ApiResponse(code = 400, message = "Invalid Customer supplied") })
+    public Response updateCustomerByName(@ApiParam(value = "customername", required = true) @PathParam("customername") String customername, @ApiParam(value = "Customer object that needs to be passed", required = true) Customer c){
+        data.removeByCustomername(customername);
+        data.addCustomer(c);
+        return Response.ok().entity("Update Customer Success").build();
+    }
+    
+    @PUT
+    @Path("/updateByCity")
+    @ApiOperation(value = "Update an existing customer")
+    @ApiResponses(value = { @ApiResponse(code = 400, message = "Invalid Customer supplied") })
+    public Response updateCustomerByCity(@ApiParam(value = "city", required = true) @QueryParam("city") String city, @ApiParam(value = "Customer object that needs to be passed", required = true) Customer c){
+        data.removeByCity(city);
+        data.addCustomer(c);
+        return Response.ok().entity("Update Customer Success").build();
+    }
+    
+    @PUT
+    @Path("/updateByCountry")
+    @ApiOperation(value = "Update an existing customer")
+    @ApiResponses(value = { @ApiResponse(code = 400, message = "Invalid Customer supplied") })
+    public Response updateCustomerByCountry(@ApiParam(value = "country", required = true) @QueryParam("country") String country, @ApiParam(value = "Customer object that needs to be passed", required = true) Customer c){
+        data.removeByCountry(country);
+        data.addCustomer(c);
+        return Response.ok().entity("Update Customer Success").build();
+    }
+    
+    @PUT
+    @Path("/updateByNumCityCountry")
+    @ApiOperation(value = "Update an existing customer")
+    @ApiResponses(value = { @ApiResponse(code = 400, message = "Invalid Customer supplied") })
+    public Response updateCustomerByNumCityCountry(@ApiParam(value = "customernumber", required = true) @QueryParam("customernumber") String customernumber, @ApiParam(value = "city", required = true) @QueryParam("city") String city, @ApiParam(value = "country", required = true) @QueryParam("country") String country, @ApiParam(value = "Customer object that needs to be passed", required = true) Customer c){
+        data.removeByNumCityCountry(customernumber, city, country);
+        data.addCustomer(c);
         return Response.ok().entity("Update Customer Success").build();
     }
     

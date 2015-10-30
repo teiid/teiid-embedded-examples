@@ -11,7 +11,7 @@ import javax.ws.rs.core.Response;
 import org.apache.cxf.helpers.IOUtils;
 import org.apache.cxf.jaxrs.client.WebClient;
 
-public class CustomerClientRemove {
+public class CustomerClientDelete {
 
     public static void main(String[] args) throws IOException {
 
