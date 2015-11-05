@@ -49,21 +49,21 @@ import org.teiid.translator.swagger.SwaggerExecutionFactory;
  */
 public class TeiidEmbeddedRestSwaggerProcedure {
     
-    private static String[] getCalls = new String[] {"EXEC customer_getByNumCityCountry('161', 'Burlingame', 'USA', jsonObject('application/json' as ContentType, jsonArray('gzip', 'deflate') as \"Accept-Encoding\"))",
-                                                     "EXEC customer_customerList()",
-                                                     "EXEC customer_getAll()",
-                                                     "EXEC customer_getByCity('Burlingame')",
-                                                     "EXEC customer_getByCountry('USA')",
-                                                     "EXEC customer_getByName('Technics Stores Inc.', jsonObject('application/json' as Accept))",
-                                                     "EXEC customer_getByNumber('161', jsonObject('application/json' as Accept))",
-                                                     "EXEC customer_status(jsonObject('application/json' as Accept))"};
+    private static String[] getCalls = new String[] {"EXEC getByNumCityCountry('161', 'Burlingame', 'USA', jsonObject('application/json' as ContentType, jsonArray('gzip', 'deflate') as \"Accept-Encoding\"))",
+                                                     "EXEC getCustomers()",
+                                                     "EXEC getCustomerList()",
+                                                     "EXEC getCustomerByCity('Burlingame')",
+                                                     "EXEC getCustomerByCountry('USA')",
+                                                     "EXEC getCustomerByName('Technics Stores Inc.', jsonObject('application/json' as Accept))",
+                                                     "EXEC getCustomerByNumber('161', jsonObject('application/json' as Accept))",
+                                                     "EXEC size(jsonObject('application/json' as Accept))"};
     
-    private static String[] delCalls = new String[] {"EXEC customer_delete('103')",
-                                                     "EXEC customer_deleteByNumber('103')",
-                                                     "EXEC customer_deleteByName('kylin')",
-                                                     "EXEC customer_deleteByCity('Beijing')",
-                                                     "EXEC customer_deleteByCountry('China')",
-                                                     "EXEC customer_deleteByNumCityCountry('103', 'Beijing', 'China')"};
+    private static String[] delCalls = new String[] {"EXEC removeCustomer('103')",
+                                                     "EXEC removeCustomerByNumber('103')",
+                                                     "EXEC removeCustomerByName('kylin')",
+                                                     "EXEC removeCustomerByCity('Beijing')",
+                                                     "EXEC removeCustomerByCountry('China')",
+                                                     "EXEC removeCustomerByNumCityCountry('103', 'Beijing', 'China')"};
     
     private static String postJson = "{\"customernumber\":\"98\",\"customername\":\"kylin\",\"contactlastname\":\"Soong\",\"contactfirstname\":\"Kylin\",\"phone\":\"18611907049\",\"addressline1\":\"Beijing\",\"addressline2\":\"China Beijing\",\"city\":\"Beijing\",\"state\":\"Beijing\",\"postalcode\":\"100020\",\"country\":\"China\",\"salesrepemployeenumber\":\"123456\",\"creditlimit\":\"1200\"}";
     private static String postXml  = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><customer><addressline1>Beijing</addressline1><addressline2>China Beijing</addressline2><city>Beijing</city><contactfirstname>Kylin</contactfirstname><contactlastname>Soong</contactlastname><country>China</country><creditlimit>1200</creditlimit><customername>kylin</customername><customernumber>99</customernumber><phone>18611907049</phone><postalcode>100020</postalcode><salesrepemployeenumber>123456</salesrepemployeenumber><state>Beijing</state></customer>";
@@ -72,12 +72,12 @@ public class TeiidEmbeddedRestSwaggerProcedure {
     private static String postJsonList = "[{\"customernumber\":\"91\",\"customername\":\"kylin\",\"contactlastname\":\"Soong\",\"contactfirstname\":\"Kylin\",\"phone\":\"18611907049\",\"addressline1\":\"Beijing\",\"addressline2\":\"China Beijing\",\"city\":\"Beijing\",\"state\":\"Beijing\",\"postalcode\":\"100020\",\"country\":\"China\",\"salesrepemployeenumber\":\"123456\",\"creditlimit\":\"1200\"}, {\"customernumber\":\"92\",\"customername\":\"kylin\",\"contactlastname\":\"Soong\",\"contactfirstname\":\"Kylin\",\"phone\":\"18611907049\",\"addressline1\":\"Beijing\",\"addressline2\":\"China Beijing\",\"city\":\"Beijing\",\"state\":\"Beijing\",\"postalcode\":\"100020\",\"country\":\"China\",\"salesrepemployeenumber\":\"123456\",\"creditlimit\":\"1200\"}]";
     private static String postXmlList = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><collection><customer><addressline1>Beijing</addressline1><addressline2>China Beijing</addressline2><city>Beijing</city><contactfirstname>Kylin</contactfirstname><contactlastname>Soong</contactlastname><country>China</country><creditlimit>1200</creditlimit><customername>kylin</customername><customernumber>93</customernumber><phone>18611907049</phone><postalcode>100020</postalcode><salesrepemployeenumber>123456</salesrepemployeenumber><state>Beijing</state></customer><customer><addressline1>Beijing</addressline1><addressline2>China Beijing</addressline2><city>Beijing</city><contactfirstname>Kylin</contactfirstname><contactlastname>Soong</contactlastname><country>China</country><creditlimit>1200</creditlimit><customername>kylin</customername><customernumber>94</customernumber><phone>18611907049</phone><postalcode>100020</postalcode><salesrepemployeenumber>123456</salesrepemployeenumber><state>Beijing</state></customer></collection>";
     
-    private static String[] postCalls = new String[]{"EXEC customer('" + postJson +"', jsonObject('application/json' as \"Content-Type\", 'application/json' as Accept))", 
-                                                     "EXEC customer('" + postXml +"', jsonObject('application/xml' as \"Content-Type\", 'application/xml' as Accept))",
-                                                     "EXEC customer_add('" + postJson_1 +"', jsonObject('application/json' as \"Content-Type\", 'application/json' as Accept))",
-                                                     "EXEC customer_add('" + postXml_1 +"', jsonObject('application/xml' as \"Content-Type\", 'application/xml' as Accept))",
-                                                     "EXEC customer_addList('" + postJsonList +"', jsonObject('application/json' as \"Content-Type\", 'application/json' as Accept))",
-                                                     "EXEC customer_addList('" + postXmlList +"', jsonObject('application/xml' as \"Content-Type\", 'application/xml' as Accept))"};
+    private static String[] postCalls = new String[]{"EXEC addCustomer('" + postJson +"', jsonObject('application/json' as \"Content-Type\", 'application/json' as Accept))", 
+                                                     "EXEC addCustomer('" + postXml +"', jsonObject('application/xml' as \"Content-Type\", 'application/xml' as Accept))",
+                                                     "EXEC addOneCustomer('" + postJson_1 +"', jsonObject('application/json' as \"Content-Type\", 'application/json' as Accept))",
+                                                     "EXEC addOneCustomer('" + postXml_1 +"', jsonObject('application/xml' as \"Content-Type\", 'application/xml' as Accept))",
+                                                     "EXEC addCustomerList('" + postJsonList +"', jsonObject('application/json' as \"Content-Type\", 'application/json' as Accept))",
+                                                     "EXEC addCustomerList('" + postXmlList +"', jsonObject('application/xml' as \"Content-Type\", 'application/xml' as Accept))"};
     
     private static String putJson_1 = "{\"customernumber\":\"103\",\"customername\":\"kylin\",\"contactlastname\":\"Soong_test1\",\"contactfirstname\":\"Kylin\",\"phone\":\"18611907049\",\"addressline1\":\"Beijing\",\"addressline2\":\"China Beijing\",\"city\":\"Beijing\",\"state\":\"Beijing\",\"postalcode\":\"100020\",\"country\":\"China\",\"salesrepemployeenumber\":\"123456\",\"creditlimit\":\"1200\"}";
     private static String putJson_2 = "{\"customernumber\":\"103\",\"customername\":\"kylin\",\"contactlastname\":\"Soong_test2\",\"contactfirstname\":\"Kylin\",\"phone\":\"18611907049\",\"addressline1\":\"Beijing\",\"addressline2\":\"China Beijing\",\"city\":\"Beijing\",\"state\":\"Beijing\",\"postalcode\":\"100020\",\"country\":\"China\",\"salesrepemployeenumber\":\"123456\",\"creditlimit\":\"1200\"}";
@@ -86,14 +86,12 @@ public class TeiidEmbeddedRestSwaggerProcedure {
     private static String putJson_5 = "{\"customernumber\":\"103\",\"customername\":\"kylin\",\"contactlastname\":\"Soong_test5\",\"contactfirstname\":\"Kylin\",\"phone\":\"18611907049\",\"addressline1\":\"Beijing\",\"addressline2\":\"China Beijing\",\"city\":\"Beijing\",\"state\":\"Beijing\",\"postalcode\":\"100020\",\"country\":\"China\",\"salesrepemployeenumber\":\"123456\",\"creditlimit\":\"1200\"}";
     private static String putJson_6 = "{\"customernumber\":\"103\",\"customername\":\"kylin\",\"contactlastname\":\"Soong_test6\",\"contactfirstname\":\"Kylin\",\"phone\":\"18611907049\",\"addressline1\":\"Beijing\",\"addressline2\":\"China Beijing\",\"city\":\"Beijing\",\"state\":\"Beijing\",\"postalcode\":\"100020\",\"country\":\"China\",\"salesrepemployeenumber\":\"123456\",\"creditlimit\":\"1200\"}";
     
-    private static String[] putCalls = new String[]{"EXEC customer_update('" + putJson_1 +"', jsonObject('application/json' as \"Content-Type\"))",
-                                                    "EXEC customer_updateByNumber('103', '" + putJson_2 +"', jsonObject('application/json' as \"Content-Type\"))",
-                                                    "EXEC customer_updateByName('kylin', '" + putJson_3 +"', jsonObject('application/json' as \"Content-Type\"))",
-                                                    "EXEC customer_updateByCity('Beijing', '" + putJson_4 +"', jsonObject('application/json' as \"Content-Type\"))",
-                                                    "EXEC customer_updateByCountry('China', '" + putJson_5 +"', jsonObject('application/json' as \"Content-Type\"))",
-                                                    "EXEC customer_updateByNumCityCountry('103', 'Beijing', 'China', '" + putJson_6 +"', jsonObject('application/json' as \"Content-Type\"))"};
-
-    private static String statusCall = "EXEC customer_status(jsonObject('application/json' as Accept))";
+    private static String[] putCalls = new String[]{"EXEC updateCustomer('" + putJson_1 +"', jsonObject('application/json' as \"Content-Type\"))",
+                                                    "EXEC updateCustomerByNumber('103', '" + putJson_2 +"', jsonObject('application/json' as \"Content-Type\"))",
+                                                    "EXEC updateCustomerByName('kylin', '" + putJson_3 +"', jsonObject('application/json' as \"Content-Type\"))",
+                                                    "EXEC updateCustomerByCity('Beijing', '" + putJson_4 +"', jsonObject('application/json' as \"Content-Type\"))",
+                                                    "EXEC updateCustomerByCountry('China', '" + putJson_5 +"', jsonObject('application/json' as \"Content-Type\"))",
+                                                    "EXEC updateCustomerByNumCityCountry('103', 'Beijing', 'China', '" + putJson_6 +"', jsonObject('application/json' as \"Content-Type\"))"};
     
     public static void main(String[] args) throws ResourceException, TranslatorException, VirtualDatabaseException, ConnectorManagerException, IOException, SQLException {
         
@@ -145,11 +143,12 @@ public class TeiidEmbeddedRestSwaggerProcedure {
             System.out.println();
         }
         
-        CallableStatement cStmt = conn.prepareCall(statusCall);
-        cStmt.execute();
-        Blob blob = (Blob) cStmt.getObject(1);
-        IOUtils.copy(blob.getBinaryStream(), System.out);
-        System.out.println();
+//        CallableStatement cStmt = conn.prepareCall(getCalls[1]);
+//        cStmt.execute();
+//        Blob blob = (Blob) cStmt.getObject(1);
+//        IOUtils.copy(blob.getBinaryStream(), System.out);
+//        System.out.println();
+        
         
         close(conn);
         server.stop();
