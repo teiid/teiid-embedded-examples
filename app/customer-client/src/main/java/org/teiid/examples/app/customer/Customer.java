@@ -21,22 +21,13 @@
  */
 package org.teiid.examples.app.customer;
 
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-
 import java.io.Serializable;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.ApiResponse;
 
 @XmlRootElement(name = "customer")
 public class Customer implements Serializable {
@@ -71,29 +62,8 @@ public class Customer implements Serializable {
     
     @GET
     @Produces({ MediaType.APPLICATION_XML })
-    @ApiOperation(value = "get a customer", notes = "get a customer as xml")
-    @ApiResponses({@ApiResponse(code = 404, message = "Customer not found")})
     public Customer get() {
         return this;
-    }
-    
-    @PUT
-    @ApiOperation(value = "Update an existing customer")
-    @ApiResponses(value = { @ApiResponse(code = 400, message = "Invalid Customer supplied") })
-    public void update(@ApiParam(value = "Customer object that needs to be passed", required = true) Customer c){
-        this.setCustomernumber(c.getCustomernumber());
-        this.setCustomername(c.getCustomername());
-        this.setContactfirstname(c.getContactfirstname());
-        this.setContactlastname(c.getContactlastname());
-        this.setPhone(c.getPhone());
-        this.setAddressline1(c.getAddressline1());
-        this.setAddressline2(c.getAddressline2());
-        this.setCity(c.getCity());
-        this.setState(c.getState());
-        this.setPostalcode(c.getPostalcode());
-        this.setCountry(c.getCountry());
-        this.setSalesrepemployeenumber(c.getSalesrepemployeenumber());
-        this.setCreditlimit(c.getCreditlimit());
     }
 
     @XmlElement(name = "customernumber")
@@ -101,12 +71,7 @@ public class Customer implements Serializable {
         return customernumber;
     }
 
-    @PUT
-    @Consumes("text/plain")
-    @Path("customernumber")
-    @ApiOperation(value = "Update an existing customer's number")
-    @ApiResponses(value = { @ApiResponse(code = 400, message = "Invalid customernumber supplied") })
-    public void setCustomernumber(@ApiParam(value = "Customer number that needs to be passed", required = true) String customernumber) {
+    public void setCustomernumber(String customernumber) {
         this.customernumber = customernumber;
     }
 

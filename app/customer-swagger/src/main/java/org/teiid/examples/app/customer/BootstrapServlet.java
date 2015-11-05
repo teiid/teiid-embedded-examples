@@ -15,13 +15,22 @@ public class BootstrapServlet extends HttpServlet {
     @Override
     public void init(ServletConfig paramServletConfig) throws ServletException {
         super.init(paramServletConfig);
+        
         BeanConfig config = new BeanConfig();
-        config.setTitle("Customer");
-        config.setDescription("Teiid Examples Customer JAX-RS WebService With Swagger");
-        config.setVersion("1.0");
-        config.setSchemes(new String[] { "http", "https"});
-        config.setBasePath("/");
+        
         config.setResourcePackage("org.teiid.examples.app.customer");
+        config.setSchemes(new String[] { "http", "https"});  
+        config.setTitle("Customer");
+        config.setVersion("1.0");
+        config.setDescription("Teiid Examples Customer JAX-RS WebService With Swagger");
+        
+        config.setContact("teiid.org");
+        config.setLicense("Apache 2.0");
+        config.setLicenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html");
+        
+        config.setHost("localhost:8080");
+        config.setBasePath("/");
+        
         config.setScan(true);
     }
 

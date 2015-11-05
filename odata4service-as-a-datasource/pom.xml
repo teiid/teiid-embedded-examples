@@ -5,9 +5,9 @@
      	<version>1.0.0-SNAPSHOT</version>
   	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>restservice-as-a-datasource</artifactId>
-	<name>Teiid Examples restservice-as-a-datasource</name>
-	<description>Teiid Examples restservice-as-a-datasource</description>
+	<artifactId>odata4service-as-a-datasource</artifactId>
+	<name>Teiid Examples odataservice-as-a-datasource</name>
+	<description>Teiid Examples odataservice-as-a-datasource</description>
 	<packaging>jar</packaging>
 
 	<dependencies>
@@ -24,12 +24,17 @@
 		
 		<dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
-			<artifactId>translator-ws</artifactId>
+			<artifactId>translator-odata4</artifactId>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
-			<artifactId>translator-swagger</artifactId>
+			<artifactId>translator-jdbc</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jboss.teiid.connectors</groupId>
+			<artifactId>translator-ws</artifactId>
 		</dependency>
 		
 		<dependency>
@@ -37,11 +42,6 @@
 			<artifactId>connector-ws</artifactId>
 			<classifier>lib</classifier>
 		</dependency>
-		
-		<dependency>
-            <groupId>io.swagger</groupId>
-            <artifactId>swagger-parser</artifactId>
-        </dependency>  
             
 	</dependencies>
 	
@@ -51,7 +51,7 @@
 		    <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
                     <configuration>
-		        <mainClass>org.teiid.example.TeiidEmbeddedRestWebServiceDataSource</mainClass>
+		        <mainClass>org.teiid.example.TeiidEmbeddedOData4ServiceDataSource</mainClass>
 		    </configuration>
 		</plugin>
 	    </plugins>

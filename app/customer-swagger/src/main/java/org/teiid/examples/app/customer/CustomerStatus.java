@@ -10,6 +10,10 @@ public class CustomerStatus {
     
     private HeapSize heap;
 
+    public int getCustomerSize() {
+        return this.size;
+    }
+
     @XmlElement(name = "customerSize")
     public int getSize() {
         return size;

@@ -23,6 +23,8 @@ package org.teiid.examples.app.customer;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.ws.rs.InternalServerErrorException;
 import javax.ws.rs.NotFoundException;
@@ -33,7 +35,9 @@ import javax.ws.rs.ext.Provider;
 
 @Provider
 public class DefaultExceptionHandler implements ExceptionMapper<Exception> {
-
+    
+    static Logger logger = Logger.getLogger(DefaultExceptionHandler.class.getName());
+    
 	@Override
 	public Response toResponse(Exception e) {
 		
@@ -50,6 +54,8 @@ public class DefaultExceptionHandler implements ExceptionMapper<Exception> {
 		PrintWriter pw = new PrintWriter(sw);
 		e.printStackTrace(pw);
 		String details = sw.toString();
+		
+		logger.log(Level.SEVERE, details);
 		
 		StringBuilder response = new StringBuilder("<error>");
         response.append("<code>" + status + "</code>");

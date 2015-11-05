@@ -13,6 +13,7 @@
 	<modules>
 	    <module>customer</module>
 	    <module>customer-swagger</module>
+	    <module>customer-client</module>
 	    <module>stateService</module>
 	</modules>
 </project>

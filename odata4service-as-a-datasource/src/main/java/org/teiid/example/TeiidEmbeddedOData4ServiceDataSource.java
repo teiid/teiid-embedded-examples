@@ -28,37 +28,30 @@ import java.sql.Connection;
 import org.teiid.resource.adapter.ws.WSManagedConnectionFactory;
 import org.teiid.runtime.EmbeddedConfiguration;
 import org.teiid.runtime.EmbeddedServer;
-import org.teiid.translator.ws.WSExecutionFactory;
+import org.teiid.translator.odata4.ODataExecutionFactory;
 
 @SuppressWarnings("nls")
-public class TeiidEmbeddedRestWebServiceDataSource {
+public class TeiidEmbeddedOData4ServiceDataSource {
 
 	public static void main(String[] args) throws Exception {
 		
 		EmbeddedServer server = new EmbeddedServer();
 		
-		WSExecutionFactory factory = new WSExecutionFactory();
+		ODataExecutionFactory factory = new ODataExecutionFactory();
 		factory.start();
-		server.addTranslator("translator-rest", factory);
+		server.addTranslator("translator-odata", factory);
 		
 		WSManagedConnectionFactory managedconnectionFactory = new WSManagedConnectionFactory();
-		server.addConnectionFactory("java:/CustomerRESTWebSvcSource", managedconnectionFactory.createConnectionFactory());
+		managedconnectionFactory.setEndPoint("http://services.odata.org/Northwind/Northwind.svc");
+		server.addConnectionFactory("java:/ODataNorthwindDS", managedconnectionFactory.createConnectionFactory());
 
 		server.start(new EmbeddedConfiguration());
     	
-		server.deployVDB(TeiidEmbeddedRestWebServiceDataSource.class.getClassLoader().getResourceAsStream("restwebservice-vdb.xml"));
+		server.deployVDB(TeiidEmbeddedOData4ServiceDataSource.class.getClassLoader().getResourceAsStream("odataNorthwindservice-vdb.xml"));
 		
-		Connection c = server.getDriver().connect("jdbc:teiid:restwebservice", null);
-		
-		execute(c, "EXEC getCustomer('http://localhost:8080/customer/customerList')", false);
-		execute(c, "EXEC getAll('http://localhost:8080/customer/getAll')", false);
-		execute(c, "EXEC getOne('http://localhost:8080/customer/getByNumber/161')", false);
-		execute(c, "EXEC getOne('http://localhost:8080/customer/getByName/Technics%20Stores%20Inc.')", false);
-		execute(c, "EXEC getOne('http://localhost:8080/customer/getByCity?city=Burlingame')", false);
-		execute(c, "EXEC getOne('http://localhost:8080/customer/getByCountry?country=USA')", false);
-		execute(c, "EXEC getOne('http://localhost:8080/customer/getByNumCityCountry?customernumber=161&city=Burlingame&country=USA')", false);
-		
-		execute(c, "SELECT * FROM CustomersView", true);
+		Connection c = server.getDriver().connect("jdbc:teiid:NorthwindVDB", null);
+
+		execute(c, "SELECT * FROM Customers", true);
 		
 		server.stop();
 	}

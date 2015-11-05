@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <parent>
+        <artifactId>teiid-examples-apps</artifactId>
+        <groupId>org.jboss.teiid.examples</groupId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>customer-client</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+    <name>Teiid Examples App Customer Client</name>
+    <description>Teiid Examples Customer JAX-RS WebService Client</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-client</artifactId>
+        </dependency> 
+    </dependencies>
+
+</project>
+
