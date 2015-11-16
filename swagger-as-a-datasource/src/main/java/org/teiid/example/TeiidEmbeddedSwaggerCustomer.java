@@ -21,6 +21,7 @@
  */
 package org.teiid.example;
 
+import static org.teiid.example.JDBCUtils.execute;
 import static org.teiid.example.JDBCUtils.close;
 
 import java.io.IOException;
@@ -29,34 +30,35 @@ import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import javax.resource.ResourceException;
-
 import org.apache.cxf.helpers.IOUtils;
-import org.teiid.deployers.VirtualDatabaseException;
-import org.teiid.dqp.internal.datamgr.ConnectorManagerRepository.ConnectorManagerException;
 import org.teiid.resource.adapter.ws.WSManagedConnectionFactory;
 import org.teiid.runtime.EmbeddedConfiguration;
 import org.teiid.runtime.EmbeddedServer;
-import org.teiid.translator.TranslatorException;
 import org.teiid.translator.swagger.SwaggerExecutionFactory;
 
 
 /**
- *  This dependent on swagger translator and ws resource adapter.
+ *  This dependent on swagger translator, ws resource adapter and customer-swagger service.
+ *  
+ *  Start customer-swagger service:
+ *      $ cd teiid-embedded-examples/app/customer-swagger/
+ *      $ mvn clean install
+ *      
  *  
  * @author kylin
  *
  */
-public class TeiidEmbeddedRestSwaggerProcedure {
+public class TeiidEmbeddedSwaggerCustomer {
     
-    private static String[] getCalls = new String[] {"EXEC getByNumCityCountry('161', 'Burlingame', 'USA', jsonObject('application/json' as ContentType, jsonArray('gzip', 'deflate') as \"Accept-Encoding\"))",
-                                                     "EXEC getCustomers()",
-                                                     "EXEC getCustomerList()",
-                                                     "EXEC getCustomerByCity('Burlingame')",
+    private static String[] getCalls = new String[] {"EXEC getByNumCityCountry('161', 'Burlingame', 'USA', jsonObject('application/json' as ContentType, 'application/json' as Accept, jsonArray('gzip', 'deflate') as \"Accept-Encoding\"))",
+                                                     "EXEC getCustomerList(jsonObject('application/json' as Accept))",
+                                                     "EXEC getCustomerByCity('Burlingame', jsonObject('application/json' as Accept))",
                                                      "EXEC getCustomerByCountry('USA')",
                                                      "EXEC getCustomerByName('Technics Stores Inc.', jsonObject('application/json' as Accept))",
                                                      "EXEC getCustomerByNumber('161', jsonObject('application/json' as Accept))",
                                                      "EXEC size(jsonObject('application/json' as Accept))"};
+ 
+    private static String getCalls_customers = "EXEC getCustomers()";
     
     private static String[] delCalls = new String[] {"EXEC removeCustomer('103')",
                                                      "EXEC removeCustomerByNumber('103')",
@@ -93,7 +95,11 @@ public class TeiidEmbeddedRestSwaggerProcedure {
                                                     "EXEC updateCustomerByCountry('China', '" + putJson_5 +"', jsonObject('application/json' as \"Content-Type\"))",
                                                     "EXEC updateCustomerByNumCityCountry('103', 'Beijing', 'China', '" + putJson_6 +"', jsonObject('application/json' as \"Content-Type\"))"};
     
-    public static void main(String[] args) throws ResourceException, TranslatorException, VirtualDatabaseException, ConnectorManagerException, IOException, SQLException {
+    private static String[] testCalls = new String[]{"EXEC ping()",
+                                                     "EXEC testReturnTypes()",
+                                                     "EXEC testModelFacade()"};
+    
+    public static void main(String[] args) throws Exception {
         
         EmbeddedServer server = new EmbeddedServer();
         
@@ -107,52 +113,66 @@ public class TeiidEmbeddedRestSwaggerProcedure {
 
         server.start(new EmbeddedConfiguration());
         
-        server.deployVDB(TeiidEmbeddedRestSwaggerProcedure.class.getClassLoader().getResourceAsStream("restwebservice-swagger-vdb.xml"));
+        server.deployVDB(TeiidEmbeddedSwaggerCustomer.class.getClassLoader().getResourceAsStream("swagger-vdb.xml"));
         
         Connection conn = server.getDriver().connect("jdbc:teiid:restwebservice", null);
         
         for(String call : getCalls) {
-            CallableStatement cStmt = conn.prepareCall(call);
-            cStmt.execute();
-            Blob blob = (Blob) cStmt.getObject(1);
-            IOUtils.copy(blob.getBinaryStream(), System.out);
-            System.out.println();
+            execute(conn, call, false);
         }
+        
+        // call getCalls_customers only support return as xml
+        CallableStatement cStmt_ = conn.prepareCall(getCalls_customers);
+        cStmt_.execute();
+        Object obj_ = cStmt_.getObject(1);
+        print(obj_);
         
         for(String call : delCalls) {
             CallableStatement cStmt = conn.prepareCall(call);
             cStmt.execute();
-            Blob blob = (Blob) cStmt.getObject(1);
-            IOUtils.copy(blob.getBinaryStream(), System.out);
-            System.out.println();
+            Object obj = cStmt.getObject(1);
+            print(obj);
         }
         
         for(String call : postCalls) {
             CallableStatement cStmt = conn.prepareCall(call);
             cStmt.execute();
-            Blob blob = (Blob) cStmt.getObject(1);
-            IOUtils.copy(blob.getBinaryStream(), System.out);
-            System.out.println();
+            Object obj = cStmt.getObject(1);
+            print(obj);
         }
         
         for(String call : putCalls){
             CallableStatement cStmt = conn.prepareCall(call);
             cStmt.execute();
-            Blob blob = (Blob) cStmt.getObject(1);
-            IOUtils.copy(blob.getBinaryStream(), System.out);
-            System.out.println();
+            Object obj = cStmt.getObject(1);
+            print(obj);
         }
         
-//        CallableStatement cStmt = conn.prepareCall(getCalls[1]);
-//        cStmt.execute();
-//        Blob blob = (Blob) cStmt.getObject(1);
-//        IOUtils.copy(blob.getBinaryStream(), System.out);
-//        System.out.println();
+        for(String call : testCalls){
+            execute(conn, call, false);
+        }
         
+//        CallableStatement cStmt = conn.prepareCall(delCalls[0]);
+//        cStmt.execute();
+//        Object obj = cStmt.getObject(1);
+//        print(obj);
+        
+//        JDBCUtils.execute(conn, testCalls[2], false);
         
         close(conn);
         server.stop();
 
+    }
+
+    private static void print(Object obj) throws IOException, SQLException {
+        if(obj instanceof Blob) {
+            Blob blob = (Blob)obj;
+            IOUtils.copy(blob.getBinaryStream(), System.out);
+        } else {
+            System.out.println(obj);
+        }
+        System.out.println();
+        
     }
 
 }

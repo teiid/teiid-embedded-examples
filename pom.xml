@@ -403,6 +403,7 @@
 	    <module>mongodb-as-a-datasource </module>
 	    <module>soapservice-as-a-datasource</module>
 	    <module>restservice-as-a-datasource</module>
+	    <module>swagger-as-a-datasource</module>
 	    <module>odataservice-as-a-datasource</module>
 	    <module>odata4service-as-a-datasource</module>
 	    <module>vertica-as-a-datasource</module>
