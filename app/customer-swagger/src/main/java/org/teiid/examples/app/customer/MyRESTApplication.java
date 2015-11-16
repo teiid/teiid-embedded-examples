@@ -39,6 +39,7 @@ public class MyRESTApplication extends Application {
         singletons.add(new ApiListingResource());
         singletons.add(new SwaggerSerializers());
         singletons.add(new CustomersResource());
+        singletons.add(new TestResource());
     }
     @Override
     public Set<Class<?>> getClasses() {

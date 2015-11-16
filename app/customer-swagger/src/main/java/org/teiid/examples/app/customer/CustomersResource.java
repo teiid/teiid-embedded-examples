@@ -100,7 +100,7 @@ public class CustomersResource {
     @Path("/getByCountry")
     @ApiOperation(value = "get customer by country", notes = "get customer by country as return xml/json")
     @ApiResponses({@ApiResponse(code = 404, message = "Customer not found")})
-    public Customer  getCustomerByCountry(@ApiParam(value = "country", required = true) @QueryParam("country") String country) {
+    public Customer getCustomerByCountry(@ApiParam(value = "country", required = true) @QueryParam("country") String country) {
         return data.getCustomerByCountry(country);
     }
     
@@ -181,7 +181,7 @@ public class CustomersResource {
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Customer") })
     public Response addCustomer(@ApiParam(value = "Customer Object need be passed", required = true)Customer customer) {
         data.addCustomer(customer);
-        return Response.ok().entity("Add Customer Success").build();
+        return Response.ok().entity(new Success("Add Customer Success")).build();
     }
     
     @POST
@@ -191,7 +191,7 @@ public class CustomersResource {
     @ApiResponses({ @ApiResponse(code = 400, message = "Invalid Customer") })
     public Response addOneCustomer(@ApiParam(value = "Customer Object need be passed", required = true)Customer customer) {
         data.addCustomer(customer);
-        return Response.ok().entity("Add Customer Success").build();
+        return Response.ok().entity(new Success("Add Customer Success")).build();
     }
     
     @POST
@@ -203,7 +203,7 @@ public class CustomersResource {
         for(Customer customer : list) {
             data.addCustomer(customer);
         }
-        return Response.ok().entity("Add Customer List Success").build();
+        return Response.ok().entity(new Success("Add Customer List Success")).build();
     }
     
     @PUT
@@ -213,7 +213,7 @@ public class CustomersResource {
     public Response updateCustomer(@ApiParam(value = "Customer object that needs to be passed", required = true) Customer c){
         data.removeByCustomernumber(c.getCustomernumber());
         data.addCustomer(c);
-        return Response.ok().entity("Update Customer Success").build();
+        return Response.ok().entity(new Success("Update Customer Success")).build();
     }
     
     @PUT
@@ -223,7 +223,7 @@ public class CustomersResource {
     public Response updateCustomerByNumber(@ApiParam(value = "customernumber", required = true) @PathParam("customernumber") String customernumber, @ApiParam(value = "Customer object that needs to be passed", required = true) Customer c){
         data.removeByCustomernumber(customernumber);
         data.addCustomer(c);
-        return Response.ok().entity("Update Customer Success").build();
+        return Response.ok().entity(new Success("Update Customer Success")).build();
     }
     
     @PUT
@@ -233,7 +233,7 @@ public class CustomersResource {
     public Response updateCustomerByName(@ApiParam(value = "customername", required = true) @PathParam("customername") String customername, @ApiParam(value = "Customer object that needs to be passed", required = true) Customer c){
         data.removeByCustomername(customername);
         data.addCustomer(c);
-        return Response.ok().entity("Update Customer Success").build();
+        return Response.ok().entity(new Success("Update Customer Success")).build();
     }
     
     @PUT
@@ -243,7 +243,7 @@ public class CustomersResource {
     public Response updateCustomerByCity(@ApiParam(value = "city", required = true) @QueryParam("city") String city, @ApiParam(value = "Customer object that needs to be passed", required = true) Customer c){
         data.removeByCity(city);
         data.addCustomer(c);
-        return Response.ok().entity("Update Customer Success").build();
+        return Response.ok().entity(new Success("Update Customer Success")).build();
     }
     
     @PUT
@@ -253,7 +253,7 @@ public class CustomersResource {
     public Response updateCustomerByCountry(@ApiParam(value = "country", required = true) @QueryParam("country") String country, @ApiParam(value = "Customer object that needs to be passed", required = true) Customer c){
         data.removeByCountry(country);
         data.addCustomer(c);
-        return Response.ok().entity("Update Customer Success").build();
+        return Response.ok().entity(new Success("Update Customer Success")).build();
     }
     
     @PUT
@@ -263,7 +263,7 @@ public class CustomersResource {
     public Response updateCustomerByNumCityCountry(@ApiParam(value = "customernumber", required = true) @QueryParam("customernumber") String customernumber, @ApiParam(value = "city", required = true) @QueryParam("city") String city, @ApiParam(value = "country", required = true) @QueryParam("country") String country, @ApiParam(value = "Customer object that needs to be passed", required = true) Customer c){
         data.removeByNumCityCountry(customernumber, city, country);
         data.addCustomer(c);
-        return Response.ok().entity("Update Customer Success").build();
+        return Response.ok().entity(new Success("Update Customer Success")).build();
     }
     
 }
