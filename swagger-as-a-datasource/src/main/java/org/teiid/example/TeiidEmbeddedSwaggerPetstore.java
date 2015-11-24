@@ -41,7 +41,7 @@ public class TeiidEmbeddedSwaggerPetstore {
             execute(conn, call, false);
         }
         
-//        execute(conn, getCalls[5], false);
+        execute(conn, getCalls[4], false);
         
         close(conn);
         server.stop();

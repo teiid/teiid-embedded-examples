@@ -100,5 +100,13 @@ public class TestResource {
         return facade;
     }
     
+    @GET
+    @Path("/testTimeTypes")
+    @ApiOperation(value = "testTimeTypes", notes = "testTimeTypes")
+    @ApiResponses({@ApiResponse(code = 404, message = "testTimeTypes")})
+    public TimeTypes testTimeTypes() {
+        return TimeTypes.create();
+    }
+    
 
 }
