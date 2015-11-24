@@ -97,7 +97,8 @@ public class TeiidEmbeddedSwaggerCustomer {
     
     private static String[] testCalls = new String[]{"EXEC ping()",
                                                      "EXEC testReturnTypes()",
-                                                     "EXEC testModelFacade()"};
+                                                     "EXEC testModelFacade()",
+                                                     "EXEC testTimeTypes()"};
     
     public static void main(String[] args) throws Exception {
         
@@ -157,7 +158,7 @@ public class TeiidEmbeddedSwaggerCustomer {
 //        Object obj = cStmt.getObject(1);
 //        print(obj);
         
-//        JDBCUtils.execute(conn, testCalls[2], false);
+        JDBCUtils.execute(conn, testCalls[3], false);
         
         close(conn);
         server.stop();
