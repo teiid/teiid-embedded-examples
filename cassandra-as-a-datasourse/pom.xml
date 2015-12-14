@@ -2,7 +2,7 @@
 	<parent>
         <artifactId>teiid-examples-parent</artifactId>
     	<groupId>org.jboss.teiid.examples</groupId>
-     	<version>1.0.0-SNAPSHOT</version>
+     	<version>1.0.1-SNAPSHOT</version>
   	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>cassandra-as-a-datasourse</artifactId>
@@ -13,31 +13,39 @@
 	<dependencies>
        	
 		<dependency>
-            <groupId>org.jboss.teiid.examples</groupId>
-            <artifactId>teiid-examples-common</artifactId>
-        </dependency>	
+			<groupId>org.jboss.teiid</groupId>
+			<artifactId>teiid-runtime</artifactId>
+			<version>${version.teiid}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jboss.teiid</groupId>
+			<artifactId>teiid-admin</artifactId>
+			<version>${version.teiid}</version>
+		</dependency>	
 		
 		<dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
 			<artifactId>translator-cassandra</artifactId>
+			<version>${version.teiid}</version>
 		</dependency>
 		
 		<dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
 			<artifactId>connector-cassandra</artifactId>
-			<classifier>lib</classifier>
+			<version>${version.teiid}</version>
 		</dependency>
 		
 		<dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty</artifactId>
-            <scope>provided</scope>
+            <version>${version.io.netty}</version>
         </dependency>
 		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
-			<scope>provided</scope>
+			<version>${version.slf4j-api}</version>
 		</dependency>
 		      
 	</dependencies>

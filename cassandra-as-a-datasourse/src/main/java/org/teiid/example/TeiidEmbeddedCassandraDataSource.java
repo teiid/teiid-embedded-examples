@@ -21,12 +21,10 @@
  */
 package org.teiid.example;
 
-import static org.teiid.example.util.JDBCUtils.execute;
-import static org.teiid.example.util.IOUtils.findFile;
-import static org.teiid.example.util.IOUtils.findProperties;
+import static org.teiid.example.JDBCUtils.execute;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.util.Properties;
 
@@ -58,7 +56,7 @@ public class TeiidEmbeddedCassandraDataSource {
 
 		server.start(new EmbeddedConfiguration());
     	
-		server.deployVDB(new FileInputStream(findFile("cassandra-vdb.xml")));
+		server.deployVDB(TeiidEmbeddedCassandraDataSource.class.getClassLoader().getResourceAsStream("cassandra-vdb.xml"));
 		
 		Connection c = server.getDriver().connect("jdbc:teiid:users", null);
 		
@@ -69,7 +67,10 @@ public class TeiidEmbeddedCassandraDataSource {
 
 	private static void initCassandraProperties() throws IOException {
 		
-		Properties prop = findProperties("cassandra.properties");
+		Properties prop = new Properties();
+        InputStream in = TeiidEmbeddedCassandraDataSource.class.getClassLoader().getResourceAsStream("cassandra.properties");
+        prop.load(in);
+        in.close();
 		ADDRESS = prop.getProperty("cassandra.address", ADDRESS);
 		KEYSPACE = prop.getProperty("cassandra.keyspace", KEYSPACE);
 	}

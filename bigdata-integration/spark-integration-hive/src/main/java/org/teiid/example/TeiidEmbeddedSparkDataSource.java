@@ -21,13 +21,12 @@
  */
 package org.teiid.example;
 
-import static org.teiid.example.util.JDBCUtils.execute;
-import static org.teiid.example.util.IOUtils.findProperties;
+import static org.teiid.example.JDBCUtils.execute;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.util.Properties;
-import java.util.logging.Level;
 
 import javax.sql.DataSource;
 
@@ -44,9 +43,7 @@ public class TeiidEmbeddedSparkDataSource {
 	
 
 	public static void main(String[] args) throws Exception {
-	    
-	    EmbeddedHelper.enableLogger(Level.FINER);
-	    
+	    	    
 	    initDBProperties();
 		
 		DataSource ds = EmbeddedHelper.newDataSource(JDBC_DRIVER, JDBC_URL, JDBC_USER, JDBC_PASS);
@@ -75,7 +72,10 @@ public class TeiidEmbeddedSparkDataSource {
 	}
 	
 	private static void initDBProperties() throws IOException {
-	    Properties prop = findProperties("hive.properties");
+	    Properties prop = new Properties();
+        InputStream in = TeiidEmbeddedSparkDataSource.class.getClassLoader().getResourceAsStream("hive.properties");
+        prop.load(in);
+        in.close();
         JDBC_DRIVER = prop.getProperty("hive.driver", JDBC_DRIVER);
         JDBC_URL = prop.getProperty("hive.url", JDBC_URL);
         JDBC_USER = prop.getProperty("hive.user", JDBC_USER);

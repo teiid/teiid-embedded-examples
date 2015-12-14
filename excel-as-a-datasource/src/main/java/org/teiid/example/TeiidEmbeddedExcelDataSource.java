@@ -21,11 +21,9 @@
  */
 package org.teiid.example;
 
-import static org.teiid.example.util.JDBCUtils.execute;
-import static org.teiid.example.util.IOUtils.findFile;
-import static org.teiid.example.util.IOUtils.findFilePath;
+import static org.teiid.example.JDBCUtils.execute;
 
-import java.io.FileInputStream;
+
 import java.sql.Connection;
 
 import org.teiid.resource.adapter.file.FileManagedConnectionFactory;
@@ -46,12 +44,12 @@ public class TeiidEmbeddedExcelDataSource {
 		server.addTranslator("excel", factory);
 		
 		FileManagedConnectionFactory managedconnectionFactory = new FileManagedConnectionFactory();
-		managedconnectionFactory.setParentDirectory(findFilePath("data"));
+		managedconnectionFactory.setParentDirectory("src/main/resources/data");
 		server.addConnectionFactory("java:/excel-file", managedconnectionFactory.createConnectionFactory());
 
 		server.start(new EmbeddedConfiguration());
     	
-		server.deployVDB(new FileInputStream(findFile("excel-vdb.xml")));
+		server.deployVDB(TeiidEmbeddedExcelDataSource.class.getClassLoader().getResourceAsStream("excel-vdb.xml"));
 		
 		Connection c = server.getDriver().connect("jdbc:teiid:ExcelVDB", null);
 		

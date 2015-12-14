@@ -21,10 +21,8 @@
  */
 package org.teiid.example;
 
-import static org.teiid.example.util.JDBCUtils.execute;
-import static org.teiid.example.util.IOUtils.findFile;
+import static org.teiid.example.JDBCUtils.execute;
 
-import java.io.FileInputStream;
 import java.sql.Connection;
 import javax.sql.DataSource;
 
@@ -54,7 +52,7 @@ public class TeiidEmbeddedHBaseDataSource {
 		config.setTransactionManager(EmbeddedHelper.getTransactionManager());	
 		server.start(config);
     	
-		server.deployVDB(new FileInputStream(findFile("hbase-vdb.xml")));
+		server.deployVDB(TeiidEmbeddedHBaseDataSource.class.getClassLoader().getResourceAsStream("hbase-vdb.xml"));
 		
 		Connection c = server.getDriver().connect("jdbc:teiid:hbasevdb", null);
 		

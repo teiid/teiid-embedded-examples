@@ -21,10 +21,9 @@
  */
 package org.teiid.example;
 
-import static org.teiid.example.util.JDBCUtils.execute;
+import static org.teiid.example.JDBCUtils.execute;
 
 import java.sql.Connection;
-import java.util.logging.Level;
 
 import org.teiid.resource.adapter.ws.WSManagedConnectionFactory;
 import org.teiid.runtime.EmbeddedConfiguration;
@@ -40,9 +39,7 @@ public class TeiidEmbeddedGenericSoap {
 	
 	
 	public static void main(String[] args) throws Exception {
-		
-		EmbeddedHelper.enableLogger(Level.INFO);
-		
+				
 		EmbeddedServer es = new EmbeddedServer();
 		
 		WSExecutionFactory ef = new WSExecutionFactory();

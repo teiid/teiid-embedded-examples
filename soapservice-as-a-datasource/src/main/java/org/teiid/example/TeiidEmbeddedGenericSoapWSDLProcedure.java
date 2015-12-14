@@ -1,10 +1,9 @@
 package org.teiid.example;
 
-import static org.teiid.example.util.JDBCUtils.close;
+import static org.teiid.example.JDBCUtils.close;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.util.logging.Level;
 
 import org.teiid.core.types.SQLXMLImpl;
 import org.teiid.resource.adapter.ws.WSManagedConnectionFactory;
@@ -25,7 +24,6 @@ public class TeiidEmbeddedGenericSoapWSDLProcedure {
 
     public static void main(String[] args) throws Exception {
 
-        EmbeddedHelper.enableLogger(Level.INFO);
         
         EmbeddedServer es = new EmbeddedServer();
         

@@ -21,10 +21,8 @@
  */
 package org.teiid.example;
 
-import static org.teiid.example.util.JDBCUtils.execute;
-import static org.teiid.example.util.IOUtils.findFile;
+import static org.teiid.example.JDBCUtils.execute;
 
-import java.io.FileInputStream;
 import java.sql.Connection;
 
 import org.teiid.resource.adapter.ws.WSManagedConnectionFactory;
@@ -49,7 +47,7 @@ public class TeiidEmbeddedODataServiceDataSource {
 
 		server.start(new EmbeddedConfiguration());
     	
-		server.deployVDB(new FileInputStream(findFile("odataNorthwindservice-vdb.xml")));
+		server.deployVDB(TeiidEmbeddedODataServiceDataSource.class.getClassLoader().getResourceAsStream("odataNorthwindservice-vdb.xml"));
 		
 		Connection c = server.getDriver().connect("jdbc:teiid:NorthwindVDB", null);
 		

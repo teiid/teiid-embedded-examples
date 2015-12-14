@@ -6,7 +6,7 @@
 	<groupId>org.jboss.teiid.examples</groupId>
 	<artifactId>teiid-examples-parent</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>Teiid Examples Parent</name>
 	<description>Examples for the Teiid project</description>
 
@@ -28,11 +28,11 @@
 	    <version.war.plugin>2.1.1</version.war.plugin>
 	    <version.compiler.plugin>3.1</version.compiler.plugin>
 	    <version.jar.plugin>2.2</version.jar.plugin>
-            <maven.compiler.target>1.7</maven.compiler.target>
-            <maven.compiler.source>1.7</maven.compiler.source>
+            <maven.compiler.target>1.8</maven.compiler.target>
+            <maven.compiler.source>1.8</maven.compiler.source>
 
 	    <version.junit>4.11</version.junit>
-	    <version.teiid>9.0.0.Alpha1-SNAPSHOT</version.teiid>
+	    <version.teiid>8.13.0.Beta2-SNAPSHOT</version.teiid>
 	    <version.teiid-embedded>1.0.0-SNAPSHOT</version.teiid-embedded>
 	    <version.slf4j-api>1.7.2.redhat-3</version.slf4j-api>
 	    <version.io.netty>3.6.10.Final</version.io.netty>
@@ -86,6 +86,7 @@
 		    <artifactId>junit</artifactId>
    		    <version>${version.junit}</version>
 		</dependency>
+		<!--
 		<dependency>
                     <groupId>org.jboss.teiid</groupId>
                     <artifactId>teiid-client</artifactId>
@@ -282,7 +283,6 @@
 		    <version>${version.jboss-logmanager}</version>
 		</dependency>
 
-		<!--Drools Integration dependencies-->
 		<dependency>
 		    <groupId>org.kie</groupId>
 		    <artifactId>kie-api</artifactId>
@@ -294,7 +294,6 @@
 		    <version>${version.drools}</version>
 		</dependency>
 
-		<!--BigData Integration-->
 		<dependency>
 		    <groupId>org.apache.hive</groupId>
 		    <artifactId>hive-jdbc</artifactId>
@@ -341,7 +340,7 @@
                 <artifactId>cxf-rt-rs-client</artifactId>
                 <version>${cxf.version}</version>
             </dependency>
-			
+		-->	
 	    </dependencies>
 	</dependencyManagement>
 
@@ -392,24 +391,21 @@
 	</build>
 	
 	<modules>
-	    <module>common</module>
 	    <module>embedded-portfolio</module>
 	    <module>embedded-portfolio-security</module>
 	    <module>embedded-caching</module>
-	    <module>embedded-logging</module>
+	    <module>embedded-portfolio-logging</module>
 	    <module>excel-as-a-datasource</module>
 	    <module>ldap-as-a-datasource</module>
 	    <module>cassandra-as-a-datasourse</module>
 	    <module>mongodb-as-a-datasource </module>
 	    <module>soapservice-as-a-datasource</module>
 	    <module>restservice-as-a-datasource</module>
-	    <module>swagger-as-a-datasource</module>
 	    <module>odataservice-as-a-datasource</module>
 	    <module>odata4service-as-a-datasource</module>
 	    <module>vertica-as-a-datasource</module>
 	    <module>drools-integration</module>
 	    <module>bigdata-integration</module>
 	    <module>socialmedia-integration</module>
-	    <module>app</module>
 	</modules>	
 </project>

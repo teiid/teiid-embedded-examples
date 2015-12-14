@@ -15,6 +15,48 @@ This example demonstrates using a Teiid JDBC Client fire business rules via Teii
 Dynamic VDB [drools-vdb.xml](src/main/resources/drools-vdb.xml) used to define VIRTUAL FUNCTION within a `DroolsModel`.
 
 
+## Dependencies
+
+To add Teiid runtime, admin
+
+~~~
+<dependency>
+    <groupId>org.jboss.teiid</groupId>
+    <artifactId>teiid-runtime</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+<dependency>
+    <groupId>org.jboss.teiid</groupId>
+    <artifactId>teiid-admin</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+~~~
+
+To add drools dependencies
+
+~~~
+<dependency>
+    <groupId>org.kie</groupId>
+    <artifactId>kie-api</artifactId>
+    <version>${version.drools}</version>
+</dependency>
+<dependency>
+    <groupId>org.drools</groupId>
+    <artifactId>drools-compiler</artifactId>
+    <version>${version.drools}</version>
+</dependency>
+~~~
+
 ## Run
 
-Refer to [../README.md](../README.md) run section to run the example.
+* Run from Source code
+
+Import source code to a IDE(Eclipse), run TeiidEmbeddedDroolsIntegration as Java Application.
+
+* Run from mvn
+
+~~~
+$ cd teiid-embedded-examples/drools-integration
+$ mvn clean install
+$ mvn exec:java
+~~~

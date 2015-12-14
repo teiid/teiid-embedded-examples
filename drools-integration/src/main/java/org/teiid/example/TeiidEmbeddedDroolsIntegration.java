@@ -21,11 +21,9 @@
  */
 package org.teiid.example;
 
-import static org.teiid.example.util.JDBCUtils.execute;
-import static org.teiid.example.util.IOUtils.findFile;
+import static org.teiid.example.JDBCUtils.execute;
 
 import java.sql.Connection;
-import java.util.logging.Level;
 
 import org.teiid.runtime.EmbeddedConfiguration;
 import org.teiid.runtime.EmbeddedServer;
@@ -33,9 +31,7 @@ import org.teiid.runtime.EmbeddedServer;
 public class TeiidEmbeddedDroolsIntegration {
 
 	public static void main(String[] args) throws Exception {
-	    
-	    EmbeddedHelper.enableLogger(Level.WARNING);
-		
+	    		
 		EmbeddedServer server = new EmbeddedServer();
 		
 		server.start(new EmbeddedConfiguration());

@@ -16,6 +16,58 @@ The examples use `java:/ODataNorthwindDS` referenced with OData source(http://se
 
 N/A
 
+## Dependencies
+
+To add Teiid runtime, admin
+
+~~~
+<dependency>
+    <groupId>org.jboss.teiid</groupId>
+    <artifactId>teiid-runtime</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+<dependency>
+    <groupId>org.jboss.teiid</groupId>
+    <artifactId>teiid-admin</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+~~~
+
+To add Translators and Resource Adapters
+
+~~~
+<dependency>
+    <groupId>org.jboss.teiid.connectors</groupId>
+    <artifactId>translator-odata</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+<dependency>
+    <groupId>org.jboss.teiid.connectors</groupId>
+    <artifactId>translator-jdbc</artifactId>
+    <version>${version.teiid}</version>
+</dependency>		
+<dependency>
+    <groupId>org.jboss.teiid.connectors</groupId>
+    <artifactId>translator-ws</artifactId>
+    <version>${version.teiid}</version>
+</dependency>		
+<dependency>
+    <groupId>org.jboss.teiid.connectors</groupId>
+    <artifactId>connector-ws</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+~~~
+
 ## Run
 
-Refer to [../README.md](../README.md) run section to run the example.
+* Run from Source code
+
+Import source code to a IDE(Eclipse), run TeiidEmbeddedODataServiceDataSource as Java Application.
+
+* Run from mvn
+
+~~~
+$ cd teiid-embedded-examples/odataservice-as-a-datasource
+$ mvn clean install
+$ mvn exec:java
+~~~

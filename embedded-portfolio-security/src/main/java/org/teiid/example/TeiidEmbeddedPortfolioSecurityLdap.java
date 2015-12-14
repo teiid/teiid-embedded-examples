@@ -1,14 +1,9 @@
 package org.teiid.example;
 
-import static org.teiid.example.util.IOUtils.findFile;
-import static org.teiid.example.util.IOUtils.findFilePath;
-import static org.teiid.example.util.JDBCUtils.execute;
+import static org.teiid.example.JDBCUtils.execute;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 
@@ -28,7 +23,7 @@ public static void main(String[] args) throws Exception {
         EmbeddedHelper.enableLogger(Level.INFO);
         
         DataSource ds = EmbeddedHelper.newDataSource("org.h2.Driver", "jdbc:h2:mem://localhost/~/account", "sa", "sa");
-        initSamplesData(ds);
+        RunScript.execute(ds.getConnection(), new InputStreamReader(TeiidEmbeddedPortfolioSecurityLdap.class.getClassLoader().getResourceAsStream("data/customer-schema.sql")));
         
         EmbeddedServer server = new EmbeddedServer();
         
@@ -44,7 +39,7 @@ public static void main(String[] args) throws Exception {
         server.addTranslator("file", fileExecutionFactory);
         
         FileManagedConnectionFactory managedconnectionFactory = new FileManagedConnectionFactory();
-        managedconnectionFactory.setParentDirectory(findFilePath("data"));
+        managedconnectionFactory.setParentDirectory("src/main/resources/data");
         server.addConnectionFactory("java:/marketdata-file", managedconnectionFactory.createConnectionFactory());
     
         EmbeddedConfiguration config = new EmbeddedConfiguration();
@@ -54,7 +49,7 @@ public static void main(String[] args) throws Exception {
         server.start(config);
                 
         
-        server.deployVDB(new FileInputStream(findFile("portfolio-vdb.xml")));
+        server.deployVDB(TeiidEmbeddedPortfolioSecurityLdap.class.getClassLoader().getResourceAsStream("portfolio-vdb.xml"));
         
         Properties info = new Properties();
         info.put("user", "kylin");
@@ -64,10 +59,5 @@ public static void main(String[] args) throws Exception {
         execute(c, "select * from Stock", true);
                 
     }
-
-    private static void initSamplesData(DataSource ds) throws FileNotFoundException, SQLException {
-        RunScript.execute(ds.getConnection(), new FileReader(findFile("customer-schema.sql")));
-    }
-
 
 }

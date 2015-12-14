@@ -23,10 +23,14 @@ package org.teiid.example;
 
 import static org.teiid.example.H2PERFTESTClient.MB;
 
+import java.util.logging.Level;
+
 @SuppressWarnings("nls")
 public class TeiidEmbeddedCaching {
     
     public static void main(String[] args) throws Exception {
+        
+        EmbeddedHelper.enableLogger(Level.OFF);
         
         H2PERFTESTClient.insert(MB);
         

@@ -21,12 +21,10 @@
  */
 package org.teiid.example;
 
-import static org.teiid.example.util.JDBCUtils.execute;
-import static org.teiid.example.util.IOUtils.findFile;
-import static org.teiid.example.util.IOUtils.findProperties;
+import static org.teiid.example.JDBCUtils.execute;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.util.Properties;
 
@@ -58,7 +56,7 @@ public class TeiidEmbeddedMongoDBDataSource {
 
 		server.start(new EmbeddedConfiguration());
     	
-		server.deployVDB(new FileInputStream(findFile("mongodb-vdb.xml")));
+		server.deployVDB(TeiidEmbeddedMongoDBDataSource.class.getClassLoader().getResourceAsStream("mongodb-vdb.xml"));
 		
 		Connection c = server.getDriver().connect("jdbc:teiid:nothwind", null);
 		
@@ -72,8 +70,11 @@ public class TeiidEmbeddedMongoDBDataSource {
 	}
 
 	private static void initMongoProperties() throws IOException {
-		
-		Properties prop = findProperties("mongodb.properties");
+
+		Properties prop = new Properties();
+        InputStream in = TeiidEmbeddedMongoDBDataSource.class.getClassLoader().getResourceAsStream("mongodb.properties");
+        prop.load(in);
+        in.close();
 		SERVERLIST = prop.getProperty("server.list", SERVERLIST);
 		DBNAME = prop.getProperty("db.name", DBNAME);
 	}

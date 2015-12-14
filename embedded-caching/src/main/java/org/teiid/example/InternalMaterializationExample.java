@@ -28,7 +28,6 @@ import static org.teiid.example.util.JDBCUtils.*;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Level;
 
 import javax.sql.DataSource;
 
@@ -45,9 +44,7 @@ public class InternalMaterializationExample {
     static final String MSG = "wait for finishing refresh internal materialized table";
     
     static void startup() throws Exception {
-        
-        EmbeddedHelper.enableLogger(Level.INFO);
-        
+                
         DataSource ds = EmbeddedHelper.newDataSource(H2_JDBC_DRIVER, H2_JDBC_URL, H2_JDBC_USER, H2_JDBC_PASS);
         
         server = new EmbeddedServer();

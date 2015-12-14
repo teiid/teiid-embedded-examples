@@ -21,10 +21,10 @@
  */
 package org.teiid.example;
 
-import static org.teiid.example.util.IOUtils.findProperties;
-import static org.teiid.example.util.JDBCUtils.execute;
+import static org.teiid.example.JDBCUtils.execute;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.util.Properties;
 
@@ -72,7 +72,10 @@ public class TeiidEmbeddedVerticaDataSource {
 
 
     private static void initDBProperties() throws IOException {
-        Properties prop = findProperties("vertica.properties");
+        Properties prop = new Properties();
+        InputStream in = TeiidEmbeddedVerticaDataSource.class.getClassLoader().getResourceAsStream("vertica.properties");
+        prop.load(in);
+        in.close();
         JDBC_DRIVER = prop.getProperty("vertica.driver", JDBC_DRIVER);
         JDBC_URL = prop.getProperty("vertica.url", JDBC_URL);
         JDBC_USER = prop.getProperty("vertica.user", JDBC_USER);

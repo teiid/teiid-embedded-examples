@@ -30,7 +30,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Level;
 
 import javax.resource.ResourceException;
 import javax.sql.DataSource;
@@ -85,9 +84,7 @@ public class TranslatorResultsCachingExample {
     }
     
     static void startup() throws TranslatorException, VirtualDatabaseException, ConnectorManagerException, IOException, SQLException, ResourceException {
-        
-        EmbeddedHelper.enableLogger(Level.INFO);
-        
+                
         server = new EmbeddedServer();
         
         H2ExecutionFactory factory = new TestH2ExecutionFactory();
