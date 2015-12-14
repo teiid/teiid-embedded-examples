@@ -22,21 +22,17 @@
 
 package org.teiid.example;
 
-import static org.teiid.example.util.JDBCUtils.execute;
-import static org.teiid.example.util.IOUtils.findFile;
-import static org.teiid.example.util.IOUtils.findFilePath;
+import static org.teiid.example.JDBCUtils.execute;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 
 import javax.sql.DataSource;
 
 import org.h2.tools.RunScript;
+import org.teiid.jdbc.TeiidSQLException;
 import org.teiid.resource.adapter.file.FileManagedConnectionFactory;
 import org.teiid.runtime.EmbeddedConfiguration;
 import org.teiid.runtime.EmbeddedServer;
@@ -52,10 +48,10 @@ public class TeiidEmbeddedPortfolioSecurity {
 		
 	public static void main(String[] args) throws Exception {
 	    
-	    EmbeddedHelper.enableLogger(Level.INFO);
+	    EmbeddedHelper.enableLogger(Level.OFF);
 		
 		DataSource ds = EmbeddedHelper.newDataSource("org.h2.Driver", "jdbc:h2:mem://localhost/~/account", "sa", "sa");
-		initSamplesData(ds);
+		RunScript.execute(ds.getConnection(), new InputStreamReader(TeiidEmbeddedPortfolioSecurity.class.getClassLoader().getResourceAsStream("data/customer-schema.sql")));
 		
 		EmbeddedServer server = new EmbeddedServer();
 		
@@ -71,7 +67,7 @@ public class TeiidEmbeddedPortfolioSecurity {
     	server.addTranslator("file", fileExecutionFactory);
     	
     	FileManagedConnectionFactory managedconnectionFactory = new FileManagedConnectionFactory();
-		managedconnectionFactory.setParentDirectory(findFilePath("data"));
+		managedconnectionFactory.setParentDirectory("src/main/resources/data");
 		server.addConnectionFactory("java:/marketdata-file", managedconnectionFactory.createConnectionFactory());
 	
 		EmbeddedConfiguration config = new EmbeddedConfiguration();
@@ -81,7 +77,9 @@ public class TeiidEmbeddedPortfolioSecurity {
 		server.start(config);
 				
     	
-		server.deployVDB(new FileInputStream(findFile("portfolio-vdb.xml")));
+		server.deployVDB(TeiidEmbeddedPortfolioSecurity.class.getClassLoader().getResourceAsStream("portfolio-vdb.xml"));
+		
+		System.out.println("\t\n A successful security logon...\n");
 		
 		Properties info = new Properties();
 		info.put("user", "testUser");
@@ -89,12 +87,16 @@ public class TeiidEmbeddedPortfolioSecurity {
 		Connection c = server.getDriver().connect("jdbc:teiid:Portfolio;version=1", info);
 				
 		execute(c, "select * from Stock", true);
+		
+		System.out.println("\t\n A unsuccess security logon...\n");
+		
+		try {
+            info.put("password", "password-error");
+            server.getDriver().connect("jdbc:teiid:Portfolio;version=1", info);
+        } catch (TeiidSQLException e) {
+            e.printStackTrace();
+        }
 				
 	}
-
-	private static void initSamplesData(DataSource ds) throws FileNotFoundException, SQLException {
-		RunScript.execute(ds.getConnection(), new FileReader(findFile("customer-schema.sql")));
-	}
-
 
 }

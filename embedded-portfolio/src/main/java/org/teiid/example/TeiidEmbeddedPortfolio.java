@@ -22,20 +22,14 @@
 
 package org.teiid.example;
 
-import static org.teiid.example.util.JDBCUtils.execute;
-import static org.teiid.example.util.IOUtils.findFile;
-import static org.teiid.example.util.IOUtils.findFilePath;
+import static org.teiid.example.JDBCUtils.execute;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.sql.Connection;
-import java.sql.SQLException;
 
 import javax.sql.DataSource;
 
 import org.h2.tools.RunScript;
-import org.h2.tools.Server;
 import org.teiid.resource.adapter.file.FileManagedConnectionFactory;
 import org.teiid.runtime.EmbeddedConfiguration;
 import org.teiid.runtime.EmbeddedServer;
@@ -60,16 +54,12 @@ import org.teiid.translator.jdbc.h2.H2ExecutionFactory;
 @SuppressWarnings("nls")
 public class TeiidEmbeddedPortfolio {
 	
-	private static Server h2Server = null;
 	
 	public static void main(String[] args) throws Exception {
 				
-		// setup accounts database (if you already have external database this is not needed)
-		// for schema take look at "data/customer-schema.sql" file.
-		startH2Server();
 		
 		DataSource ds = EmbeddedHelper.newDataSource("org.h2.Driver", "jdbc:h2:mem://localhost/~/account", "sa", "sa");
-		initSamplesData(ds);
+		RunScript.execute(ds.getConnection(), new InputStreamReader(TeiidEmbeddedPortfolio.class.getClassLoader().getResourceAsStream("data/customer-schema.sql")));
 		
 		EmbeddedServer server = new EmbeddedServer();
 		
@@ -85,14 +75,14 @@ public class TeiidEmbeddedPortfolio {
     	server.addTranslator("file", fileExecutionFactory);
     	
     	FileManagedConnectionFactory managedconnectionFactory = new FileManagedConnectionFactory();
-		managedconnectionFactory.setParentDirectory(findFilePath("data"));
+		managedconnectionFactory.setParentDirectory("src/main/resources/data");
 		server.addConnectionFactory("java:/marketdata-file", managedconnectionFactory.createConnectionFactory());
 	
 		EmbeddedConfiguration config = new EmbeddedConfiguration();
 		config.setTransactionManager(EmbeddedHelper.getTransactionManager());	
 		server.start(config);
     	
-		server.deployVDB(new FileInputStream(findFile("portfolio-vdb.xml")));
+		server.deployVDB(TeiidEmbeddedPortfolio.class.getClassLoader().getResourceAsStream("portfolio-vdb.xml"));
 		
 		Connection c = server.getDriver().connect("jdbc:teiid:Portfolio", null);
 		
@@ -101,21 +91,9 @@ public class TeiidEmbeddedPortfolio {
 		execute(c, "select * from Stock", false);
 		execute(c, "SELECT stock.* from (call MarketData.getTextFiles('*.txt')) f, TEXTTABLE(f.file COLUMNS symbol string, price bigdecimal HEADER) stock", false);
 		execute(c, "select product.symbol, stock.price, company_name from product, (call MarketData.getTextFiles('*.txt')) f, TEXTTABLE(f.file COLUMNS symbol string, price bigdecimal HEADER) stock where product.symbol=stock.symbol", true); 
-				
-		stopH2Server();
-	}
 
-	private static void stopH2Server() {
-		h2Server.stop();
-	}
-
-	private static void initSamplesData(DataSource ds) throws FileNotFoundException, SQLException {
-		RunScript.execute(ds.getConnection(), new FileReader(findFile("customer-schema.sql")));
 	}
 
 
-	private static void startH2Server() throws SQLException {
-		h2Server = Server.createTcpServer().start();	
-	}	
 
 }

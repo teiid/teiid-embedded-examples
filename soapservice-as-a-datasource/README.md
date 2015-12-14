@@ -19,12 +19,50 @@ The examples use `java:/StateServiceWebSvcSource` referenced with generic soap s
 
 Deploy StateService service `StateService.jar` to a running JBoss server(Assume JBoss EAP 6 run on localhost).
 
-[../app/stateService/README.md](../app/stateService/README.md) have steps to build and deploy StateService service.
+[stateService/README.md](stateService/README.md) have steps to build and deploy StateService service.
+
+## Dependencies
+
+To add Teiid runtime, admin
+
+~~~
+<dependency>
+    <groupId>org.jboss.teiid</groupId>
+    <artifactId>teiid-runtime</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+<dependency>
+    <groupId>org.jboss.teiid</groupId>
+    <artifactId>teiid-admin</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+~~~
+
+To add Translators and Resource Adapters
+
+~~~
+<dependency>
+    <groupId>org.jboss.teiid.connectors</groupId>
+    <artifactId>translator-ws</artifactId>
+    <version>${version.teiid}</version>
+</dependency>		
+<dependency>
+    <groupId>org.jboss.teiid.connectors</groupId>
+    <artifactId>connector-ws</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+~~~
 
 ## Run
 
-~~~
-$ mvn clean install exec:java
-~~~
+* Run from Source code
 
-Refer to [../README.md](../README.md) run section for more details.
+Import source code to a IDE(Eclipse), run GenericSoapMain as Java Application.
+
+* Run from mvn
+
+~~~
+$ cd teiid-embedded-examples/soapservice-as-a-datasource
+$ mvn clean install
+$ mvn exec:java
+~~~

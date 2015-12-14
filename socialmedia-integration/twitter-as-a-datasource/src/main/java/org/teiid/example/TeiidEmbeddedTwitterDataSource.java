@@ -21,13 +21,12 @@
  */
 package org.teiid.example;
 
-import static org.teiid.embedded.util.JDBCUtils.execute;
+import static org.teiid.example.JDBCUtils.execute;
 
 import java.sql.Connection;
 
 import javax.xml.ws.Service.Mode;
 
-import org.teiid.embedded.EmbeddedHelper;
 import org.teiid.resource.adapter.ws.WSManagedConnectionFactory;
 import org.teiid.runtime.EmbeddedConfiguration;
 import org.teiid.runtime.EmbeddedServer;

@@ -18,6 +18,95 @@ The examples use `java:/accounts-ds` and `java:/marketdata-file` referenced with
 
 None
 
+## Dependencies
+
+To add Teiid runtime, admin
+
+~~~
+<dependency>
+    <groupId>org.jboss.teiid</groupId>
+    <artifactId>teiid-runtime</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+<dependency>
+    <groupId>org.jboss.teiid</groupId>
+    <artifactId>teiid-admin</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+~~~
+
+To add Translators and Resource Adapters
+
+~~~
+<dependency>
+    <groupId>org.jboss.teiid.connectors</groupId>
+    <artifactId>translator-file</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+<dependency>
+    <groupId>org.jboss.teiid.connectors</groupId>
+    <artifactId>connector-file</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+
+<dependency>
+    <groupId>org.jboss.teiid.connectors</groupId>
+    <artifactId>translator-jdbc</artifactId>
+    <version>${version.teiid}</version>
+</dependency>
+<dependency>
+    <groupId>org.jboss.narayana.jta</groupId>
+    <artifactId>narayana-jta</artifactId>
+    <version>${version.narayana}</version>
+</dependency>
+<dependency>
+    <groupId>org.jboss.ironjacamar</groupId>
+    <artifactId>ironjacamar-jdbc</artifactId>
+    <version>${version.ironjacamar}</version>
+</dependency>
+<dependency>
+    <groupId>org.jboss.ironjacamar</groupId>
+    <artifactId>ironjacamar-core-api</artifactId>
+    <version>${version.ironjacamar}</version>
+</dependency>
+<dependency>
+    <groupId>org.jboss.ironjacamar</groupId>
+    <artifactId>ironjacamar-core-impl</artifactId>
+    <version>${version.ironjacamar}</version>
+</dependency>
+~~~
+
+To add security related dependency
+
+~~~
+<dependency>
+    <groupId>org.picketbox</groupId>
+    <artifactId>picketbox</artifactId>
+    <version>${version.picketbox}</version>
+</dependency>
+~~~
+
+To add thirdpart dependency
+
+~~~
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <version>${version.com.h2database}</version>
+</dependency>
+~~~
+
 ## Run
 
-Refer to [../README.md](../README.md) run section to run the example.
+* Run from Source code
+
+Import source code to a IDE(Eclipse), run TeiidEmbeddedPortfolioSecurity as Java Application.
+
+* Run from mvn
+
+~~~
+$ cd teiid-embedded-examples/embedded-portfolio-security
+$ mvn clean install
+$ mvn exec:java
+~~~
+

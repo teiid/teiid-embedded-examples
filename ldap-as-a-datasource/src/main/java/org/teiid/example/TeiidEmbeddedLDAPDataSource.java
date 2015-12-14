@@ -21,12 +21,10 @@
  */
 package org.teiid.example;
 
-import static org.teiid.example.util.JDBCUtils.execute;
-import static org.teiid.example.util.IOUtils.findFile;
-import static org.teiid.example.util.IOUtils.findProperties;
+import static org.teiid.example.JDBCUtils.execute;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.util.Properties;
 
@@ -59,7 +57,7 @@ public class TeiidEmbeddedLDAPDataSource {
 		server.addConnectionFactory("java:/ldapDS", managedconnectionFactory.createConnectionFactory());
 		
 		server.start(new EmbeddedConfiguration());
-		server.deployVDB(new FileInputStream(findFile("ldap-vdb.xml")));
+		server.deployVDB(TeiidEmbeddedLDAPDataSource.class.getClassLoader().getResourceAsStream("ldap-vdb.xml"));
 		Connection c = server.getDriver().connect("jdbc:teiid:ldapVDB", null);
 		
 		execute(c, "SELECT * FROM HR_Group", true);
@@ -69,7 +67,10 @@ public class TeiidEmbeddedLDAPDataSource {
 
 	private static void initLDAPProperties() throws IOException {
 		
-		Properties prop = findProperties("ldap.properties");
+		Properties prop = new Properties();
+        InputStream in = TeiidEmbeddedLDAPDataSource.class.getClassLoader().getResourceAsStream("ldap.properties");
+        prop.load(in);
+        in.close();
 		ldapUrl = prop.getProperty("ldap.url", ldapUrl);
 		ldapAdminUserDN = prop.getProperty("ldap.adminUserDN", ldapAdminUserDN);
 		ldapAdminPassword = prop.getProperty("ldap.adminUserPassword", ldapAdminPassword);
