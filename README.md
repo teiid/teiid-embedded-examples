@@ -1,4 +1,3 @@
-ca(7.x) Analytic Database Server, Vertica JDBC Driverttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
 ## Teiid Examples
 
 Teiid Examples show how to integrate multiple, heterogenous data stores and enterprise services in a light-weight, micro-service way.
