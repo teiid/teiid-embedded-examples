@@ -54,9 +54,9 @@ public class TeiidEmbeddedRestWebServiceDataSource {
 		execute(c, "EXEC getAll('http://localhost:8080/customer/getAll')", false);
 		execute(c, "EXEC getOne('http://localhost:8080/customer/getByNumber/161')", false);
 		execute(c, "EXEC getOne('http://localhost:8080/customer/getByName/Technics%20Stores%20Inc.')", false);
-		execute(c, "EXEC getOne('http://localhost:8080/customer/getByCity?city=Burlingame')", false);
-		execute(c, "EXEC getOne('http://localhost:8080/customer/getByCountry?country=USA')", false);
-		execute(c, "EXEC getOne('http://localhost:8080/customer/getByNumCityCountry?customernumber=161&city=Burlingame&country=USA')", false);
+		execute(c, "EXEC getOne('http://localhost:8080/customer/getByCity/Burlingame')", false);
+		execute(c, "EXEC getOne('http://localhost:8080/customer/getByCountry/USA')", false);
+//		execute(c, "EXEC getOne('http://localhost:8080/customer/getByNumCityCountry?customernumber=161&city=Burlingame&country=USA')", false);
 		
 		execute(c, "SELECT * FROM CustomersView", true);
 		
