@@ -1,10 +1,6 @@
----
-Name: ldap-as-a-datasource
-Level: Beginner
-Technologies: Teiid, Dynamic VDB, Ldap Translator
-Prerequisites: OpenLDAP Server installed, Group 'HR' be created
-Description: Demonstrates using the ldap Translator to access data in OpenLDAP Server
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|ldap Server |Beginner |Teiid, Dynamic VDB, Ldap Translator |OpenLDAP Server installed, Group 'HR' be created |Demonstrates using the ldap Translator to access data in OpenLDAP Server |
 
 ## What's this
 

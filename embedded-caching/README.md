@@ -1,10 +1,6 @@
----
-Name: embedded-caching 
-Level: Intermediate
-Technologies: Teiid, Dynamic VDB, Native Queries, JDBC Translator, Results Caching, Materialized Views, Translator Results Caching 
-Prerequisites: None
-Description: Demonstrates how Results Caching, Materialized Views works in Teiid
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|H2 |Intermediate |Teiid, Dynamic VDB, Native Queries, JDBC Translator, Results Caching, Materialized Views, Translator Results Caching |None |Demonstrates how Results Caching, Materialized Views works in Teiid |
 
 ## What's this
 

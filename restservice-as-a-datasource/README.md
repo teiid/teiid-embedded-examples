@@ -1,10 +1,6 @@
----
-Name: restservice-as-a-datasource 
-Level: Beginner
-Technologies: Teiid, Dynamic VDB, XMLTABLE, XMLPARSE,  WS Translator 
-Prerequisites: customer service
-Description: Demonstrates using the WS Translator to call a REST web services and transform the web service results into relational results
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|REST Service |Beginner |Teiid, Dynamic VDB, XMLTABLE, XMLPARSE,  WS Translator |customer service |Demonstrates using the WS Translator to call a REST web services and transform the web service results into relational results |
 
 ## What's this
 

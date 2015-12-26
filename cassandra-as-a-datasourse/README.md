@@ -1,10 +1,6 @@
----
-Name: cassandra-as-a-datasourse 
-Level: Beginner
-Technologies: Teiid, Dynamic VDB, Cassandra Translator
-Prerequisites: Cassandra Server installed, keyspace and table created
-Description: Demonstrates using the Cassandra Translator to access table in Cassandra. 
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|Cassandra |Beginner |Teiid, Dynamic VDB, Cassandra Translator |Cassandra Server installed, keyspace and table created |Demonstrates using the Cassandra Translator to access table in Cassandra. |
 
 ## What's this
 

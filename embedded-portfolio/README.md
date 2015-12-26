@@ -1,10 +1,6 @@
----
-Name: embedded-portfolio 
-Level: Intermediate
-Technologies: Teiid, Dynamic VDB, Native Queries, Data Federation, JDBC Translator, File Translator, TEXTTABLE 
-Prerequisites: None
-Description: Demonstrates how to expose multiple data sources for data federation
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|H2, File |Intermediate |Teiid, Dynamic VDB, Native Queries, Data Federation, JDBC Translator, File Translator, TEXTTABLE |None |Demonstrates how to expose multiple data sources for data federation |
 
 ## What's this
 

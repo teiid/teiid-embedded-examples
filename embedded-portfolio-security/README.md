@@ -1,10 +1,6 @@
----
-Name: embedded-portfolio-security 
-Level: Intermediate
-Technologies: Teiid, Dynamic VDB, Native Queries, Data Federation, JDBC Translator, File Translator, TEXTTABLE 
-Prerequisites: None
-Description: Demonstrates security authentication in Teiid Embedded
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|H2, File |Intermediate |Teiid, Dynamic VDB, Native Queries, Data Federation, JDBC Translator, File Translator, TEXTTABLE |None |Demonstrates security authentication in Teiid Embedded |
 
 ## What's this
 

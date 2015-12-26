@@ -1,10 +1,6 @@
----
-Name: hbase-as-a-datasource 
-Level: Beginner
-Technologies: Teiid, Dynamic VDB, Foreign Table, HBase Translator
-Prerequisites: HBase Server, Phoenix Server
-Description: Demonstrates using the HBase Translator with Phoenix Data Source to access data in HBase
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|HBase |Beginner |Teiid, Dynamic VDB, Foreign Table, HBase Translator |HBase Server, Phoenix Server |Demonstrates using the HBase Translator with Phoenix Data Source to access data in HBase |
 
 ## What's this
 
