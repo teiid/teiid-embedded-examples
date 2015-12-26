@@ -1,6 +1,6 @@
 ## Teiid Examples
 
-Teiid Examples show how to integrate multiple, heterogenous data stores and enterprise services in a light-weight, micro-service way.
+Teiid Embedded Examples show how to integrate multiple, heterogenous data stores and enterprise services in a light-weight way.
 
 ## Build
 
@@ -19,7 +19,7 @@ $ mvn clean install -s settings.xml
 ## Available Examples
 
 | **Quickstart Name** | **Features Demonstrated** | **Description** | **Prerequisites** |
-|:-----------|:-----------|:-----------|:-----------|:-----------|
+|:--------------------|:--------------------------|:----------------|:------------------|
 |[embedded-portfolio](embedded-portfolio) |Teiid, Dynamic VDB, Native Queries, Data Federation, JDBC Translator, File Translator, TEXTTABLE |Demonstrates how to expose multiple data sources for data federation  |None |
 |[embedded-portfolio-logging](embedded-portfolio-logging) |Teiid, Dynamic VDB, Native Queries, Data Federation, JDBC Translator, File Translator, TEXTTABLE, JBoss LogManager, JBoss Logging |Demonstrates how to use JBoss LogManager with Teiid Embedded |None |
 |[embedded-portfolio-security](embedded-portfolio-security) |Teiid, Dynamic VDB, Native Queries, Data Federation, JDBC Translator, File Translator, TEXTTABLE, Jaas/Security |Demonstrates security authentication in Teiid Embedded |None |

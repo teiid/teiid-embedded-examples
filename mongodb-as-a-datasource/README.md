@@ -1,10 +1,6 @@
----
-Name: mongodb-as-a-datasource
-Level: Beginner
-Technologies: Teiid, Dynamic VDB, MongoDB Translator
-Prerequisites: MongoDB Server installed, 'mydb' be created
-Description: Demonstrates using the MongoDB Translator to access data in mongodb
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|Mongodb |Beginner |Teiid, Dynamic VDB, MongoDB Translator |MongoDB Server installed, 'mydb' be created |Demonstrates using the MongoDB Translator to access data in mongodb |
 
 ## What's this
 

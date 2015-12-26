@@ -1,10 +1,6 @@
----
-Name: hadoop-integration-hive 
-Level: Beginner
-Technologies: Teiid, Dynamic VDB, View, Hive Translator
-Prerequisites: Hadoop Services, HiveServer2
-Description: Demonstrates using the Hive Translator with HiveServer2 JDBC Driver to access data in Hadoop HDFS
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|Hadoop, Hive |Beginner |Teiid, Dynamic VDB, View, Hive Translator |Hadoop Services, HiveServer2 |Demonstrates using the Hive Translator with HiveServer2 JDBC Driver to access data in Hadoop HDFS |
 
 ## What's this
 

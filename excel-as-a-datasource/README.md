@@ -1,10 +1,6 @@
----
-Name: excel-as-a-datasource 
-Level: Beginner
-Technologies: Teiid, Dynamic VDB, Foreign Table, Excel Translator 
-Prerequisites: None
-Description: Demonstrates using Excel Translator query Excel file with JDBC
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|Excel |excel-as-a-datasource |Teiid, Dynamic VDB, Foreign Table, Excel Translator |None |Demonstrates using Excel Translator query Excel file with JDBC |
 
 ## What's this
 

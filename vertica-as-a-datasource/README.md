@@ -1,10 +1,6 @@
----
-Name: vertica-as-a-datasource 
-Level: Beginner
-Technologies: Teiid, Dynamic VDB, View, Vertica Translator
-Prerequisites: HP Vertica(7.x) Analytic Database Server, Vertica JDBC Driver
-Description: Demonstrates using the Vertica Translator to access data in Vertica Server
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|HP Vertica |Beginner |Teiid, Dynamic VDB, View, Vertica Translator |HP Vertica(7.x) Analytic Database Server, Vertica JDBC Driver |Demonstrates using the Vertica Translator to access data in Vertica Server |
 
 ## What's this
 

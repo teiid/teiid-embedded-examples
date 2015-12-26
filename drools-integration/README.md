@@ -1,10 +1,6 @@
----
-Name: drools-integration
-Level: Beginner
-Technologies: Teiid, Dynamic VDB, User Defined Function, VIRTUAL FUNCTION, Drools API
-Prerequisites: N/A
-Description: Demonstrates using Teiid User Defined Function trigger and fire business rules
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|Drools |Beginner |Teiid, Dynamic VDB, User Defined Function, VIRTUAL FUNCTION, Drools API |N/A |Demonstrates using Teiid User Defined Function trigger and fire business rules |
 
 ## What's this
 

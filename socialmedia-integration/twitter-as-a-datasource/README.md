@@ -1,10 +1,6 @@
----
-Name: hbase-as-a-datasource 
-Level: Beginner
-Technologies: Teiid, Dynamic VDB, View, WS Translator, OAuth 1, JAAS
-Prerequisites: Create App in Twitter
-Description: Demonstrates using the WS Translator to interact with Twitter API
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|Twitter |Beginner |Teiid, Dynamic VDB, View, WS Translator, OAuth 1, JAAS |Create App in Twitter |Demonstrates using the WS Translator to interact with Twitter API |
 
 ## What's this
 

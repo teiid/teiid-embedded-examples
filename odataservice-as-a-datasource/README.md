@@ -1,10 +1,6 @@
----
-Name: odataservice-as-a-datasource 
-Level: Beginner
-Technologies: Teiid, Dynamic VDB, FOREIGN TABLE,  OData Translator 
-Prerequisites: N/A
-Description: Demonstrates using the WebService Connector connecting to an OData source and OData Translator to transform OData source to Teiid Foreign Table
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|OData |Beginner |Teiid, Dynamic VDB, FOREIGN TABLE,  OData Translator |N/A |Demonstrates using the WebService Connector connecting to an OData source and OData Translator to transform OData source to Teiid Foreign Table |
 
 ## What's this
 

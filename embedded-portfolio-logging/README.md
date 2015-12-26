@@ -1,10 +1,6 @@
----
-Name: embedded-logging 
-Level: Intermediate
-Technologies: Teiid, JBoss LogManager, JBoss Logging, Log4j 
-Prerequisites: None
-Description: Demonstrates how to use JBoss LogManager with Teiid Embedded
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|H2, File |Intermediate |Teiid, JBoss LogManager, JBoss Logging, Log4j |None |Demonstrates how to use JBoss LogManager with Teiid Embedded |
 
 ## What's this
 

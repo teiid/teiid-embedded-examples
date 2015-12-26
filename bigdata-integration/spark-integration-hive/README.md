@@ -1,10 +1,6 @@
----
-Name: spark-integration-hive 
-Level: Beginner
-Technologies: Teiid, Dynamic VDB, View, Hive Translator
-Prerequisites: Spark Thrift JDBC/ODBC server, HiveServer2
-Description: Demonstrates using the Hive Translator with HiveServer2 JDBC Driver to access Spark data
----
+| **Datasource** | **Level** | **Technologies** | **Prerequisites** | **Description** |
+|:---------|:----------|:-----------------|:------------------|:----------------|
+|Spark, Hive |Beginner |Teiid, Dynamic VDB, View, Hive Translator |Spark Thrift JDBC/ODBC server, HiveServer2 |Demonstrates using the Hive Translator with HiveServer2 JDBC Driver to access Spark data |
 
 ## What's this
 
