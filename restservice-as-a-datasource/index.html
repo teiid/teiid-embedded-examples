@@ -1,0 +1,547 @@
+<!DOCTYPE HTML>
+<html lang="en" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>Restservice as a datasource | Teiid Examples</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.6">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../soapservice-as-a-datasource/index.html" />
+    
+    
+    <link rel="prev" href="../odataservice-as-a-datasource/index.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="12"
+        data-chapter-title="Restservice as a datasource"
+        data-filepath="restservice-as-a-datasource/README.md"
+        data-basepath=".."
+        data-revision="Sat Dec 26 2015 16:25:02 GMT+0800 (CST)"
+        data-innerlanguage="">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+                
+                <li>
+                    <a href="/teiid-embedded-examples" target="blank" class="custom-link">Teiid Embedded Examples</a>
+                </li>
+            
+            
+
+            
+            <li class="divider"></li>
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        Introduction
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="embedded-portfolio/index.html">
+            
+                
+                    <a href="../embedded-portfolio/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        Embedded Portfolio
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="embedded-portfolio-logging/index.html">
+            
+                
+                    <a href="../embedded-portfolio-logging/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        Embedded Portfolio Logging
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="embedded-portfolio-security/index.html">
+            
+                
+                    <a href="../embedded-portfolio-security/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        Embedded Portfolio Security
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="embedded-caching/index.html">
+            
+                
+                    <a href="../embedded-caching/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                        Embedded Caching
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="drools-integration/index.html">
+            
+                
+                    <a href="../drools-integration/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        Drools Integration
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="cassandra-as-a-datasourse/index.html">
+            
+                
+                    <a href="../cassandra-as-a-datasourse/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        Cassandra as a datasourse
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="excel-as-a-datasource/index.html">
+            
+                
+                    <a href="../excel-as-a-datasource/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        Excel as a datasource
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="ldap-as-a-datasource/index.html">
+            
+                
+                    <a href="../ldap-as-a-datasource/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                        Ldap as a datasource
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="mongodb-as-a-datasource/index.html">
+            
+                
+                    <a href="../mongodb-as-a-datasource/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        Mongodb as a datasource
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="odata4service-as-a-datasource/index.html">
+            
+                
+                    <a href="../odata4service-as-a-datasource/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        OData4service as a datasource
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="odataservice-as-a-datasource/index.html">
+            
+                
+                    <a href="../odataservice-as-a-datasource/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        ODataservice as a datasource
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="12" data-path="restservice-as-a-datasource/index.html">
+            
+                
+                    <a href="../restservice-as-a-datasource/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.</b>
+                        
+                        Restservice as a datasource
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="13" data-path="soapservice-as-a-datasource/index.html">
+            
+                
+                    <a href="../soapservice-as-a-datasource/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>13.</b>
+                        
+                        SOAP service as a datasource
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="14" data-path="vertica-as-a-datasource/index.html">
+            
+                
+                    <a href="../vertica-as-a-datasource/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                        Vertica as a datasource
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15" data-path="bigdata-integration/index.html">
+            
+                
+                    <a href="../bigdata-integration/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                        Bigdata integration
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="15.1" data-path="bigdata-integration/hadoop-integration-hive/index.html">
+            
+                
+                    <a href="../bigdata-integration/hadoop-integration-hive/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.1.</b>
+                        
+                        Hadoop integration hive
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.2" data-path="bigdata-integration/hbase-as-a-datasource/index.html">
+            
+                
+                    <a href="../bigdata-integration/hbase-as-a-datasource/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.2.</b>
+                        
+                        HBase as a datasource
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="15.3" data-path="bigdata-integration/spark-integration-hive/index.html">
+            
+                
+                    <a href="../bigdata-integration/spark-integration-hive/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.3.</b>
+                        
+                        Spark integration hive
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="16" data-path="socialmedia-integration/index.html">
+            
+                
+                    <a href="../socialmedia-integration/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.</b>
+                        
+                        Socialmedia integration
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="16.1" data-path="socialmedia-integration/twitter-as-a-datasource/index.html">
+            
+                
+                    <a href="../socialmedia-integration/twitter-as-a-datasource/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>16.1.</b>
+                        
+                        Twitter as a datasource
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    Published with GitBook
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../" >Teiid Examples</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <table>
+<thead>
+<tr>
+<th style="text-align:left"><strong>Datasource</strong></th>
+<th style="text-align:left"><strong>Level</strong></th>
+<th style="text-align:left"><strong>Technologies</strong></th>
+<th style="text-align:left"><strong>Prerequisites</strong></th>
+<th style="text-align:left"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">REST Service</td>
+<td style="text-align:left">Beginner</td>
+<td style="text-align:left">Teiid, Dynamic VDB, XMLTABLE, XMLPARSE,  WS Translator</td>
+<td style="text-align:left">customer service</td>
+<td style="text-align:left">Demonstrates using the WS Translator to call a REST web services and transform the web service results into relational results</td>
+</tr>
+</tbody>
+</table>
+<h2 id="whats-this">What&apos;s this</h2>
+<p>This example demonstrates using the WS Translator to call a REST web services and transform the web service results into relational results. Dynamic VDB <a href="src/main/resources/restwebservice-vdb.xml">restwebservice-vdb.xml</a> be used to define view within DDL metadata.</p>
+<p>The examples use <code>java:/CustomerRESTWebSvcSource</code> referenced with Rest WebServiceas a data source, which data source will be setup automatically while the examples start running.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Refer to <a href="customer/README.md">/customer/README.md</a> build and start customer service.</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>To add Teiid runtime, admin</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.jboss.teiid&lt;/groupId&gt;
+    &lt;artifactId&gt;teiid-runtime&lt;/artifactId&gt;
+    &lt;version&gt;${version.teiid}&lt;/version&gt;
+&lt;/dependency&gt;
+&lt;dependency&gt;
+    &lt;groupId&gt;org.jboss.teiid&lt;/groupId&gt;
+    &lt;artifactId&gt;teiid-admin&lt;/artifactId&gt;
+    &lt;version&gt;${version.teiid}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><p>To add Translators and Resource Adapters</p>
+<pre><code>&lt;dependency&gt;
+    &lt;groupId&gt;org.jboss.teiid.connectors&lt;/groupId&gt;
+    &lt;artifactId&gt;translator-ws&lt;/artifactId&gt;
+    &lt;version&gt;${version.teiid}&lt;/version&gt;
+&lt;/dependency&gt;        
+&lt;dependency&gt;
+    &lt;groupId&gt;org.jboss.teiid.connectors&lt;/groupId&gt;
+    &lt;artifactId&gt;connector-ws&lt;/artifactId&gt;
+    &lt;version&gt;${version.teiid}&lt;/version&gt;
+&lt;/dependency&gt;
+</code></pre><h2 id="run">Run</h2>
+<ul>
+<li>Run from Source code</li>
+</ul>
+<p>Import source code to a IDE(Eclipse), run TeiidEmbeddedRestWebServiceDataSource as Java Application.</p>
+<ul>
+<li>Run from mvn</li>
+</ul>
+<pre><code>$ cd teiid-embedded-examples/restservice-as-a-datasource
+$ mvn clean install
+$ mvn exec:java
+</code></pre>
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../odataservice-as-a-datasource/index.html" class="navigation navigation-prev " aria-label="Previous page: ODataservice as a datasource"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../soapservice-as-a-datasource/index.html" class="navigation navigation-next " aria-label="Next page: SOAP service as a datasource"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../gitbook/app.js"></script>
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
