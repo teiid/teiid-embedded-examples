@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<vdb name="MatVDB" version="1">
+
+    <description>The Portfolio Dynamic VDB</description>
+    
+    <!-- 
+      Setting to use connector supplied metadata. Can be "true" or "cached".  
+      "true" will obtain metadata once for every launch of Teiid. 
+      "cached" will save a file containing the metadata into 
+      the deploy/<vdb name>/<vdb version/META-INF directory
+    -->
+    <property name="UseConnectorMetadata" value="true" />
+
+
+    <model name="Accounts">
+        <!-- 
+          JDBC Import settings 
+          
+          importer.useFullSchemaName directs the importer to drop the source 
+          schema from the Teiid object name, so that the Teiid fully qualified name
+          will be in the form of <model name>.<table name>
+        -->
+        <property name="importer.useFullSchemaName" value="false"/>
+           
+         <!--
+            This connector is defined to reference the H2 localDS" 
+          -->
+        <source name="h2-connector" translator-name="translator-h2" connection-jndi-name="java:/accounts-ds"/>
+    </model>
+    
+    
+    <model name="Stocks" type="VIRTUAL">
+        <metadata type="DDL"><![CDATA[
+                
+        
+        CREATE VIEW MatView	 (
+            product_id integer,
+            symbol string
+        )OPTIONS (
+        	"teiid_rel:MATVIEW_TTL" 3600000,
+			"teiid_rel:MATVIEW_PREFER_MEMORY" 'true',
+			"teiid_rel:MATVIEW_UPDATABLE" 'true',
+			"teiid_rel:MATVIEW_SCOPE" 'vdb'
+			)
+        AS 
+	SELECT  A.ID, A.symbol FROM  Accounts.PRODUCT AS A;
+
+                 
+        ]]> </metadata>
+    </model>
+    
+	<!--  
+	enable this while deploy to JBoss Server
+    <translator name="translator-h2" type="h2">
+        <property name="SupportsNativeQueries" value="true"/>
+    </translator>
+    -->
+
+</vdb>
