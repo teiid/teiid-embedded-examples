@@ -80,5 +80,5 @@ To add Translators and Resource Adapters
 
 Import source code to a IDE(Eclipse), run TeiidEmbeddedVerticaDataSource as Java Application.
 
-> NOTE: This exampe don't support run via mvn exec commands, you need add Vertica JDBC Driver to classpath.
+> NOTE: This example don't support run via mvn exec commands, you need add Vertica JDBC Driver to classpath.
 

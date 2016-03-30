@@ -97,4 +97,4 @@ To add Translators and Resource Adapters
 
 Import source code to a IDE(Eclipse), run TeiidEmbeddedHBaseDataSource as Java Application.
 
-> NOTE: This exampe don't support run via mvn exec commands, you need add Phoenix Client phoenix-[version]-client.jar to classpath.
+> NOTE: This example don't support run via mvn exec commands, you need add Phoenix Client phoenix-[version]-client.jar to classpath.
