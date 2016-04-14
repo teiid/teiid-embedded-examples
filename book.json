@@ -1,10 +1,13 @@
 {
-    "gitbook": "2.x.x",
-    "plugins": [],
-    "links": {
-        "sidebar": {
-            "Teiid Embedded Examples": "/teiid-embedded-examples"
-        }
+    "variables" : {
+        "versionNumber" : "1.0",
+        "fullVersionNumber": "1.0.0",
+        "asVersionNumber" :  "Wildfly 9.x",
+        "copyrightYear" :  "2016",
+        "copyrightHolder" :  "Red Hat, Inc.",
+        "javaVersionUrl" : "https://docs.oracle.com/javase/7",
+        "asDocRoot" : "https://docs.jboss.org/author/display/WFLY9"
     },
-    "pluginsConfig": {}
+    "plugins": ["collapsible-menu"]
 }
+
