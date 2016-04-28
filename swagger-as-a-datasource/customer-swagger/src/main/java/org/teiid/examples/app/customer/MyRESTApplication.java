@@ -19,27 +19,34 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA
  * 02110-1301 USA.
  */
-package org.teiid.stateservice;
+package org.teiid.examples.app.customer;
 
-import org.teiid.stateservice.StateService;
-import org.teiid.stateservice.jaxb.StateInfo;
+import io.swagger.jaxrs.listing.ApiListingResource;
+import io.swagger.jaxrs.listing.SwaggerSerializers;
 
-import javax.jws.WebService;
+import java.util.Set;
+import java.util.HashSet;
 
-@WebService(serviceName = "stateService", endpointInterface = "org.teiid.stateservice.StateService", targetNamespace = "http://www.teiid.org/stateService/")
-public class StateServiceImpl implements StateService {
-	
-	StateData stateData = new StateData();
-	
-	public java.util.List<org.teiid.stateservice.jaxb.StateInfo> getAllStateInfo() {
-		return stateData.getAll();
-	}
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
 
-	public org.teiid.stateservice.jaxb.StateInfo getStateInfo(java.lang.String stateCode) throws GetStateInfoFault_Exception {
-		StateInfo info = stateData.getData(stateCode);
-		if(null == info) {
-			throw new GetStateInfoFault_Exception(stateCode + " is not a valid state abbreviation");
-		}
-		return info;
-	}
+@ApplicationPath("/")
+public class MyRESTApplication extends Application {
+
+    private Set<Object> singletons = new HashSet<Object>();
+    private Set<Class<?>> empty = new HashSet<Class<?>>();
+    public MyRESTApplication(){
+        singletons.add(new ApiListingResource());
+        singletons.add(new SwaggerSerializers());
+        singletons.add(new CustomersResource());
+        singletons.add(new TestResource());
+    }
+    @Override
+    public Set<Class<?>> getClasses() {
+         return empty;
+    }
+    @Override
+    public Set<Object> getSingletons() {
+         return singletons;
+    }
 }

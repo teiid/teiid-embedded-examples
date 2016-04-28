@@ -57,9 +57,9 @@ public class TeiidEmbeddedGenericSoap {
 		Connection c = es.getDriver().connect("jdbc:teiid:StateServiceVDB", null);
 		
 		//This assume 'stateService' run on localhost
-		execute(c, "EXEC GetStateInfo('CA', 'http://localhost:8080/StateService/stateService/StateServiceImpl?WSDL')", false);
+		execute(c, "EXEC GetStateInfo('CA', 'http://localhost:8080/stateService?wsdl')", false);
 		
-		execute(c, "EXEC GetAllStateInfo('http://localhost:8080/StateService/stateService/StateServiceImpl?WSDL')", true);
+		execute(c, "EXEC GetAllStateInfo('http://localhost:8080/stateService?wsdl')", true);
 		
 		es.stop();
 	}

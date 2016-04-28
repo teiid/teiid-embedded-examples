@@ -2,39 +2,39 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <parent>
         <artifactId>teiid-examples-parent</artifactId>
-    	<groupId>org.jboss.teiid.examples</groupId>
-     	<version>1.0.1-SNAPSHOT</version>
-  	</parent>
+        <groupId>org.jboss.teiid.examples</groupId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>customer</artifactId>
+    <artifactId>customer-swagger</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-    <name>Teiid Examples App Customer</name>
-    <description>Teiid Examples Customer JAX-RS WebService</description>
+    <name>Teiid Examples App Customer Swagger</name>
+    <description>Teiid Examples Customer JAX-RS WebService With Swagger</description>
     
     <dependencyManagement>
         <dependencies>
             <dependency>
-            <groupId>org.wildfly.swarm</groupId>
-            <artifactId>bom</artifactId>
-            <version>${version.wildfly-swarm}</version>
-            <type>pom</type>
-            <scope>import</scope>
-      </dependency>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>bom</artifactId>
+                <version>${version.wildfly-swarm}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+    
 
     <dependencies>
-  
         <dependency>
-	      <groupId>org.jboss.spec.javax.ws.rs</groupId>
-	      <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
-	      <version>1.0.0.Final</version>
-	      <scope>provided</scope>
+	      <groupId>org.wildfly.swarm</groupId>
+	      <artifactId>jaxrs</artifactId>
 	    </dependency>
-
-        
+	    <dependency>
+	      <groupId>org.wildfly.swarm</groupId>
+	      <artifactId>swagger</artifactId>
+	    </dependency>
     </dependencies>
 
     <build>
@@ -46,7 +46,7 @@
                     <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
-	    <plugin>
+	        <plugin>
                 <groupId>org.wildfly.swarm</groupId>
                 <artifactId>wildfly-swarm-plugin</artifactId>
                 <executions>

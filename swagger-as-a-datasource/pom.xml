@@ -5,9 +5,9 @@
      	<version>1.0.1-SNAPSHOT</version>
   	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>soapservice-as-a-datasource</artifactId>
-	<name>Teiid Examples soapservice-as-a-datasource</name>
-	<description>Teiid Examples soapservice-as-a-datasource</description>
+	<artifactId>swagger-as-a-datasource</artifactId>
+	<name>Teiid Examples swagger-as-a-datasource</name>
+	<description>Teiid Examples swagger-as-a-datasource</description>
 	<packaging>jar</packaging>
 
 	<dependencies>
@@ -23,10 +23,10 @@
 			<artifactId>teiid-admin</artifactId>
 			<version>${version.teiid}</version>
 		</dependency>
-		
+				
 		<dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
-			<artifactId>translator-ws</artifactId>
+			<artifactId>translator-swagger</artifactId>
 			<version>${version.teiid}</version>
 		</dependency>
 		
@@ -35,12 +35,6 @@
 			<artifactId>connector-ws</artifactId>
 			<version>${version.teiid}</version>
 		</dependency>
-		
-		<dependency>
-		    <groupId>org.apache.ws.xmlschema</groupId>
-            <artifactId>xmlschema-core</artifactId>
-            <version>2.0.2</version>
-		</dependency>
             
 	</dependencies>
 	
@@ -48,9 +42,9 @@
 	    <plugins>
 		<plugin>
 		    <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <configuration>
-		        <mainClass>org.teiid.example.GenericSoapMain</mainClass>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <configuration>
+		        <mainClass>org.teiid.example.TeiidEmbeddedSwaggerPetstore</mainClass>
 		    </configuration>
 		</plugin>
 	    </plugins>

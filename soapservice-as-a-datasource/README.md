@@ -13,9 +13,7 @@ The examples use `java:/StateServiceWebSvcSource` referenced with generic soap s
 
 ## Prerequisites
 
-Deploy StateService service `StateService.jar` to a running JBoss server(Assume JBoss EAP 6 run on localhost).
-
-[stateService/README.md](stateService/README.md) have steps to build and deploy StateService service.
+Refer to [stateService/README.md](stateService/README.md) to build and start StateService service.
 
 ## Dependencies
 
@@ -46,6 +44,16 @@ To add Translators and Resource Adapters
     <groupId>org.jboss.teiid.connectors</groupId>
     <artifactId>connector-ws</artifactId>
     <version>${version.teiid}</version>
+</dependency>
+~~~
+
+To add other dependency
+
+~~~
+<dependency>
+    <groupId>org.apache.ws.xmlschema</groupId>
+    <artifactId>xmlschema-core</artifactId>
+    <version>2.0.2</version>
 </dependency>
 ~~~
 

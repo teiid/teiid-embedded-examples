@@ -32,11 +32,11 @@ public class TeiidEmbeddedGenericSoapWSDLProcedure {
         es.addTranslator("translator-ws", ef);
         
         WSManagedConnectionFactory wsmcf = new WSManagedConnectionFactory();
-        wsmcf.setWsdl("http://localhost:8080/StateService/stateService/StateServiceImpl?WSDL");
+        wsmcf.setWsdl("http://localhost:8080/stateService?wsdl");
         wsmcf.setNamespaceUri("http://www.teiid.org/stateService/");
         wsmcf.setServiceName("stateService");
         wsmcf.setEndPointName("StateServiceImplPort");
-        wsmcf.setEndPoint("http://localhost:8080/StateService/stateService/StateServiceImpl?WSDL");
+        wsmcf.setEndPoint("http://localhost:8080/stateService?wsdl");
         es.addConnectionFactory("java:/StateServiceWebSvcSource", wsmcf.createConnectionFactory());
         
         es.start(new EmbeddedConfiguration());
