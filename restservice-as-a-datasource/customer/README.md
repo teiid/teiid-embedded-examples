@@ -16,10 +16,6 @@ will generate `customer-swarm.jar` and `customer.war` under target folder.
 java -jar customer-swarm.jar
 ~~~
 
-### Deploy to JBoss
-
-Deploy `customer.war` to a running JBoss server(Assume JBoss EAP 6 run on localhost).
-
 
 ## Available API Test
 

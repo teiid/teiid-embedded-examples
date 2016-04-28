@@ -24,10 +24,8 @@ package org.teiid.stateservice;
 import org.teiid.stateservice.StateService;
 import org.teiid.stateservice.jaxb.StateInfo;
 
-import javax.ejb.Stateless;
 import javax.jws.WebService;
 
-@Stateless
 @WebService(serviceName = "stateService", endpointInterface = "org.teiid.stateservice.StateService", targetNamespace = "http://www.teiid.org/stateService/")
 public class StateServiceImpl implements StateService {
 	

@@ -7,28 +7,51 @@
      	<version>1.0.1-SNAPSHOT</version>
   	</parent>
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId>StateService</artifactId>
+	<artifactId>stateService</artifactId>
 	<version>1.0</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 	<name>Teiid Examples App StateService</name>
 	<description>Teiid Examples StateService JAX-WS WebService</description>
 
-
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
-
+	
+	<dependencyManagement>
+        <dependencies>
+            <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>bom</artifactId>
+            <version>${version.wildfly-swarm}</version>
+            <type>pom</type>
+            <scope>import</scope>
+      </dependency>
+        </dependencies>
+    </dependencyManagement>
+	
 	<dependencies>
-		<dependency>
-			<groupId>org.jboss.spec.javax.ejb</groupId>
-			<artifactId>jboss-ejb-api_3.1_spec</artifactId>
-		</dependency>
 	
 	</dependencies>
 
 	<build>
-		<finalName>${artifactId}</finalName>
-	</build>
+        <finalName>${artifactId}</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+	    <plugin>
+                <groupId>org.wildfly.swarm</groupId>
+                <artifactId>wildfly-swarm-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>package</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>

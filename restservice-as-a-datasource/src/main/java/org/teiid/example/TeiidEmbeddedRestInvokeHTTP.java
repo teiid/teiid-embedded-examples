@@ -50,7 +50,7 @@ public class TeiidEmbeddedRestInvokeHTTP {
 
         server.start(new EmbeddedConfiguration());
         
-        server.deployVDB(TeiidEmbeddedRestInvokeHTTP.class.getClassLoader().getResourceAsStream("restwebservice-swagger-vdb.xml"));
+        server.deployVDB(TeiidEmbeddedRestInvokeHTTP.class.getClassLoader().getResourceAsStream("restwebservice-vdb.xml"));
         
         Connection conn = server.getDriver().connect("jdbc:teiid:restwebservice", null);
         

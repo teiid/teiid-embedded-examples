@@ -12,17 +12,28 @@
     <packaging>war</packaging>
     <name>Teiid Examples App Customer</name>
     <description>Teiid Examples Customer JAX-RS WebService</description>
+    
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>bom</artifactId>
+            <version>${version.wildfly-swarm}</version>
+            <type>pom</type>
+            <scope>import</scope>
+      </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
-	<dependency>
-            <groupId>org.wildfly.swarm</groupId>
-            <artifactId>wildfly-swarm-jaxrs</artifactId>
-        </dependency>
   
         <dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxb-provider</artifactId>
-		</dependency>
+	      <groupId>org.jboss.spec.javax.ws.rs</groupId>
+	      <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
+	      <version>1.0.0.Final</version>
+	      <scope>provided</scope>
+	    </dependency>
+
         
     </dependencies>
 
