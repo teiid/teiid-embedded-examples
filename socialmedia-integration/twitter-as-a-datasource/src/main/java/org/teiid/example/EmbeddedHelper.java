@@ -1,6 +1,7 @@
 package org.teiid.example;
 
 import javax.resource.ResourceException;
+import javax.resource.spi.ConnectionManager;
 
 import org.jboss.jca.core.api.connectionmanager.pool.PoolConfiguration;
 import org.jboss.jca.core.connectionmanager.notx.NoTxConnectionManagerImpl;
@@ -9,7 +10,7 @@ import org.teiid.resource.spi.BasicManagedConnectionFactory;
 
 public class EmbeddedHelper {
     
-    public static Object createConnectionFactory(String authConf, String securityDomain, BasicManagedConnectionFactory mcf) throws ResourceException {
+    public static ConnectionManager createConnectionFactory(String authConf, String securityDomain, BasicManagedConnectionFactory mcf) throws ResourceException {
 
         NoTxConnectionManagerImpl cm = new NoTxConnectionManagerImpl();
 
@@ -22,7 +23,7 @@ public class EmbeddedHelper {
         pool.setConnectionListenerFactory(cm);
         cm.setPool(pool);
 
-        return mcf.createConnectionFactory(cm);
+        return cm;
 
     }
 
