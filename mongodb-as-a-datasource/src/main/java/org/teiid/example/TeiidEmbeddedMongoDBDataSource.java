@@ -37,7 +37,7 @@ import org.teiid.translator.mongodb.MongoDBExecutionFactory;
 public class TeiidEmbeddedMongoDBDataSource {
 	
 	private static String SERVERLIST = "127.0.0.1:27017" ;
-	private static String DBNAME = "mydb" ;
+	private static String DBNAME = "test" ;
 
 	public static void main(String[] args) throws Exception {
 		

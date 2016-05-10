@@ -25,6 +25,7 @@ import static org.teiid.example.JDBCUtils.execute;
 
 import java.sql.Connection;
 
+import javax.resource.spi.ConnectionManager;
 import javax.xml.ws.Service.Mode;
 
 import org.teiid.resource.adapter.ws.WSManagedConnectionFactory;
@@ -52,8 +53,8 @@ public class TeiidEmbeddedTwitterDataSource {
 		
         WSManagedConnectionFactory mcf = new WSManagedConnectionFactory();
         mcf.setSecurityType("OAuth");
-        Object connectionFactory = EmbeddedHelper.createConnectionFactory("picketbox/authentication.conf", "teiid-security-twitter", mcf);
-        server.addConnectionFactory("java:/twitterDS", connectionFactory);
+        ConnectionManager cm = EmbeddedHelper.createConnectionFactory("picketbox/authentication.conf", "teiid-security-twitter", mcf);
+        server.addConnectionFactory("java:/twitterDS", mcf.createConnectionFactory(cm));
         
         server.start(new EmbeddedConfiguration());
         
