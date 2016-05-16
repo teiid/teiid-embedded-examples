@@ -21,7 +21,7 @@ CREATE TABLE PERFRESULT (id integer not null auto_increment, value integer, item
 CREATE TABLE status
 (
   VDBName varchar(50) not null,
-  VDBVersion integer not null,
+  VDBVersion varchar(50) not null,
   SchemaName varchar(50) not null,
   Name varchar(256) not null,
   TargetSchemaName varchar(50),
