@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<vdb name="MatVDBVIEW" version="1">
+
+	<description>https://issues.jboss.org/browse/TEIID-4121</description>
+	
+	<property name="UseConnectorMetadata" value="true" />
+	<model name="Accounts">
+		<property name="importer.useFullSchemaName" value="false" />
+		<source name="h2-connector" translator-name="translator-h2" connection-jndi-name="java:/accounts-ds" />
+	</model>
+	
+	<model name="Model_A" type="VIRTUAL">
+		<metadata type="DDL"><![CDATA[
+		
+		CREATE VIEW VIEW_A (
+		  id varchar,
+		  a varchar,
+		  b varchar,
+		  c varchar,
+		  PRIMARY KEY (id)
+		) OPTIONS (MATERIALIZED 'TRUE', UPDATABLE 'TRUE',         
+               MATERIALIZED_TABLE 'Accounts.SampleTable_mat_A', 
+               "teiid_rel:MATVIEW_TTL" 20000,
+               "teiid_rel:MATVIEW_BEFORE_LOAD_SCRIPT" 'execute accounts.native(''truncate table SampleTable_staging_A'');',
+               "teiid_rel:MATVIEW_AFTER_LOAD_SCRIPT"  'execute accounts.native(''ALTER TABLE SampleTable_mat_A RENAME TO SampleTable_mat_temp_A'');execute accounts.native(''ALTER TABLE SampleTable_staging_A RENAME TO SampleTable_mat_A'');execute accounts.native(''ALTER TABLE SampleTable_mat_temp_A RENAME TO SampleTable_staging_A'');', 
+               "teiid_rel:ON_VDB_DROP_SCRIPT" 'DELETE FROM Accounts.status WHERE Name=''VIEW_A'' AND schemaname = ''Model_A''',
+               "teiid_rel:MATERIALIZED_STAGE_TABLE" 'Accounts.SampleTable_staging_A',
+               "teiid_rel:ALLOW_MATVIEW_MANAGEMENT" 'true', 
+               "teiid_rel:MATVIEW_STATUS_TABLE" 'status', 
+               "teiid_rel:MATVIEW_SHARE_SCOPE" 'NONE',
+               "teiid_rel:MATVIEW_ONERROR_ACTION" 'THROW_EXCEPTION'
+		)
+		AS
+		SELECT A.id, A.a, A.b, A.c FROM Accounts.SampleTable_A AS A;
+		
+		
+		]]>
+		</metadata>
+	</model>
+	
+	<model name="Model_B" type="VIRTUAL">
+		<metadata type="DDL"><![CDATA[
+		
+		CREATE VIEW VIEW_B (
+		  id varchar,
+		  a varchar,
+		  b varchar,
+		  c varchar,
+		  PRIMARY KEY (id)
+		) OPTIONS (MATERIALIZED 'TRUE', UPDATABLE 'TRUE',         
+               MATERIALIZED_TABLE 'Accounts.SampleTable_mat_B', 
+               "teiid_rel:MATVIEW_TTL" 20000,
+               "teiid_rel:MATVIEW_LOAD_SCRIPT"  'execute accounts.native(''truncate table SampleTable_staging_B'');insert into SampleTable_staging_B select * from Model_B.VIEW_B option nocache Model_B.VIEW_B;execute accounts.native(''ALTER TABLE SampleTable_mat_B RENAME TO SampleTable_mat_temp_B'');execute accounts.native(''ALTER TABLE SampleTable_staging_B RENAME TO SampleTable_mat_B'');execute accounts.native(''ALTER TABLE SampleTable_mat_temp_B RENAME TO SampleTable_staging_B'');', 
+               "teiid_rel:ON_VDB_DROP_SCRIPT" 'DELETE FROM Accounts.status WHERE Name=''VIEW_B'' AND schemaname = ''Model_B''',
+               "teiid_rel:MATERIALIZED_STAGE_TABLE" 'Accounts.SampleTable_staging_B',
+               "teiid_rel:ALLOW_MATVIEW_MANAGEMENT" 'true', 
+               "teiid_rel:MATVIEW_STATUS_TABLE" 'status', 
+               "teiid_rel:MATVIEW_SHARE_SCOPE" 'NONE',
+               "teiid_rel:MATVIEW_ONERROR_BCTION" 'THROW_EXCEPTION'
+		)
+		AS
+		SELECT A.id, A.a, A.b, A.c FROM Accounts.SampleTable_B AS A;
+		
+		
+		]]>
+		</metadata>
+	</model>
+	
+	<model name="Model_C" type="VIRTUAL">
+		<metadata type="DDL"><![CDATA[
+		
+		CREATE VIEW VIEW_C (
+		  id varchar,
+		  a varchar,
+		  b varchar,
+		  c varchar,
+		  PRIMARY KEY (id)
+		) OPTIONS (MATERIALIZED 'TRUE', UPDATABLE 'TRUE',         
+               MATERIALIZED_TABLE 'Accounts.SampleTable_mat_C', 
+               "teiid_rel:MATVIEW_TTL" 20000,
+               "teiid_rel:MATVIEW_BEFORE_LOAD_SCRIPT" 'execute accounts.native(''truncate table SampleTable_mat_C'');',
+               "teiid_rel:MATVIEW_LOAD_SCRIPT"  'insert into SampleTable_mat_C select * from Model_C.VIEW_C option nocache Model_C.VIEW_C', 
+               "teiid_rel:ON_VDB_DROP_SCRIPT" 'DELETE FROM Accounts.status WHERE Name=''VIEW_C'' AND schemaname = ''Model_C''',
+               "teiid_rel:ALLOW_MATVIEW_MANAGEMENT" 'true', 
+               "teiid_rel:MATVIEW_STATUS_TABLE" 'status', 
+               "teiid_rel:MATVIEW_SHARE_SCOPE" 'NONE',
+               "teiid_rel:MATVIEW_ONERROR_CCTION" 'THROW_EXCEPTION'
+		)
+		AS
+		SELECT A.id, A.a, A.b, A.c FROM Accounts.SampleTable_C AS A;
+		
+		
+		]]>
+		</metadata>
+	</model>
+ 
+	
+	<model name="Model_D" type="VIRTUAL">
+		<metadata type="DDL"><![CDATA[
+		
+		CREATE VIEW VIEW_D (
+		  id varchar,
+		  a varchar,
+		  b varchar,
+		  c varchar,
+		  PRIMARY KEY (id, a, b)
+		) OPTIONS (MATERIALIZED 'TRUE', UPDATABLE 'TRUE',         
+               MATERIALIZED_TABLE 'Accounts.SampleTable_mat_D', 
+               "teiid_rel:MATVIEW_TTL" 20000,
+               "teiid_rel:MATVIEW_LOAD_SCRIPT"  'execute accounts.native(''truncate table SampleTable_mat_D'');insert into SampleTable_mat_D select * from Model_D.VIEW_D option nocache Model_D.VIEW_D', 
+               "teiid_rel:ON_VDB_DROP_SCRIPT" 'DELETE FROM Accounts.status WHERE Name=''VIEW_D'' AND schemaname = ''Model_D''',
+               "teiid_rel:ALLOW_MATVIEW_MANAGEMENT" 'true', 
+               "teiid_rel:MATVIEW_STATUS_TABLE" 'status', 
+               "teiid_rel:MATVIEW_SHARE_SCOPE" 'NONE',
+               "teiid_rel:MATVIEW_ONERROR_DCTION" 'THROW_EXCEPTION'
+		)
+		AS
+		SELECT A.id, A.a, A.b, A.c FROM Accounts.SampleTable_D AS A;
+		
+		
+		]]>
+		</metadata>
+	</model>
+	
+	<model name="Model_E" type="VIRTUAL">
+		<metadata type="DDL"><![CDATA[
+		
+		CREATE VIEW VIEW_E (
+		  id varchar,
+		  a varchar,
+		  b varchar,
+		  c varchar,
+		  PRIMARY KEY (id, a, b)
+		) OPTIONS (MATERIALIZED 'TRUE',         
+               MATERIALIZED_TABLE 'Accounts.SampleTable_mat_E', 
+               "teiid_rel:MATVIEW_LOAD_SCRIPT"  'execute accounts.native(''truncate table SampleTable_mat_E'');insert into SampleTable_mat_E select * from Model_E.VIEW_E option nocache Model_E.VIEW_E', 
+               "teiid_rel:MATVIEW_STATUS_TABLE" 'status'
+		)
+		AS
+		SELECT A.id, A.a, A.b, A.c FROM Accounts.SampleTable_E AS A;
+		
+		
+		]]>
+		</metadata>
+	</model>
+	
+	<model name="Model_F" type="VIRTUAL">
+		<metadata type="DDL"><![CDATA[
+		
+		CREATE VIEW VIEW_F (
+		  id varchar,
+		  a varchar,
+		  b varchar,
+		  c varchar,
+		  PRIMARY KEY (id, a, b)
+		) OPTIONS (MATERIALIZED 'TRUE', 
+		       UPDATABLE 'TRUE',         
+               MATERIALIZED_TABLE 'Accounts.SampleTable_mat_F', 
+               "teiid_rel:MATVIEW_TTL" 5000,
+               "teiid_rel:MATVIEW_BEFORE_LOAD_SCRIPT" 'execute accounts.native(''truncate table SampleTable_staging_F'');',
+               "teiid_rel:MATVIEW_LOAD_SCRIPT"  'insert into SampleTable_staging_F select * from Model_F.VIEW_F option nocache Model_F.VIEW_F', 
+               "teiid_rel:MATVIEW_AFTER_LOAD_SCRIPT"  'execute accounts.native(''ALTER TABLE SampleTable_mat_F RENAME TO SampleTable_mat_temp_F'');execute accounts.native(''ALTER TABLE SampleTable_staging_F RENAME TO SampleTable_mat_F'');execute accounts.native(''ALTER TABLE SampleTable_mat_temp_F RENAME TO SampleTable_staging_F'');', 
+               "teiid_rel:ON_VDB_START_SCRIPT" 'DELETE FROM Accounts.status WHERE Name=''VIEW_F'' AND schemaname = ''Model_F''',
+               "teiid_rel:ON_VDB_DROP_SCRIPT" 'DELETE FROM Accounts.status WHERE Name=''VIEW_F'' AND schemaname = ''Model_F''',
+               "teiid_rel:MATERIALIZED_STAGE_TABLE" 'Accounts.SampleTable_staging_F',
+               "teiid_rel:ALLOW_MATVIEW_MANAGEMENT" 'true', 
+               "teiid_rel:MATVIEW_STATUS_TABLE" 'status', 
+               "teiid_rel:MATVIEW_SHARE_SCOPE" 'NONE',
+               "teiid_rel:MATVIEW_ONERROR_DCTION" 'THROW_FXCEPTION'
+		)
+		AS
+		SELECT A.id, A.a, A.b, A.c FROM Accounts.SampleTable_F AS A;
+		
+		
+		]]>
+		</metadata>
+	</model>
+	
+</vdb>

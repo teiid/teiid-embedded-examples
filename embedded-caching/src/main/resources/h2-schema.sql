@@ -8,6 +8,24 @@ DROP TABLE IF EXISTS status;
 DROP TABLE IF EXISTS h2_test_mat;
 DROP TABLE IF EXISTS mat_test_staging;
 DROP TABLE IF EXISTS PRODUCT;
+DROP TABLE IF EXISTS SampleTable_A;
+DROP TABLE IF EXISTS SampleTable_staging_A;
+DROP TABLE IF EXISTS SampleTable_mat_A;
+DROP TABLE IF EXISTS SampleTable_B;
+DROP TABLE IF EXISTS SampleTable_staging_B;
+DROP TABLE IF EXISTS SampleTable_mat_B;
+DROP TABLE IF EXISTS SampleTable_C;
+DROP TABLE IF EXISTS SampleTable_staging_C;
+DROP TABLE IF EXISTS SampleTable_mat_C;
+DROP TABLE IF EXISTS SampleTable_D;
+DROP TABLE IF EXISTS SampleTable_staging_D;
+DROP TABLE IF EXISTS SampleTable_mat_D;
+DROP TABLE IF EXISTS SampleTable_E;
+DROP TABLE IF EXISTS SampleTable_staging_E;
+DROP TABLE IF EXISTS SampleTable_mat_E;
+DROP TABLE IF EXISTS SampleTable_F;
+DROP TABLE IF EXISTS SampleTable_staging_F;
+DROP TABLE IF EXISTS SampleTable_mat_F;
 
 
 CREATE TABLE PERFTEST(id CHAR(4), col_a CHAR(16), col_b CHAR(40), col_c CHAR(40));
@@ -16,6 +34,27 @@ CREATE TABLE PERFTEST_STAGING(id CHAR(4), col_a CHAR(16), col_b CHAR(40), col_c 
 CREATE TABLE QUERYSQL (id integer not null auto_increment, content varchar(255), PRIMARY KEY (id));
 CREATE TABLE ITEMS (id integer not null auto_increment, item varchar(40), PRIMARY KEY (id));
 CREATE TABLE PERFRESULT (id integer not null auto_increment, value integer, item_id integer, querysql_id integer, PRIMARY KEY (id));
+
+CREATE TABLE SampleTable_A(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_B(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_C(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_D(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_E(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_F(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+
+CREATE TABLE SampleTable_mat_A(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_mat_B(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_mat_C(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_mat_D(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_mat_E(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_mat_F(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+
+CREATE TABLE SampleTable_staging_A(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_staging_B(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_staging_C(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_staging_D(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_staging_E(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
+CREATE TABLE SampleTable_staging_F(id CHAR(4), a CHAR(16), b CHAR(40), c CHAR(40), PRIMARY KEY (id));
 
 
 CREATE TABLE status
@@ -73,3 +112,27 @@ INSERT INTO PRODUCT (ID,SYMBOL,COMPANY_NAME) VALUES(102,'HPQ','Hewlett-Packard C
 INSERT INTO PRODUCT (ID,SYMBOL,COMPANY_NAME) VALUES(103,'GE','General Electric Company');
 INSERT INTO PRODUCT (ID,SYMBOL,COMPANY_NAME) VALUES(104,'SAP','SAP AG');
 INSERT INTO PRODUCT (ID,SYMBOL,COMPANY_NAME) VALUES(105,'TM','Toyota Motor Corporation');
+
+INSERT INTO SampleTable_A (id, a, b, c) VALUES ('100', 'a0', 'b0', 'c0');
+INSERT INTO SampleTable_A (id, a, b, c) VALUES ('101', 'a1', 'b1', 'c1');
+INSERT INTO SampleTable_A (id, a, b, c) VALUES ('102', 'a2', 'b2', 'c2');
+
+INSERT INTO SampleTable_B (id, a, b, c) VALUES ('100', 'a0', 'b0', 'c0');
+INSERT INTO SampleTable_B (id, a, b, c) VALUES ('101', 'a1', 'b1', 'c1');
+INSERT INTO SampleTable_B (id, a, b, c) VALUES ('102', 'a2', 'b2', 'c2');
+
+INSERT INTO SampleTable_C (id, a, b, c) VALUES ('100', 'a0', 'b0', 'c0');
+INSERT INTO SampleTable_C (id, a, b, c) VALUES ('101', 'a1', 'b1', 'c1');
+INSERT INTO SampleTable_C (id, a, b, c) VALUES ('102', 'a2', 'b2', 'c2');
+
+INSERT INTO SampleTable_D (id, a, b, c) VALUES ('100', 'a0', 'b0', 'c0');
+INSERT INTO SampleTable_D (id, a, b, c) VALUES ('101', 'a1', 'b1', 'c1');
+INSERT INTO SampleTable_D (id, a, b, c) VALUES ('102', 'a2', 'b2', 'c2');
+
+INSERT INTO SampleTable_E (id, a, b, c) VALUES ('100', 'a0', 'b0', 'c0');
+INSERT INTO SampleTable_E (id, a, b, c) VALUES ('101', 'a1', 'b1', 'c1');
+INSERT INTO SampleTable_E (id, a, b, c) VALUES ('102', 'a2', 'b2', 'c2');
+
+INSERT INTO SampleTable_F (id, a, b, c) VALUES ('100', 'a0', 'b0', 'c0');
+INSERT INTO SampleTable_F (id, a, b, c) VALUES ('101', 'a1', 'b1', 'c1');
+INSERT INTO SampleTable_F (id, a, b, c) VALUES ('102', 'a2', 'b2', 'c2');

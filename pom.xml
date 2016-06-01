@@ -32,7 +32,7 @@
             <maven.compiler.source>1.8</maven.compiler.source>
 
 	    <version.junit>4.11</version.junit>
-	    <version.teiid>9.0.0.Beta2-SNAPSHOT</version.teiid>
+	    <version.teiid>9.0.0.CR2-SNAPSHOT</version.teiid>
 	    <version.wildfly-swarm>1.0.0.CR1-SNAPSHOT</version.wildfly-swarm>
 	    
             <version.teiid-embedded>1.0.0-SNAPSHOT</version.teiid-embedded>
