@@ -56,7 +56,7 @@ http://maven.apache.org/xsd/settings-1.0.0.xsd">
           </snapshots>
         </repository>
       </repositories> 
-    </profile>    
+    </profile>   
     <profile>
       <id>jboss-techpreview</id>
       <repositories>
@@ -92,7 +92,7 @@ http://maven.apache.org/xsd/settings-1.0.0.xsd">
           </snapshots>
         </repository>
       </repositories>
-    </profile>                     
+    </profile>            
   </profiles>
 
   <activeProfiles>
