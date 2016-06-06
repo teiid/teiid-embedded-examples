@@ -13,12 +13,27 @@ Enter the following:
 ~~~
 $ git clone https://github.com/teiid/teiid-embedded-examples.git
 $ cd teiid-embedded-examples
-$ mvn clean install -s settings.xml
+$ mvn clean install -s -Dversion.teiid=<teiid.version> settings.xml
 ~~~
 
 > NOTE: if you forked the project, then use https://github.com/<your account>/teiid-embedded-examples.git instead
 
 > NOTE: The examples default to using a version of Teiid close to the latest.  If you want to run against a specific version, then either modify the root pom.xml version.teiid property or use -Dversion.teiid=<version> as an argument to any mvn install or exec:java command.
+
+## Run
+
+### Run from Source code
+
+Import `teiid-embedded-examples` source code to a IDE(Eclipse), then run each example with the corresponding Main method. For example, import `embedded-portfolio` to Eclipse, run `org.teiid.example.TeiidEmbeddedPortfolio` as java application.
+
+### Run from mvn 
+
+After the above **Build** section steps, the examples should have built successfully.  Navigate to an example, then execute mvn exec commands. For example, using the following commands t0 run `embedded-portfolio` against teiid 9.0.0.Final:
+
+~~~
+$ cd teiid-embedded-examples/embedded-portfolio
+$ mvn compile -Dversion.teiid=9.0.0.Final exec:java -s ../settings.xml
+~~~
 
 ## Available Examples
 
@@ -42,21 +57,6 @@ $ mvn clean install -s settings.xml
 |[odata4service-as-a-datasource](odata4service-as-a-datasource) |Teiid, Dynamic VDB, FOREIGN TABLE,  OData4 Translator |Demonstrates using the WebService Connector connecting to an OData4 source and OData4 Translator to transform OData source to Teiid Foreign Table |None |
 |[restservice-as-a-datasource](restservice-as-a-datasource) |Teiid, Dynamic VDB, XMLTABLE, XMLPARSE,  WS Translator |Demonstrates using the WS Translator to call a REST web services and transform the web service results into relational results |customer service |
 |[soapservice-as-a-datasource](soapservice-as-a-datasource) |Teiid, Dynamic VDB, VIRTUAL PROCEDURE, XMLTABLE, SOAP Service, WS Translator | Demonstrates using the WS Translator to call a generic soap service |StateService service |
- 
-## Run
-
-### Run from Source code
-
-Import `teiid-embedded-examples` source code to a IDE(Eclipse), then run each example with the corresponding Main methods or using the Maven integration.
-
-### Run from mvn 
-
-After the above **Build** section steps, the examples should have built successfully.  Navigate to an example, then execute mvn exec commands. For example:
-
-~~~
-$ cd teiid-embedded-examples/embedded-portfolio
-$ mvn exec:java
-~~~
 
 ## Link
 
