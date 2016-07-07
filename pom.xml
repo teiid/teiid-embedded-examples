@@ -77,10 +77,10 @@
 	<dependencyManagement>
 	    <dependencies>
 		<dependency>
-                    <groupId>org.jboss.teiid.examples</groupId>
-                    <artifactId>embedded-portfolio</artifactId>
-                    <version>${project.version}</version>
-                </dependency>
+        	<groupId>org.jboss.teiid.examples</groupId>
+        	<artifactId>embedded-portfolio</artifactId>
+        	<version>${project.version}</version>
+        	</dependency>
 		<dependency>
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>
