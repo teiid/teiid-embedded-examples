@@ -140,6 +140,7 @@
 	    <module>embedded-portfolio-security</module>
 	    <module>embedded-caching</module>
 	    <module>embedded-portfolio-logging</module>
+	    <module>embedded-portfolio-sockets</module>
 	    <module>excel-as-a-datasource</module>
 	    <module>ldap-as-a-datasource</module>
 	    <module>cassandra-as-a-datasourse</module>
