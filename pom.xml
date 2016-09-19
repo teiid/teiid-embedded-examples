@@ -24,7 +24,7 @@
 	<properties>
 	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	    <version.assembly.plugin>2.4</version.assembly.plugin>
-	    <version.exec.plugin>1.1.1</version.exec.plugin>
+	    <version.exec.plugin>1.5.0</version.exec.plugin>
 	    <version.war.plugin>2.1.1</version.war.plugin>
 	    <version.compiler.plugin>3.1</version.compiler.plugin>
 	    <version.jar.plugin>2.2</version.jar.plugin>
@@ -32,7 +32,7 @@
             <maven.compiler.source>1.8</maven.compiler.source>
 
 	    <version.junit>4.11</version.junit>
-	    <version.teiid>9.0.0.CR2-SNAPSHOT</version.teiid>
+	    <version.teiid>9.1.0.Beta2-SNAPSHOT</version.teiid>
 	    <version.wildfly-swarm>1.0.1.Final</version.wildfly-swarm>
 	    
             <version.teiid-embedded>1.0.0-SNAPSHOT</version.teiid-embedded>
@@ -155,5 +155,6 @@
 	    <module>drools-integration</module>
 	    <module>bigdata-integration</module>
 	    <module>socialmedia-integration</module>
+            <module>loopback-example</module>
 	</modules>	
 </project>
