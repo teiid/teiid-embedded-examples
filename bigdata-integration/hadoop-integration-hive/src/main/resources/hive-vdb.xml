@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <vdb name="hivevdb" version="1">
 
-	<property name="UseConnectorMetadata" value="true" />
-
    <model name="HiveServer2Source">
         <property name="importer.useFullSchemaName" value="false"/>
         <source name="local" translator-name="translator-hive" connection-jndi-name="java:/hiveDS"/>
