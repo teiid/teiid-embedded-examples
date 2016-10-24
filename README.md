@@ -58,10 +58,26 @@ $ mvn compile -Dversion.teiid=9.0.0.Final exec:java -s ../settings.xml
 |[restservice-as-a-datasource](restservice-as-a-datasource) |Teiid, Dynamic VDB, XMLTABLE, XMLPARSE,  WS Translator |Demonstrates using the WS Translator to call a REST web services and transform the web service results into relational results |customer service |
 |[soapservice-as-a-datasource](soapservice-as-a-datasource) |Teiid, Dynamic VDB, VIRTUAL PROCEDURE, XMLTABLE, SOAP Service, WS Translator | Demonstrates using the WS Translator to call a generic soap service |StateService service |
 
-## Link
+## Usage Notes
+
+Some of the Teiid transitive dependencies have known vulnerabilities.  WildFly/Teiid addresses this by introducing managed dependency overrides.
+It is recommended that you include these overrides in your usage of Teiid Embedded by importing the Teiid parent pom in your depedency management section:
+
+```xml
+<dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.jboss.teiid</groupId>
+      <artifactId>teiid-parent</artifactId>
+      <version>${version.teiid}</version>
+      <type>pom</type>
+      <scope>import</scope>
+    </dependency>
+``` 
+## Links
 
 * [Teiid Website](http://teiid.org)
 * [Teiid Documentation](http://www.jboss.org/teiid/docs)
-* [Teiid Examples Documentation](https://docs.jboss.org/author/display/teiidexamples/Teiid+Examples)
+* [Teiid Examples Documentation](https://github.com/teiid/teiid-embedded-examples/blob/master/README.md)
 * [Teiid JIRA](https://issues.jboss.org/browse/TEIID)
 * [Teiid User Forum](https://community.jboss.org/en/teiid?view=discussions)
