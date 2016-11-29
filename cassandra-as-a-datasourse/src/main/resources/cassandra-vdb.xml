@@ -3,7 +3,7 @@
 
     <description>Shows how to call Cassandra</description>
     
-    <property name="UseConnectorMetadata" value="cached" />
+    <property name="cache-metadata" value="true" />
     <model name="Users" visible="false">
         <source name="cassandra" translator-name="translator-cassandra" connection-jndi-name="java:/demoCassandra" />
     </model>

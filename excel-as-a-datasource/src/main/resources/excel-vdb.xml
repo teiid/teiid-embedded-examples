@@ -3,9 +3,6 @@
 
   <description>The Excel VDB</description>
 
-  <property name="UseConnectorMetadata" value="true" />
-
-
   <model name="PersonalValuations">
     <property name="importer.headerRowNumber" value="1"/>
     <property name="importer.ExcelFileName" value="otherholdings.xls"/>

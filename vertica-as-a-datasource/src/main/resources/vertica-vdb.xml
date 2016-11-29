@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <vdb name="VerticaVDB" version="1">
 
-	<property name="UseConnectorMetadata" value="true" />
-
    <model name="VMartSource">
         <property name="importer.useFullSchemaName" value="false"/>
         <source name="vertica-connector" translator-name="translator-vertica" connection-jndi-name="java:/verticaDS"/>

@@ -32,10 +32,12 @@
             <maven.compiler.source>1.8</maven.compiler.source>
 
 	    <version.junit>4.11</version.junit>
+<<<<<<< HEAD
 	    <version.teiid>9.2.0.Alpha1</version.teiid>
+=======
+	    <version.teiid>9.1.0.Final</version.teiid>
+>>>>>>> upstream/master
 	    <version.wildfly-swarm>1.0.1.Final</version.wildfly-swarm>
-	    
-            <version.teiid-embedded>1.0.0-SNAPSHOT</version.teiid-embedded>
 	    <version.slf4j-api>1.7.2.redhat-3</version.slf4j-api>
 	    <version.io.netty>3.6.10.Final</version.io.netty>
 	    <version.com.h2database>1.3.152</version.com.h2database>
@@ -76,6 +78,13 @@
 
 	<dependencyManagement>
 	    <dependencies>
+	    <dependency>
+            <groupId>org.jboss.teiid</groupId>
+            <artifactId>teiid-parent</artifactId>
+            <version>${version.teiid}</version>
+           <type>pom</type>
+           <scope>import</scope>
+        </dependency>
 		<dependency>
         	<groupId>org.jboss.teiid.examples</groupId>
         	<artifactId>embedded-portfolio</artifactId>
