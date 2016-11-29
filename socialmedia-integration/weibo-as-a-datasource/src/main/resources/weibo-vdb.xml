@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>  
+<vdb name="WeiboVDB" version="1">  
+    <model name="weibo">  
+        <source name="weibo" translator-name="rest" connection-jndi-name="java:/weiboDS"/>  
+    </model> 
+
+    <model name="Procedures" type="VIRTUAL">
+        <metadata type="DDL"><![CDATA[
+        
+CREATE VIRTUAL PROCEDURE friendships_followers(IN api string NOT NULL) RETURNS TABLE (
+  id long
+)
+  AS
+BEGIN
+  SELECT A.id
+  FROM
+  (call weibo.invokeHTTP(endpoint=>api, action=>'GET')) w, XMLTABLE('/users' passing JSONTOXML('users', w.result) columns id long PATH 'id') A;
+END
+       
+                ]]>
+        </metadata>
+    </model>
+
+</vdb> 
