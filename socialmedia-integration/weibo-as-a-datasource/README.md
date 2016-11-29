@@ -45,31 +45,6 @@ To add Translators and Resource Adapters
 </dependency>
 ~~~
 
-To add thirdpart dependencies
-
-~~~
-<dependency>
-    <groupId>org.jboss.narayana.jta</groupId>
-    <artifactId>narayana-jta</artifactId>
-    <version>${version.narayana}</version>
-</dependency>
-<dependency>
-    <groupId>org.jboss.ironjacamar</groupId>
-    <artifactId>ironjacamar-jdbc</artifactId>
-    <version>${version.ironjacamar}</version>
-</dependency>
-<dependency>
-    <groupId>org.jboss.ironjacamar</groupId>
-    <artifactId>ironjacamar-core-api</artifactId>
-    <version>${version.ironjacamar}</version>
-</dependency>
-<dependency>
-    <groupId>org.jboss.ironjacamar</groupId>
-    <artifactId>ironjacamar-core-impl</artifactId>
-    <version>${version.ironjacamar}</version>
-</dependency>
-~~~
-
 ## Run
 
 * Run from Source code
