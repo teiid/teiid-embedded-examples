@@ -31,7 +31,7 @@
 		
 		<dependency>
 			<groupId>org.jboss.teiid.connectors</groupId>
-			<artifactId>translator-hbase</artifactId>
+			<artifactId>translator-phoenix</artifactId>
 			<version>${version.teiid}</version>
 		</dependency>
 		

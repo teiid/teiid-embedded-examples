@@ -23,9 +23,10 @@ package org.teiid.example;
 
 import static org.teiid.example.JDBCUtils.execute;
 
+import java.sql.Blob;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 
-import javax.resource.spi.ConnectionManager;
 import javax.xml.ws.Service.Mode;
 
 import org.teiid.resource.adapter.ws.WSManagedConnectionFactory;
@@ -34,12 +35,8 @@ import org.teiid.runtime.EmbeddedServer;
 import org.teiid.translator.ws.WSExecutionFactory;
 import org.teiid.translator.ws.WSExecutionFactory.Binding;
 
-public class TeiidEmbeddedTwitterDataSource {
-    
-    static {
-        System.setProperty("http.proxyHost", "squid.apac.redhat.com");
-        System.setProperty("http.proxyPort", "3128");
-    }
+public class TeiidEmbeddedWeiboDataSource {
+
     
     public static void main(String[] args) throws Exception {
         
@@ -52,19 +49,16 @@ public class TeiidEmbeddedTwitterDataSource {
         server.addTranslator("rest", translator);
 		
         WSManagedConnectionFactory mcf = new WSManagedConnectionFactory();
-        mcf.setSecurityType("OAuth");
-        ConnectionManager cm = EmbeddedHelper.createConnectionFactory("picketbox/authentication.conf", "teiid-security-twitter", mcf);
-        server.addConnectionFactory("java:/twitterDS", mcf.createConnectionFactory(cm));
+        server.addConnectionFactory("java:/weiboDS", mcf.createConnectionFactory());
         
         server.start(new EmbeddedConfiguration());
         
-        server.deployVDB(TeiidEmbeddedTwitterDataSource.class.getClassLoader().getResourceAsStream("twitter-vdb.xml"));
+        server.deployVDB(TeiidEmbeddedWeiboDataSource.class.getClassLoader().getResourceAsStream("weibo-vdb.xml"));
         
-        Connection c = server.getDriver().connect("jdbc:teiid:twitter", null);
+        Connection conn = server.getDriver().connect("jdbc:teiid:WeiboVDB", null);
         
-        execute(c, "select * from TwitterUserTimelineView", true);
-        
-        server.stop();
+        execute(conn, "EXEC friendships_followers('https://api.weibo.com/2/friendships/followers.json?access_token=2.00JEVMVG6u_COCa5f58ca2ado84mtC&uid=5957842765')", true);
+
 	}
 
 	

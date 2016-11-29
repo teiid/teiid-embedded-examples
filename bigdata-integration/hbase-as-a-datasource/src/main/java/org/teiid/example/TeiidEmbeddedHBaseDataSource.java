@@ -24,11 +24,12 @@ package org.teiid.example;
 import static org.teiid.example.JDBCUtils.execute;
 
 import java.sql.Connection;
+
 import javax.sql.DataSource;
 
 import org.teiid.runtime.EmbeddedConfiguration;
 import org.teiid.runtime.EmbeddedServer;
-import org.teiid.translator.hbase.HBaseExecutionFactory;
+import org.teiid.translator.phoenix.PhoenixExecutionFactory;
 
 @SuppressWarnings("nls")
 public class TeiidEmbeddedHBaseDataSource {
@@ -42,7 +43,7 @@ public class TeiidEmbeddedHBaseDataSource {
 		
 		EmbeddedServer server = new EmbeddedServer();
 		
-		HBaseExecutionFactory factory = new HBaseExecutionFactory();
+		PhoenixExecutionFactory factory = new PhoenixExecutionFactory();
 		factory.start();
 		server.addTranslator("translator-hbase", factory);
 		

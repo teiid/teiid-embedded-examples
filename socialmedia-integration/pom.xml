@@ -12,5 +12,6 @@
 	
 	<modules>
 	    <module>twitter-as-a-datasource</module>
+            <module>weibo-as-a-datasource</module>
 	</modules>
 </project>
