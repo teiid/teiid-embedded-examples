@@ -1,0 +1,6 @@
+<vdb name="PrestoDB" version="1">
+    <model name="Source" type="PHYSICAL">
+        <property name="importer.catalog" value="mysql"/>
+        <source name="Source" connection-jndi-name="java:/prestoDS" translator-name="translator-prestodb"/>
+    </model>
+</vdb>

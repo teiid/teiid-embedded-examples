@@ -157,6 +157,7 @@
 	    <module>odataservice-as-a-datasource</module>
 	    <module>odata4service-as-a-datasource</module>
 	    <module>vertica-as-a-datasource</module>
+            <module>prestodb-as-a-datasource</module>
 	    <module>drools-integration</module>
 	    <module>bigdata-integration</module>
 	    <module>socialmedia-integration</module>
