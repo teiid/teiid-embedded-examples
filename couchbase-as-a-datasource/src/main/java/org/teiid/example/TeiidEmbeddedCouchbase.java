@@ -144,20 +144,24 @@ public class TeiidEmbeddedCouchbase {
 		
 		Connection conn = server.getDriver().connect("jdbc:teiid:CouchbaseVDB", null);
 		
-		Arrays.asList(querys).forEach(query -> {
-		    execute(conn, query);
-		});
-		
-//		Arrays.asList(simpleQuerys).forEach(query -> {
+//		Arrays.asList(querys).forEach(query -> {
 //		    execute(conn, query);
 //		});
+		
+		Arrays.asList(simpleQuerys).forEach(query -> {
+		    try {
+                execute(conn, query);
+            } catch (Exception e) {
+                assert(false);
+            }
+		});
 		
 //		ResultSet tables =conn.getMetaData().getTables(null, "CouchbaseModel", null, null);
 //		while(tables.next()) {
 //		    System.out.println(tables.getString(2) + ", " + tables.getString(3));
 //		}
 		
-        execute(conn, "SELECT * FROM Oder");
+//        execute(conn, simpleQuerys[1]);
 		
 //		execute(conn, "SELECT * FROM default_nestedArray_dim2_dim3_dim4");
 
