@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<vdb name="trippinVDB" version="1">
+
+    <description>OData4 source example</description>
+    
+    <model name="trippin">
+         <source name="odata4" translator-name="odata4" connection-jndi-name="java:/tripDS"/>
+    </model>       
+</vdb>

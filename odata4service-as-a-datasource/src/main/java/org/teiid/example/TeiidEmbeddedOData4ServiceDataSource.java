@@ -39,19 +39,21 @@ public class TeiidEmbeddedOData4ServiceDataSource {
 		
 		ODataExecutionFactory factory = new ODataExecutionFactory();
 		factory.start();
-		server.addTranslator("translator-odata", factory);
+		server.addTranslator("odata4", factory);
 		
 		WSManagedConnectionFactory managedconnectionFactory = new WSManagedConnectionFactory();
-		managedconnectionFactory.setEndPoint("http://services.odata.org/Northwind/Northwind.svc");
-		server.addConnectionFactory("java:/ODataNorthwindDS", managedconnectionFactory.createConnectionFactory());
+		managedconnectionFactory.setEndPoint("http://services.odata.org/V4/(S(va3tkzikqbtgu1ist44bbft5))/TripPinServiceRW");
+		server.addConnectionFactory("java:/tripDS", managedconnectionFactory.createConnectionFactory());
 
 		server.start(new EmbeddedConfiguration());
     	
-		server.deployVDB(TeiidEmbeddedOData4ServiceDataSource.class.getClassLoader().getResourceAsStream("odataNorthwindservice-vdb.xml"));
+		server.deployVDB(TeiidEmbeddedOData4ServiceDataSource.class.getClassLoader().getResourceAsStream("odata4-vdb.xml"));
 		
-		Connection c = server.getDriver().connect("jdbc:teiid:NorthwindVDB", null);
+		Connection c = server.getDriver().connect("jdbc:teiid:trippinVDB", null);
 
-		execute(c, "SELECT * FROM Customers", true);
+		execute(c, "SELECT * FROM trippin.People", false);
+		execute(c, "SELECT * FROM trippin.People WHERE UserName = 'russellwhyte'", false);
+		execute(c, "SELECT * FROM trippin.People p INNER JOIN trippin.People_Friends pf ON p.UserName = pf.People_UserName", true);
 		
 		server.stop();
 	}
