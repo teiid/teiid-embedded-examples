@@ -2,7 +2,6 @@ package org.teiid.example;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
 import java.util.Properties;
 
 import org.teiid.resource.adapter.couchbase.CouchbaseManagedConnectionFactory;

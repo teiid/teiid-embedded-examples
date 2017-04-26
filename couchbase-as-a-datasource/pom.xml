@@ -55,7 +55,7 @@
 		    <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
             <configuration>
-		        <mainClass>org.teiid.example.TeiidEmbeddedCouchbase</mainClass>
+		        <mainClass>org.teiid.example.TeiidEmbeddedCouchbaseDML</mainClass>
 		    </configuration>
 		</plugin>
 	    </plugins>

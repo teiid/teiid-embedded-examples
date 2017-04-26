@@ -48,7 +48,7 @@ public class LoadData {
 //        bucket.upsert(JsonDocument.create("order", formOder()));
 //        bucket.upsert(JsonDocument.create("nullValueJson", formNullValueJson()));
 //        bucket.upsert(JsonDocument.create("dataTypeJson", formDataTypeJson()));
-        bucket.upsert(JsonDocument.create("nestedJson", nestedJson()));
+//        bucket.upsert(JsonDocument.create("nestedJson", nestedJson()));
         bucket.upsert(JsonDocument.create("nestedArray", nestedArray()));
 //        bucket.upsert(JsonDocument.create("complexJson", complexJson()));
 
