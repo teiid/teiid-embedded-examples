@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<parent>
         <artifactId>bigdata-integration</artifactId>
-    	<groupId>org.jboss.teiid.examples</groupId>
+    	<groupId>org.teiid.examples</groupId>
      	<version>1.0.1-SNAPSHOT</version>
   	</parent>
 	<modelVersion>4.0.0</modelVersion>
@@ -13,24 +13,24 @@
 	<dependencies>
        	
 		<dependency>
-		    <groupId>org.jboss.teiid</groupId>
+		    <groupId>org.teiid</groupId>
 		    <artifactId>teiid-runtime</artifactId>
 		    <version>${version.teiid}</version>
 		</dependency>
 		<dependency>
-		    <groupId>org.jboss.teiid</groupId>
+		    <groupId>org.teiid</groupId>
 		    <artifactId>teiid-admin</artifactId>
 		    <version>${version.teiid}</version>
 		</dependency>
         
         <dependency>
-			<groupId>org.jboss.teiid.connectors</groupId>
+			<groupId>org.teiid.connectors</groupId>
 			<artifactId>translator-hive</artifactId>
 			<version>${version.teiid}</version>
 		</dependency>
 		
 		<dependency>
-			<groupId>org.jboss.teiid.connectors</groupId>
+			<groupId>org.teiid.connectors</groupId>
 			<artifactId>translator-jdbc</artifactId>
 			<version>${version.teiid}</version>
 		</dependency>
