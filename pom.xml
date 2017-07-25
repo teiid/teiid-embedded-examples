@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 		
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>org.jboss.teiid.examples</groupId>
+	<groupId>org.teiid.examples</groupId>
 	<artifactId>teiid-examples-parent</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0.1-SNAPSHOT</version>
@@ -26,11 +26,11 @@
 	    <version.war.plugin>2.1.1</version.war.plugin>
 	    <version.compiler.plugin>3.1</version.compiler.plugin>
 	    <version.jar.plugin>2.2</version.jar.plugin>
-            <maven.compiler.target>1.8</maven.compiler.target>
-            <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
 
 	    <version.junit>4.11</version.junit>
-	    <version.teiid>9.3.0.Final</version.teiid>
+	    <version.teiid>10.0.0.Alpha2</version.teiid>
 	    <version.wildfly-swarm>2017.2.0</version.wildfly-swarm>
 	    <version.slf4j-api>1.7.2.redhat-3</version.slf4j-api>
 	    <version.io.netty>3.6.10.Final</version.io.netty>
@@ -73,14 +73,14 @@
 	<dependencyManagement>
 	    <dependencies>
 	    <dependency>
-            <groupId>org.jboss.teiid</groupId>
+            <groupId>org.teiid</groupId>
             <artifactId>teiid-parent</artifactId>
             <version>${version.teiid}</version>
            <type>pom</type>
            <scope>import</scope>
         </dependency>
 		<dependency>
-        	<groupId>org.jboss.teiid.examples</groupId>
+        	<groupId>org.teiid.examples</groupId>
         	<artifactId>embedded-portfolio</artifactId>
         	<version>${project.version}</version>
         	</dependency>
@@ -95,71 +95,71 @@
 	<build>
 	    <pluginManagement>
 		<plugins>
-		    <plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-jar-plugin</artifactId>
-			<version>${version.jar.plugin}</version>
-		    </plugin>
-		    <plugin>
-                	<artifactId>maven-war-plugin</artifactId>
-                	<version>${version.war.plugin}</version>
-            	    </plugin>
-		    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>${version.exec.plugin}</version>
-                        <executions>
-			    <execution>
-     				<goals>  
-      				    <goal>java</goal>  
-     				</goals> 
-			    </execution>
-                        </executions>
-                    </plugin>
-		    <plugin>
-          		<groupId>org.wildfly.swarm</groupId>
-          		<artifactId>wildfly-swarm-plugin</artifactId>
-          		<version>${version.wildfly-swarm}</version>
-        	    </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<version>${version.jar.plugin}</version>
+			</plugin>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${version.war.plugin}</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>${version.exec.plugin}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.wildfly.swarm</groupId>
+				<artifactId>wildfly-swarm-plugin</artifactId>
+				<version>${version.wildfly-swarm}</version>
+			</plugin>
 		</plugins>
 	    </pluginManagement>
 	    <plugins>
-		<plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>${version.compiler.plugin}</version>
-                        <configuration>
-                            <source>${maven.compiler.source}</source>
-                            <target>${maven.compiler.target}</target>
-                            <showDeprecation>false</showDeprecation>
-                            <showWarnings>false</showWarnings>
-                        </configuration>
-                    </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version.compiler.plugin}</version>
+				<configuration>
+					<source>${maven.compiler.source}</source>
+					<target>${maven.compiler.target}</target>
+					<showDeprecation>false</showDeprecation>
+					<showWarnings>false</showWarnings>
+				</configuration>
+			</plugin>
 	    </plugins>
 	</build>
-	
+
 	<modules>
-	    <module>embedded-portfolio</module>
-	    <module>embedded-portfolio-security</module>
-	    <module>embedded-caching</module>
-	    <module>embedded-portfolio-logging</module>
-	    <module>embedded-portfolio-sockets</module>
-	    <module>embedded-portfolio-jdbc-extensions</module>
-	    <module>excel-as-a-datasource</module>
-	    <module>ldap-as-a-datasource</module>
-	    <module>cassandra-as-a-datasourse</module>
-	    <module>mongodb-as-a-datasource</module>
-            <module>couchbase-as-a-datasource</module>
-	    <module>soapservice-as-a-datasource</module>
-	    <module>restservice-as-a-datasource</module>
-	    <module>swagger-as-a-datasource</module>
-	    <module>odataservice-as-a-datasource</module>
-	    <module>odata4service-as-a-datasource</module>
-	    <module>vertica-as-a-datasource</module>
-            <module>prestodb-as-a-datasource</module>
-	    <module>drools-integration</module>
-	    <module>bigdata-integration</module>
-	    <module>socialmedia-integration</module>
-            <module>loopback-example</module>
+		<module>embedded-portfolio</module>
+		<module>embedded-portfolio-security</module>
+		<module>embedded-caching</module>
+		<module>embedded-portfolio-logging</module>
+		<module>embedded-portfolio-sockets</module>
+		<module>embedded-portfolio-jdbc-extensions</module>
+		<module>excel-as-a-datasource</module>
+		<module>ldap-as-a-datasource</module>
+		<module>cassandra-as-a-datasourse</module>
+		<module>mongodb-as-a-datasource</module>
+		<module>couchbase-as-a-datasource</module>
+		<module>soapservice-as-a-datasource</module>
+		<module>restservice-as-a-datasource</module>
+		<module>swagger-as-a-datasource</module>
+		<module>odataservice-as-a-datasource</module>
+		<module>odata4service-as-a-datasource</module>
+		<module>vertica-as-a-datasource</module>
+		<module>prestodb-as-a-datasource</module>
+		<module>drools-integration</module>
+		<module>bigdata-integration</module>
+		<module>socialmedia-integration</module>
+		<module>loopback-example</module>
 	</modules>	
 </project>
