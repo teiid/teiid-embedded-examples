@@ -1,19 +1,19 @@
-## Teiid Examples
+## Teiid 9.x Embedded Examples
 
 Teiid Embedded Examples show how to integrate multiple, heterogeneous data stores and enterprise services in a light-weight way.
 
 ## Build
 
-* install JDK 1.7 or higher
+* install JDK 1.8 or higher
 * install maven 3 - http://maven.apache.org/download.html
-* Optionally create a github account and fork Teiid Examples
+* Optionally create a github account and fork Teiid Embedded Examples
 
 Enter the following:
 
 ~~~
 $ git clone https://github.com/teiid/teiid-embedded-examples.git
 $ cd teiid-embedded-examples
-$ mvn clean install -s -Dversion.teiid=<teiid.version> settings.xml
+$ mvn clean install -Dversion.teiid=<teiid.version> -s settings.xml
 ~~~
 
 > NOTE: if you forked the project, then use https://github.com/<your account>/teiid-embedded-examples.git instead
@@ -28,7 +28,7 @@ Import `teiid-embedded-examples` source code to a IDE(Eclipse), then run each ex
 
 ### Run from mvn 
 
-After the above **Build** section steps, the examples should have built successfully.  Navigate to an example, then execute mvn exec commands. For example, using the following commands t0 run `embedded-portfolio` against teiid 9.0.0.Final:
+After the above **Build** section steps, the examples should have built successfully.  Navigate to an example, then execute mvn exec commands. For example, using the following commands to run `embedded-portfolio` against teiid 9.0.0.Final:
 
 ~~~
 $ cd teiid-embedded-examples/embedded-portfolio
