@@ -13,7 +13,7 @@ Enter the following:
 ~~~
 $ git clone https://github.com/teiid/teiid-embedded-examples.git
 $ cd teiid-embedded-examples
-$ mvn clean install -s -Dversion.teiid=<teiid.version> settings.xml
+$ mvn clean install -Dversion.teiid=<teiid.version> -s settings.xml
 ~~~
 
 > NOTE: if you forked the project, then use https://github.com/<your account>/teiid-embedded-examples.git instead
