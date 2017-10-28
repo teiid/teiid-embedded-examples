@@ -54,15 +54,15 @@ public class HelloWorld {
 
 		
 	
-	public static Object performRuleOnData(final String className, final String[] fileds, final Object[] arguments){
+	public static Object performRuleOnData(final String className, final String[] fields, final Object[] arguments){
 		
 		Object obj;
 		
 		try {
 			obj = Class.forName(className).newInstance();
 			Class<? extends Object> clas = obj.getClass();
-			for(int i = 0 ; i < fileds.length ; i ++) {
-				Field field = clas.getDeclaredField(fileds[i]);
+			for(int i = 0 ; i < fields.length ; i ++) {
+				Field field = clas.getDeclaredField(fields[i]);
 				field.setAccessible(true);
 				field.set(obj, arguments[i]);
 			}
