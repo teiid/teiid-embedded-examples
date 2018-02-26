@@ -70,6 +70,8 @@ CREATE TABLE status
   Cardinality long,
   Updated timestamp not null,
   LoadNumber long not null,
+  NodeName varchar(25) not null,
+  StaleCount bigint,
   PRIMARY KEY (VDBName, VDBVersion, SchemaName, Name)
 );
 
