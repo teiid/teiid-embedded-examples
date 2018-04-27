@@ -6,7 +6,7 @@
 
 This example demonstrates a series of JDBC Extensions in Teiid:
 
-* **Non-blocking Statement Execution** - blocking Statement Execution use a Callback execute JDBC asychronously when usind embedded/local connections, more details refer to https://teiid.gitbooks.io/documents/content/client-dev/Non-blocking_Statement_Execution.html[Teiid doc].
+* **Non-blocking Statement Execution** - blocking Statement Execution use a Callback execute JDBC asychronously when usind embedded/local connections, more details refer to http://teiid.github.io/teiid-documents/master/content/client-dev/Non-blocking_Statement_Execution.html[Teiid doc].
 
 
 > NOTE: VDB [portfolio-vdb.xml](src/main/resources/portfolio-vdb.xml) be used in example. `java:/accounts-ds` and `java:/marketdata-file` referenced with h2 database([customer-schema.sql](src/main/resources/data/customer-schema.sql)) and file data source([marketdata-price.txt](src/main/resources/data/marketdata-price.txt)) correspondingly, which both data source will be setup automatically while the examples running.
