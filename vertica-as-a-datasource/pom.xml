@@ -2,7 +2,7 @@
 	<parent>
         <artifactId>teiid-examples-parent</artifactId>
     	<groupId>org.teiid.examples</groupId>
-     	<version>1.0.1-SNAPSHOT</version>
+     	<version>3.0.0-SNAPSHOT</version>
   	</parent>
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>vertica-as-a-datasource</artifactId>
@@ -28,6 +28,12 @@
 			<artifactId>translator-jdbc</artifactId>
 			<version>${version.teiid}</version>
 		</dependency>
+		
+		<dependency>
+            <groupId>org.jboss.spec.javax.resource</groupId>
+            <artifactId>jboss-connector-api_1.7_spec</artifactId>
+            <version>${version.connector.api}</version>
+        </dependency>
 		
 		<dependency>
 		    <groupId>org.jboss.narayana.jta</groupId>

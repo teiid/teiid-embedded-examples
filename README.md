@@ -28,11 +28,11 @@ Import `teiid-embedded-examples` source code to a IDE(Eclipse), then run each ex
 
 ### Run from mvn 
 
-After the above **Build** section steps, the examples should have built successfully.  Navigate to an example, then execute mvn exec commands. For example, using the following commands to run `embedded-portfolio` against teiid 10.0.0.Final:
+After the above **Build** section steps, the examples should have built successfully.  Navigate to an example, then execute mvn exec commands. For example, using the following commands to run `embedded-portfolio` against teiid 12.0.0:
 
 ~~~
 $ cd teiid-embedded-examples/embedded-portfolio
-$ mvn compile -Dversion.teiid=10.0.0.Final exec:java -s ../settings.xml
+$ mvn compile -Dversion.teiid=12.0.0 exec:java -s ../settings.xml
 ~~~
 
 ## Available Examples
