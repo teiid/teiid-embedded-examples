@@ -23,6 +23,11 @@
 			<version>${version.teiid}</version>
 		</dependency>
 		
+        <dependency>
+			<groupId>org.teiid</groupId>
+			<artifactId>cache-infinispan</artifactId>
+			<version>${version.teiid}</version>
+		</dependency>
 		
 		<dependency>
 			<groupId>org.teiid.connectors</groupId>
